@@ -1,0 +1,11 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for lpr-form",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "Heberzip",
+  "license": "ISC"
+}
