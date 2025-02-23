@@ -4,7 +4,6 @@ import { AnimatePresence } from "framer-motion";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
 
 import style from "../styles/global.style";
 
@@ -37,10 +36,6 @@ const Layout = () => {
           </div>
         </main>
       </div>
-
-      <footer className={style.layout.footer}>
-        <Footer />
-      </footer>
     </div>
   );
 };

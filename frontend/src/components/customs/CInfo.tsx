@@ -10,7 +10,7 @@ const CInfo = ({
   height?: string;
 }) => {
   return (
-    <div className={style.cinfo}>
+    <button className={style.cinfo}>
       <svg width={width || "24"} height={height || "24"} viewBox={`0 0 24 24`}>
         <path
           fill={color || "currentColor"}
@@ -19,7 +19,7 @@ const CInfo = ({
           clipRule="evenodd"
         />
       </svg>
-    </div>
+    </button>
   );
 };
 

@@ -70,7 +70,8 @@
         "type": "text",
         "placeholder": "Spain",
         "required": true,
-        "gridPosition": 4
+        "gridPosition": 4,
+        "autocomplete": true
       },
       {
         "id": 8,
