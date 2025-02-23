@@ -1,35 +1,100 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./layouts/Layout";
 
-function App() {
-  const [count, setCount] = useState(0)
+import SectionTransition from "./components/animations/SectionTransition";
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+import {
+  Welcome,
+  Company,
+  Communication,
+  Contact,
+  Bank,
+  Fleet,
+  Extras,
+  MeetingPoint,
+  NotFound,
+} from "./components/sections";
 
-export default App
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: (
+          <SectionTransition>
+            <Welcome />
+          </SectionTransition>
+        ),
+      },
+      {
+        path: "/company",
+        element: (
+          <SectionTransition>
+            <Company />
+          </SectionTransition>
+        ),
+      },
+      {
+        path: "/communication",
+        element: (
+          <SectionTransition>
+            <Communication />
+          </SectionTransition>
+        ),
+      },
+      {
+        path: "/contact",
+        element: (
+          <SectionTransition>
+            <Contact />
+          </SectionTransition>
+        ),
+      },
+      {
+        path: "/bank",
+        element: (
+          <SectionTransition>
+            <Bank />
+          </SectionTransition>
+        ),
+      },
+      {
+        path: "/fleet",
+        element: (
+          <SectionTransition>
+            <Fleet />
+          </SectionTransition>
+        ),
+      },
+      {
+        path: "/extras",
+        element: (
+          <SectionTransition>
+            <Extras />
+          </SectionTransition>
+        ),
+      },
+      {
+        path: "/meeting-point",
+        element: (
+          <SectionTransition>
+            <MeetingPoint />
+          </SectionTransition>
+        ),
+      },
+    ],
+    errorElement: (
+      <SectionTransition>
+        <NotFound />
+      </SectionTransition>
+    ),
+  },
+]);
+
+const App = () => {
+  return <RouterProvider router={router} />;
+};
+
+export default App;

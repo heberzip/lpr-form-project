@@ -1,68 +1,32 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@theme {
+  /* theme variables */
+  --font-sans: "Ubuntu", sans-serif;
+  --font-heading: "Ubuntu", sans-serif;
+  --color-dark: #4e4e4e;
+  --color-light: #f4f6f9;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  --color-zip-yellow-500: #f8c526;
+  --color-zip-yellow-400: #f9d051;
+  --color-zip-yellow-300: #fadc7c;
+  --color-zip-yellow-200: #fce7a8;
+  --color-zip-yellow-100: #fdf3d3;
+  --color-zip-yellow-50: #fef9e9;
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+  --color-zip-blue1-500: #78daea;
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+  --color-zip-blue2-900: #0e2f36;
+  --color-zip-blue2-800: #133f48;
+  --color-zip-blue2-700: #1c5e6c;
+  --color-zip-blue2-600: #267e90;
+  --color-zip-blue2-500: #309eb5;
+  --color-zip-blue2-400: #59b1c3;
+  --color-zip-blue2-300: #82c4d2;
+  --color-zip-blue2-200: #acd8e1;
+  --color-zip-blue2-100: #d5ebf0;
+  --color-zip-blue2-50: #eaf5f7;
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  --color-zip-gray-500: #dcd8d7;
 }

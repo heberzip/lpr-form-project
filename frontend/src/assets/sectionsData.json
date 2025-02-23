@@ -1,0 +1,87 @@
+[
+  {
+    "id": 1,
+    "link": "/company",
+    "title": "COMPANY DETAILS",
+    "description": "In this section, we will ask you for legal details of your company.",
+    "formData": [
+      {
+        "id": 1,
+        "name": "companyName",
+        "label": "Company name",
+        "small": "This is the \"legal name\" of your company (not the trade name) or your name if you are self-employed, in our case it would be: ZIP ONLINE SERVICES SL.",
+        "type": "text",
+        "placeholder": "ZIP ONLINE SERVICES S.L.",
+        "required": true
+      },
+      {
+        "id": 2,
+        "name": "tradeName",
+        "label": "Trade name",
+        "small": "This is the \"commercial name\" of your company, in our case it would be: ZIPTRANSFERS.",
+        "type": "text",
+        "placeholder": "ZIPTRANSFERS",
+        "required": false
+      },
+      {
+        "id": 3,
+        "name": "vat",
+        "label": "VAT / IVA / NIF",
+        "small": "This is the legal identification number of your company (value-added tax). It is known in different ways depending on the country: VAT, IVA, or NIF/CIF.",
+        "type": "text",
+        "placeholder": "ES123456789",
+        "required": true
+      }
+    ],
+    "address": [
+      {
+        "id": 4,
+        "name": "streetAddress",
+        "label": "Street address",
+        "type": "text",
+        "placeholder": "Carrer Llovera 53, 5-1",
+        "required": true,
+        "gridPosition": 1
+      },
+      {
+        "id": 5,
+        "name": "city",
+        "label": "City",
+        "type": "text",
+        "placeholder": "Reus",
+        "required": true,
+        "gridPosition": 3
+      },
+      {
+        "id": 6,
+        "name": "zipCode",
+        "label": "Zip code",
+        "small": "Also known as Postal Code in some countries.",
+        "type": "text",
+        "placeholder": "08001",
+        "required": true,
+        "gridPosition": 2
+      },
+      {
+        "id": 7,
+        "name": "country",
+        "label": "Country",
+        "small": "This is the country where your company is registered.",
+        "type": "text",
+        "placeholder": "Spain",
+        "required": true,
+        "gridPosition": 4
+      },
+      {
+        "id": 8,
+        "name": "province",
+        "label": "Province - State",
+        "small": "This is the province or state where your company is registered.",
+        "type": "text",
+        "placeholder": "Tarragona, Catalonia",
+        "required": true,
+        "gridPosition": 5
+      }
+    ]
+  }
+]
