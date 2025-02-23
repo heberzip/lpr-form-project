@@ -16,7 +16,7 @@ export default {
   header: {},
   /****************************************************************************** */
   section: {
-    grid: "grid md:grid-cols-2 md:gap-20 w-full h-full",
+    grid: "grid md:grid-cols-2 md:gap-25 w-full h-full",
     leftCol: "flex flex-col w-full mt-0 md:mt-16",
     rightCol: "flex flex-col items-center justify-start w-full mt-0 md:mt-6",
   },
