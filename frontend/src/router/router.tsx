@@ -1,8 +1,10 @@
+// EXTERNAL MODULES
 import { createBrowserRouter } from "react-router-dom";
 
-import Layout from "../layouts/Layout";
-import SectionTransition from "../components/animations/SectionTransition";
+// LAYOUTS
+import Layout from "@layouts/Layout";
 
+// SECTIONS
 import {
   Welcome,
   Company,
@@ -13,7 +15,12 @@ import {
   Extras,
   MeetingPoint,
   NotFound,
-} from "../components/sections";
+} from "@sections/.";
+
+// ANIMATIONS
+import SectionTransition from "@animations/SectionTransition";
+
+/******************************************************************************/
 
 export const CRouter = createBrowserRouter([
   {

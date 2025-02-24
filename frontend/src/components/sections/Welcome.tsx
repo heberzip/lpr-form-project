@@ -1,10 +1,14 @@
+// EXTERNAL MODULES
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import { initializeLoaded } from "../../store/middlewares/loadedThunks";
-import { selectLoaded } from "../../store/slices/loadedSlice";
-import { useAppDispatch } from "../../store/store";
+// STORE
+import { initializeLoaded } from "@store/middlewares/loadedThunks";
+import { selectLoaded } from "@store/slices/loadedSlice";
+import { useAppDispatch } from "@store/store";
+
+/******************************************************************************/
 
 const Welcome = () => {
   const dispatch = useAppDispatch();

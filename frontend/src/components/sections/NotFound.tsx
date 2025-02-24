@@ -1,6 +1,11 @@
+// EXTERNAL MODULES
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectLoaded } from "../../store/slices/loadedSlice";
+
+// STORE
+import { selectLoaded } from "@store/slices/loadedSlice";
+
+/******************************************************************************/
 
 const NotFound = () => {
   const { supplier, airports } = useSelector(selectLoaded);

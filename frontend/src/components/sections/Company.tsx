@@ -1,15 +1,23 @@
-import useSection from "../../hooks/useSection";
-import style from "../../styles/global.style";
-import CAutocomplete from "../customs/CAutocomplete";
-import CInfo from "../customs/CInfo";
-import CSeparator from "../customs/CSeparator";
+// CUSTOM COMPONENTS
+import { CAutocomplete, CInfo, CSeparator } from "@customs/.";
 
-import countriesData from "../../assets/countriesData.json";
+// CUSTOM HOOKS
+import useSection from "@hooks/useSection";
 
+// STYLES
+import style from "@styles/global.style";
+
+// DATA
+import countriesData from "@data/countriesData.json";
+
+/******************************************************************************/
+// TYPES
 type CountryType = {
   name: string;
   code: string;
 };
+
+/******************************************************************************/
 
 const Company = () => {
   const section = useSection();

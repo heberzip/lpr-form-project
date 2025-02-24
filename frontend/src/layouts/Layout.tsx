@@ -1,14 +1,19 @@
+// EXTERNAL MODULES
 import { Outlet, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
-import Sidebar from "../components/Sidebar";
-import Header from "../components/Header";
-import Navigation from "../components/Navigation";
+// COMPONENTS
+import Sidebar from "@components/Sidebar";
+import Header from "@components/Header";
+import Navigation from "@components/Navigation";
 
-import style from "../styles/global.style";
+// STYLES
+import style from "@styles/global.style";
 
-// import blue_bg from "../assets/images/blue_bg.svg";
-// import yellow_bg from "../assets/images/yellow_bg.svg";
+// import blue_bg from "@assets/images/blue_bg.svg";
+// import yellow_bg from "@assets/images/yellow_bg.svg";
+
+/******************************************************************************/
 
 const Layout = () => {
   const location = useLocation();

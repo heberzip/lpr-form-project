@@ -1,10 +1,17 @@
+// EXTERNAL MODULES
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
 
+// STORE
+import { RootState } from "@store/store";
+
+/******************************************************************************/
+// TYPES
 export type LoadedState = {
   supplier: string;
   airports: string[];
 };
+
+/******************************************************************************/
 
 const getLoadedStateFromLS = (): LoadedState => {
   const savedState = localStorage.getItem("loadedState");

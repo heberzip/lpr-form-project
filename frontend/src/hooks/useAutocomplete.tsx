@@ -1,4 +1,7 @@
+// EXTERNAL MODULES
 import { useState, useEffect } from "react";
+
+/******************************************************************************/
 
 const useAutocomplete = <T,>(
   data: T[],

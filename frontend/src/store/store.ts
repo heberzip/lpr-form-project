@@ -1,8 +1,11 @@
+// EXTERNAL MODULES
 import { configureStore } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 
 // SLICES
-import loadedReducer from "./slices/loadedSlice";
-import { useDispatch } from "react-redux";
+import loadedReducer from "@store/slices/loadedSlice";
+
+/******************************************************************************/
 
 const store = configureStore({
   reducer: { loaded: loadedReducer },

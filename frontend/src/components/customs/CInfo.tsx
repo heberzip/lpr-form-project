@@ -1,4 +1,7 @@
-import style from "../../styles/global.style";
+// STYLES
+import style from "@styles/global.style";
+
+/******************************************************************************/
 
 const CInfo = ({
   color,

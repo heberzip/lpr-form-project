@@ -1,5 +1,8 @@
-import { AppDispatch } from "../store";
-import { setLoaded } from "../slices/loadedSlice";
+// STORE
+import { AppDispatch } from "@store/store";
+import { setLoaded } from "@store/slices/loadedSlice";
+
+/******************************************************************************/
 
 export const initializeLoaded = (search: string) => {
   return async (dispatch: AppDispatch) => {

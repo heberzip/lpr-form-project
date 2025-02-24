@@ -1,6 +1,11 @@
+// EXTERNAL MODULES
 import { useState } from "react";
-import useAutocomplete from "../../hooks/useAutocomplete";
 
+// CUSTOM HOOKS
+import useAutocomplete from "@hooks/useAutocomplete";
+
+/******************************************************************************/
+// TYPES
 type AutocompleteProps<T> = {
   data: T[];
   filterFn: (item: T, query: string) => boolean;
@@ -9,6 +14,8 @@ type AutocompleteProps<T> = {
   renderItem?: (item: T) => string;
   className?: string;
 };
+
+/******************************************************************************/
 
 const CAutocomplete = <T,>({
   data,

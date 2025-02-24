@@ -1,6 +1,8 @@
+// EXTERNAL MODULES
 import { useLocation, useNavigate } from "react-router-dom";
 
-import style from "../../styles/global.style";
+// STYLES
+import style from "@styles/global.style";
 
 const sections = [
   "/",

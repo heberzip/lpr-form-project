@@ -1,6 +1,10 @@
+// EXTERNAL MODULES
 import { useLocation } from "react-router-dom";
 
-import formData from "../assets/sectionsData.json";
+// DATA
+import formData from "@data/sectionsData.json";
+
+/******************************************************************************/
 
 const useSection = () => {
   const location = useLocation();
