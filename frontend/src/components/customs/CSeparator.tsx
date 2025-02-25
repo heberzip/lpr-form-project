@@ -1,8 +1,8 @@
-const CSeparator = ({ className }: { className?: string }) => {
+const CSeparator = ({ className = "mt-4 mb-6" }: { className?: string }) => {
   return (
-    <hr
-      className={`border-[1px] border-zip-blue2-600 rounded-3xl mt-4 mb-6 shadow-lg ${className}`}
-    />
+    <div className={`flex w-full px-6  ${className}`}>
+      <hr className={`border-[2px] border-zip-blue2-500 rounded-2xl w-full`} />
+    </div>
   );
 };
 

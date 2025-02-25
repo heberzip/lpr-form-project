@@ -60,6 +60,8 @@ const Company = () => {
 
           <AddressSection address={section?.address || []} />
         </form>
+        <CSeparator className="flex justify-center items-center w-full max-w-3xs mt-4 mb-3 md:hidden" />
+        <CSeparator className="flex justify-center items-center w-full max-w-[90px] m-0 p-0 md:hidden" />
       </div>
     </section>
   );

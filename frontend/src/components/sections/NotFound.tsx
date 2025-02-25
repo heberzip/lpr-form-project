@@ -4,20 +4,22 @@ import { useSelector } from "react-redux";
 
 // STORE
 import { selectLoaded } from "@store/slices/loadedSlice";
+import zipy_404 from "@assets/images/Zipy_404.svg";
 
 /******************************************************************************/
 
 const NotFound = () => {
   const { supplier, airports } = useSelector(selectLoaded);
   return (
-    <section id="not-found">
-      <h1>404</h1>
-      <p>Page not found</p>
-      <p>The page you are looking for does not exist.</p>
-      <p>Please check the URL or contact the website administrator.</p>
-      <p>Thank you for using our website.</p>
+    <section
+      id="not-found"
+      className="flex flex-col items-center justify-center"
+    >
+      <img src={zipy_404} alt="404" className="min-w-sm w-md opacity-90" />
       <Link to={`/?supplier=${supplier}&airports=${airports.join(",")}`}>
-        <button>home</button>
+        <button className="bg-zip-blue2-500 text-white px-6 py-1 min-w-[150px] rounded-md shadow-xl hover:bg-zip-blue2-600 active:bg-zip-blue2-800 active:size-0.95 transition disabled:opacity-50">
+          home
+        </button>
       </Link>
     </section>
   );
