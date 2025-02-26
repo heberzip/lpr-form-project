@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "position": "Owner"
+  },
+  {
+    "id": 2,
+    "position": "Founder"
+  },
+  {
+    "id": 3,
+    "position": "General Director"
+  },
+  {
+    "id": 4,
+    "position": "CEO (Chief Executive Officer)"
+  },
+  {
+    "id": 5,
+    "position": "COO (Chief Operating Officer)"
+  },
+  {
+    "id": 6,
+    "position": "CFO (Chief Financial Officer)"
+  },
+  {
+    "id": 7,
+    "position": "Operations Director"
+  },
+  {
+    "id": 8,
+    "position": "Operations Manager"
+  },
+  {
+    "id": 9,
+    "position": "Fleet Manager"
+  },
+  {
+    "id": 10,
+    "position": "Dispatcher"
+  },
+  {
+    "id": 11,
+    "position": "Lead Driver"
+  },
+  {
+    "id": 12,
+    "position": "Senior Driver"
+  },
+  {
+    "id": 13,
+    "position": "Standard Driver"
+  },
+  {
+    "id": 14,
+    "position": "VIP Driver"
+  },
+  {
+    "id": 15,
+    "position": "Chauffeur"
+  },
+  {
+    "id": 16,
+    "position": "Airport Coordinator"
+  },
+  {
+    "id": 17,
+    "position": "Logistics Supervisor"
+  },
+  {
+    "id": 18,
+    "position": "Customer Service Director"
+  },
+  {
+    "id": 19,
+    "position": "Customer Service Manager"
+  },
+  {
+    "id": 20,
+    "position": "Customer Support Representative"
+  },
+  {
+    "id": 21,
+    "position": "Reservations Director"
+  },
+  {
+    "id": 22,
+    "position": "Reservations Manager"
+  },
+  {
+    "id": 23,
+    "position": "Reservations Agent"
+  },
+  {
+    "id": 24,
+    "position": "Quality Assurance Manager"
+  },
+  {
+    "id": 25,
+    "position": "Safety and Compliance Officer"
+  },
+  {
+    "id": 26,
+    "position": "Account Manager"
+  },
+  {
+    "id": 27,
+    "position": "Sales Director"
+  },
+  {
+    "id": 28,
+    "position": "Sales Executive"
+  },
+  {
+    "id": 29,
+    "position": "Business Development Manager"
+  },
+  {
+    "id": 30,
+    "position": "Marketing Director"
+  },
+  {
+    "id": 31,
+    "position": "Marketing Manager"
+  },
+  {
+    "id": 32,
+    "position": "Finance & Billing Coordinator"
+  },
+  {
+    "id": 33,
+    "position": "HR Director"
+  },
+  {
+    "id": 34,
+    "position": "HR Manager"
+  },
+  {
+    "id": 35,
+    "position": "Recruitment Specialist"
+  },
+  {
+    "id": 36,
+    "position": "IT Administrator"
+  },
+  {
+    "id": 37,
+    "position": "Software Developer"
+  },
+  {
+    "id": 38,
+    "position": "Legal Advisor"
+  },
+  {
+    "id": 39,
+    "position": "Training Coordinator"
+  },
+  {
+    "id": 40,
+    "position": "Call Center Supervisor"
+  }
+]

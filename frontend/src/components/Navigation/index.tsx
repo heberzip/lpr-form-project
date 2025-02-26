@@ -7,8 +7,8 @@ import style from "@styles/global.style";
 const sections = [
   "/",
   "/company",
-  "/communication",
   "/contact",
+  "/communication",
   "/bank",
   "/fleet",
   "/extras",

@@ -1,5 +1,5 @@
 // CUSTOM COMPONENTS
-import { CAutocomplete, CInfo, CSeparator } from "@customs/.";
+import { CAutocomplete, CSeparator, CInput, CGrid } from "@customs/.";
 
 // CUSTOM HOOKS
 import useSection from "@hooks/useSection";
@@ -22,69 +22,23 @@ type CountryType = {
 const Company = () => {
   const section = useSection();
 
-  return (
-    <section id="company" className={style.section.grid}>
-      <div className={style.section.leftCol}>
-        <h3>{section?.title}</h3>
-        <small>{section?.description}</small>
-        <CSeparator />
-      </div>
+  const cInputSty = {
+    container: style.input.container,
+    label: style.input.label,
+    required: style.input.required,
+    input: style.input.standard,
+  };
 
-      <div className={style.section.rightCol}>
-        <form>
-          {section?.formData.map((field) => (
-            <div key={field.id} className={style.input.container}>
-              <div className="flex gap-2">
-                {field.small && (
-                  <CInfo color="#309eb5" width="18" height="18" />
-                )}
-                <label htmlFor={field.name} className={style.input.label}>
-                  {field.label}
-                  {field.required && (
-                    <span className={style.input.required}>*</span>
-                  )}
-                </label>
-              </div>
-              <input
-                id={field.name}
-                name={field.name}
-                type={field.type}
-                placeholder={field.placeholder}
-                required={field.required}
-                className={style.input.standard}
-              />
-            </div>
-          ))}
+  const cGridSty = {
+    ...cInputSty,
+    gridContainer: style.grid.container,
+  };
 
-          <CSeparator />
-
-          <AddressSection address={section?.address || []} />
-        </form>
-        <CSeparator className="flex justify-center items-center w-full max-w-3xs mt-4 mb-3 md:hidden" />
-        <CSeparator className="flex justify-center items-center w-full max-w-[90px] m-0 p-0 md:hidden" />
-      </div>
-    </section>
-  );
-};
-
-export default Company;
-
-type AddressType = {
-  id: number;
-  name: string;
-  label: string;
-  type: string;
-  placeholder: string;
-  required: boolean;
-  gridPosition: number;
-  small?: string;
-  autocomplete?: boolean;
-};
-
-const AddressSection = ({ address }: { address: AddressType[] }) => {
-  const sortedAddress = [...address].sort(
-    (a, b) => a.gridPosition - b.gridPosition
-  );
+  const cAutocompleteSty = {
+    ...cInputSty,
+    dropdown: "bg-light border border-zip-gray-500 shadow-xl",
+    dropdownItem: "hover:bg-zip-gray-500 p-2",
+  };
 
   const filterFn = (item: CountryType, query: string) => {
     return item.name.toLowerCase().includes(query.toLowerCase());
@@ -95,41 +49,55 @@ const AddressSection = ({ address }: { address: AddressType[] }) => {
   };
 
   return (
-    <div className="my-1">
-      <div className="grid grid-cols-2 gap-x-4">
-        {sortedAddress.map((field) => (
-          <div key={field.id} className={`${style.input.container}`}>
-            <div className="flex gap-2">
-              {field.small && <CInfo color="#309eb5" width="18" height="18" />}
-              <label htmlFor={field.name} className={style.input.label}>
-                {field.label}
-                {field.required && (
-                  <span className={style.input.required}> *</span>
-                )}
-              </label>
-            </div>
-            {field.autocomplete ? (
-              <CAutocomplete
-                data={countriesData}
-                filterFn={filterFn}
-                onSelect={handleSelect}
-                placeholder={field.placeholder}
-                renderItem={(item) => item.name}
-                className={style.input.standard}
-              />
-            ) : (
-              <input
-                id={field.name}
-                name={field.name}
-                type={field.type}
-                placeholder={field.placeholder}
-                required={field.required}
-                className={style.input.standard}
-              />
-            )}
-          </div>
-        ))}
+    <section id="company" className={style.section.grid}>
+      <div className={style.section.leftCol}>
+        <h3>{section?.title}</h3>
+        <small>{section?.description}</small>
+        <CSeparator />
       </div>
-    </div>
+
+      <div className={style.section.rightCol}>
+        <form className={style.form.container}>
+          {section?.formMainData.map((field) => (
+            <CInput
+              key={field.id}
+              name={field.name}
+              label={field.label}
+              type={field.type}
+              placeholder={field.placeholder}
+              required={field.required}
+              additionalInfo={field.additionalInfo}
+              sty={cInputSty}
+            />
+          ))}
+
+          <CSeparator />
+
+          <CGrid data={section?.formGridData || []} sty={cGridSty}>
+            {(field) =>
+              field.role === "select" ? (
+                <CAutocomplete
+                  key={field.id}
+                  dataSelector={countriesData}
+                  filterFn={filterFn}
+                  onSelect={handleSelect}
+                  placeholder={field.placeholder}
+                  renderItem={(item) => item.name}
+                  name={field.name}
+                  label={field.label}
+                  required={field.required}
+                  additionalInfo={field.additionalInfo}
+                  sty={cAutocompleteSty}
+                />
+              ) : null
+            }
+          </CGrid>
+        </form>
+        <CSeparator className="flex justify-center items-center w-full max-w-3xs mt-4 mb-3 md:hidden" />
+        <CSeparator className="flex justify-center items-center w-full max-w-[90px] m-0 p-0 md:hidden" />
+      </div>
+    </section>
   );
 };
+
+export default Company;

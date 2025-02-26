@@ -4,13 +4,14 @@
     "link": "/company",
     "title": "COMPANY DETAILS",
     "description": "In this section, we will ask you for legal details of your company.",
-    "formData": [
+    "formMainData": [
       {
         "id": 1,
         "name": "companyName",
         "label": "Company name",
-        "small": "This is the \"legal name\" of your company (not the trade name) or your name if you are self-employed, in our case it would be: ZIP ONLINE SERVICES SL.",
+        "additionalInfo": "This is the \"legal name\" of your company (not the trade name) or your name if you are self-employed, in our case it would be: ZIP ONLINE SERVICES SL.",
         "type": "text",
+        "role": "input",
         "placeholder": "ZIP ONLINE SERVICES S.L.",
         "required": true
       },
@@ -18,8 +19,9 @@
         "id": 2,
         "name": "tradeName",
         "label": "Trade name",
-        "small": "This is the \"commercial name\" of your company, in our case it would be: ZIPTRANSFERS.",
+        "additionalInfo": "This is the \"commercial name\" of your company, in our case it would be: ZIPTRANSFERS.",
         "type": "text",
+        "role": "input",
         "placeholder": "ZIPTRANSFERS",
         "required": false
       },
@@ -27,18 +29,20 @@
         "id": 3,
         "name": "vat",
         "label": "VAT / IVA / NIF",
-        "small": "This is the legal identification number of your company (value-added tax). It is known in different ways depending on the country: VAT, IVA, or NIF/CIF.",
+        "additionalInfo": "This is the legal identification number of your company (value-added tax). It is known in different ways depending on the country: VAT, IVA, or NIF/CIF.",
         "type": "text",
+        "role": "input",
         "placeholder": "ES123456789",
         "required": true
       }
     ],
-    "address": [
+    "formGridData": [
       {
         "id": 4,
         "name": "streetAddress",
         "label": "Street address",
         "type": "text",
+        "role": "input",
         "placeholder": "Carrer Llovera 53, 5-1",
         "required": true,
         "gridPosition": 1
@@ -48,6 +52,7 @@
         "name": "city",
         "label": "City",
         "type": "text",
+        "role": "input",
         "placeholder": "Reus",
         "required": true,
         "gridPosition": 3
@@ -56,8 +61,9 @@
         "id": 6,
         "name": "zipCode",
         "label": "Zip code",
-        "small": "Also known as Postal Code in some countries.",
+        "additionalInfo": "Also known as Postal Code in some countries.",
         "type": "text",
+        "role": "input",
         "placeholder": "08001",
         "required": true,
         "gridPosition": 2
@@ -66,22 +72,73 @@
         "id": 7,
         "name": "country",
         "label": "Country",
-        "small": "This is the country where your company is registered.",
+        "additionalInfo": "This is the country where your company is registered.",
         "type": "text",
+        "role": "select",
         "placeholder": "Spain",
         "required": true,
-        "gridPosition": 4,
-        "autocomplete": true
+        "gridPosition": 4
       },
       {
         "id": 8,
         "name": "province",
         "label": "Province - State",
-        "small": "This is the province or state where your company is registered.",
+        "additionalInfo": "This is the province or state where your company is registered.",
         "type": "text",
+        "role": "input",
         "placeholder": "Tarragona, Catalonia",
-        "required": true,
+        "required": false,
         "gridPosition": 5
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "link": "/contact",
+    "title": "CONTACT INFORMATION",
+    "description": "In this section, we will ask you for contact information.",
+    "formMainData": [
+      {
+        "id": 1,
+        "name": "firstName",
+        "label": "First Name",
+        "additionalInfo": "This is the first name of the representative of your company.",
+        "type": "text",
+        "role": "input",
+        "placeholder": "John",
+        "required": true
+      },
+      {
+        "id": 2,
+        "name": "lastName",
+        "label": "Last Name",
+        "additionalInfo": "This is the last name of the representative of your company.",
+        "type": "text",
+        "role": "input",
+        "placeholder": "Doe",
+        "required": true
+      },
+      {
+        "id": 3,
+        "name": "position",
+        "label": "Position",
+        "additionalInfo": "This is the position of the representative of your company.",
+        "type": "text",
+        "role": "select",
+        "placeholder": "Director",
+        "required": false
+      }
+    ],
+    "desitionData": [
+      {
+        "id": 1,
+        "name": "yesno",
+        "label": "Do you want to receive emails?",
+        "additionalInfo": "",
+        "type": "checkbox",
+        "role": "desition",
+        "placeholder": "",
+        "required": false
       }
     ]
   }

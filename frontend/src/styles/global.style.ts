@@ -22,14 +22,22 @@ export default {
       "hidden md:flex md:flex-col items-center justify-center w-full md:pl-24",
     rightCol: "flex flex-col items-center justify-center w-full mt-6 md:mt-20",
   },
+  /*****************************************************************************/
+  form: {
+    container: "w-full px-2 md:px-24",
+  },
+  /****************************************************************************** */
+  grid: {
+    container: "grid grid-cols-2 gap-x-4 w-full",
+  },
   /****************************************************************************** */
   input: {
     container: "flex flex-col gap-2 w-full",
     label: "text-sm font-medium text-gray-700 select-none",
     small: "text-xs text-gray-500",
     standard:
-      "w-full px-3 py-2 mb-3 text-sm border-1 border-zip-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-zip-yellow-300 focus:border-1 focus:border-zip-yellow-300 focus:shadow-md transition-all placeholder:text-gray-400 placeholder:italic",
-    required: "text-red-500",
+      "w-full flex-grow px-3 py-2 mb-3 text-sm border-1 border-zip-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-zip-yellow-300 focus:border-1 focus:border-zip-yellow-300 focus:shadow-md transition-all placeholder:text-gray-400 placeholder:italic",
+    required: "text-red-400",
     error: "border-red-500 focus:ring-red-500 focus:border-red-500",
     disabled: "bg-gray-100 text-gray-400 cursor-not-allowed",
   },
