@@ -21,7 +21,7 @@ const useAutocomplete = <T,>(
     );
   }, [query, data, filterFn, limit]);
 
-  return { query, setQuery, filteredData };
+  return { setQuery, filteredData };
 };
 
 export default useAutocomplete;

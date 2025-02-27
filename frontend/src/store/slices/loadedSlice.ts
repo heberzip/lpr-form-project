@@ -13,12 +13,12 @@ export type LoadedState = {
 
 /******************************************************************************/
 
-const getLoadedStateFromLS = (): LoadedState => {
+const getLoadedStateLS = (): LoadedState => {
   const savedState = localStorage.getItem("loadedState");
   return savedState ? JSON.parse(savedState) : { supplier: "", airports: [] };
 };
 
-const initialState: LoadedState = getLoadedStateFromLS();
+const initialState: LoadedState = getLoadedStateLS();
 
 const loadedSlice = createSlice({
   name: "loaded",

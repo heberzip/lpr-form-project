@@ -33,6 +33,7 @@
       "@utils/*": ["utils/*"],
       "@data/*": ["utils/data/*"],
       "@types/*": ["types/*"],
+      "@schema/*": ["schema/*"],
       "@assets/*": ["assets/*"],
       "@hooks/*": ["hooks/*"],
       "@services/*": ["services/*"],

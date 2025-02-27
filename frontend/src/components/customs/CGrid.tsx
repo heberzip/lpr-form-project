@@ -1,6 +1,3 @@
-// CUSTOM COMPONENTS
-import { CInput } from "@customs/.";
-
 // TYPES
 import { CInputStyType } from "./CInput";
 
@@ -36,22 +33,7 @@ const CGrid = ({ data, children, sty }: CGridProps) => {
   return (
     <div className={sty?.gridContainer}>
       {sortedData.map((field) =>
-        field.role === "select" ? (
-          children && typeof children === "function" ? (
-            children(field)
-          ) : null
-        ) : (
-          <CInput
-            key={field.id}
-            name={field.name}
-            label={field.label}
-            type={field.type}
-            placeholder={field.placeholder}
-            required={field.required}
-            additionalInfo={field.additionalInfo}
-            sty={sty}
-          />
-        )
+        children && typeof children === "function" ? children(field) : null
       )}
     </div>
   );

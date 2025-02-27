@@ -3,7 +3,7 @@
     "id": 1,
     "link": "/company",
     "title": "COMPANY DETAILS",
-    "description": "In this section, we will ask you for legal details of your company.",
+    "description": "# Company Details: \n\nIn this section, we will ask you for **legal details** about your company, including:\n\n- Official company name\n- Trade name\n- VAT/Tax ID\n- Address and location details\n\nPlease ensure that the information you provide matches your official business records.",
     "formMainData": [
       {
         "id": 1,
@@ -129,16 +129,38 @@
         "required": false
       }
     ],
+
     "desitionData": [
       {
         "id": 1,
         "name": "yesno",
-        "label": "Do you want to receive emails?",
-        "additionalInfo": "",
-        "type": "checkbox",
+        "label": "Do you have a specific phone number or email address?",
+        "additionalInfo": "Hola",
+        "type": "radio",
         "role": "desition",
-        "placeholder": "",
-        "required": false
+        "required": true,
+        "options": [
+          { "value": true, "label": "YES" },
+          { "value": false, "label": "NO" }
+        ],
+        "dependents": [
+          {
+            "id": 2,
+            "name": "phone",
+            "label": "Phone Number",
+            "type": "tel",
+            "placeholder": "+34 123 456 789",
+            "required": true
+          },
+          {
+            "id": 3,
+            "name": "email",
+            "label": "Email Address",
+            "type": "email",
+            "placeholder": "example@mail.com",
+            "required": true
+          }
+        ]
       }
     ]
   }

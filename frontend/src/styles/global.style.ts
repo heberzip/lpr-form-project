@@ -1,6 +1,7 @@
 export default {
   global: {
-    container: "relative flex flex-col h-screen bg-light text-dark m-0 p-0",
+    container:
+      "relative flex flex-col h-screen bg-light text-md text-dark m-0 p-0",
   },
   layout: {
     header: "w-full bg-dark md:bg-light text-dark py-4 px-6 shadow-xl z-20",
@@ -21,7 +22,7 @@ export default {
   section: {
     grid: "grid md:grid-cols-2 md:gap-10 w-full h-full",
     leftCol:
-      "hidden md:flex md:flex-col items-center justify-center w-full md:pl-24",
+      "hidden md:flex md:flex-col items-center justify-center w-full md:pl-20",
     rightCol: "flex flex-col items-center justify-center w-full mt-6 md:mt-20",
   },
   /*****************************************************************************/
@@ -36,13 +37,14 @@ export default {
   /****************************************************************************** */
   input: {
     container: "flex flex-col gap-2 w-full",
-    label: "text-sm font-medium text-gray-700 select-none",
+    label: "font-medium text-gray-700 select-none",
     small: "text-xs text-gray-500",
     standard:
       "w-full flex-grow px-3 py-2 mb-3 text-sm border-1 border-zip-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-zip-yellow-300 focus:border-1 focus:border-zip-yellow-300 focus:shadow-md transition-all placeholder:text-gray-400 placeholder:italic",
     required: "text-red-400",
     error: "border-red-500 focus:ring-red-500 focus:border-red-500",
-    disabled: "bg-gray-100 text-gray-400 cursor-not-allowed",
+    disabled:
+      "w-full flex-grow px-3 py-2 mb-3 bg-gray-300 text-sm text-gray-400 italic line-through border-1 border-gray-300 rounded-md focus:outline-none transition-all placeholder:text-gray-400 placeholder:italic cursor-not-allowed select-none",
   },
   /****************************************************************************** */
   autocomplete: {
@@ -59,6 +61,18 @@ export default {
     previous:
       "bg-dark text-white px-6 py-1 min-w-[150px] rounded-md shadow-xl transition disabled:opacity-50",
     next: "bg-zip-blue2-500 text-white px-6 py-1 min-w-[150px] rounded-md shadow-xl hover:bg-zip-blue2-600 active:bg-zip-blue2-800 active:size-0.95 transition disabled:opacity-50",
+  },
+  /*****************************************************************************/
+  radio: {
+    container: "flex flex-col gap-4",
+    question: "flex items-center justify-center select-none",
+    panel: "flex gap-4 mt-2 items-center justify-center",
+    label: "flex text-sm ml-2 font-semibold select-none",
+    labelActive: "text-zip-blue2-600 font-bold",
+    input:
+      "w-3 h-3 mt-1 appearance-none checked:bg-zip-blue2-500 bg-gray-300 focus:ring-2 focus:ring-zip-blue2-500 focus:border-zip-blue2-500 rounded-full transition-all cursor-pointer",
+    disabled:
+      "w-4 h-4 text-gray-400 bg-gray-200 border-gray-300 cursor-not-allowed",
   },
   /****************************************************************************** */
   cinfo: "inline-block cursor-pointer hover:shadow-xl",

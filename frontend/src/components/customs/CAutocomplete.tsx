@@ -1,11 +1,9 @@
 // EXTERNAL MODULES
-import { useState, useRef } from "react";
-
-// CUSTOM COMPONENTS
-import { CInput } from "@customs/.";
-
+import { useState, useRef, forwardRef, useEffect, JSX } from "react";
 // CUSTOM HOOKS
 import useAutocomplete from "@hooks/useAutocomplete";
+// CUSTOM COMPONENTS
+import { CInfo } from "@customs/.";
 
 /******************************************************************************/
 // TYPES
@@ -13,43 +11,58 @@ export type CAutocompleteStyType = {
   container?: string;
   label?: string;
   required?: string;
+  error?: string;
   input?: string;
   dropdown?: string;
   dropdownItem?: string;
 };
 
 type AutocompleteProps<T> = {
-  data: T[];
-  filterFn: (item: T, query: string) => boolean;
-  onSelect: (selectedItem: T) => void;
-  placeholder?: string;
-  renderItem?: (item: T) => string;
   name: string;
   label: string;
+  type: string;
+  value?: string;
+  placeholder?: string;
   required?: boolean;
   additionalInfo?: string;
+  error?: string;
+  data: T[];
+  filterFn: (item: T, query: string) => boolean;
+  renderItem?: (item: T) => string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSelect?: (selectedItem: T) => void;
   sty?: CAutocompleteStyType;
 };
 
 /******************************************************************************/
-
-const CAutocomplete = <T,>({
-  data,
-  filterFn,
-  onSelect,
-  placeholder = "Search...",
-  renderItem = (item) => String(item),
-  name,
-  label,
-  required = false,
-  additionalInfo,
-  sty,
-}: AutocompleteProps<T>) => {
-  const { query, setQuery, filteredData } = useAutocomplete(data, filterFn);
+const CAutocomplete = <T,>(
+  {
+    name,
+    label,
+    type,
+    value = "",
+    placeholder,
+    required,
+    additionalInfo,
+    error,
+    data,
+    filterFn,
+    renderItem = (item) => String(item),
+    onSelect,
+    onChange,
+    sty,
+    ...rest
+  }: AutocompleteProps<T>,
+  ref: React.Ref<HTMLInputElement>
+) => {
+  const { setQuery, filteredData } = useAutocomplete(data, filterFn);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close the dropdown if the user clicks outside
+  useEffect(() => {
+    setQuery(value);
+  }, [value, setQuery]);
+
   const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
     if (!dropdownRef.current?.contains(e.relatedTarget)) {
       setIsOpen(false);
@@ -58,20 +71,31 @@ const CAutocomplete = <T,>({
 
   return (
     <div className={`relative w-full ${sty?.container}`} onBlur={handleBlur}>
-      <CInput
+      {/* Label + Icon */}
+      <div className="flex gap-2">
+        {additionalInfo && <CInfo color="#309eb5" width="18" height="18" />}
+        <label htmlFor={name} className={sty?.label}>
+          {label}
+          {required && <span className={sty?.required}> *</span>}
+        </label>
+      </div>
+
+      {/* Input Field */}
+      <input
+        id={name}
         name={name}
-        label={label}
-        type="text"
-        value={query}
+        type={type}
         placeholder={placeholder}
         required={required}
-        additionalInfo={additionalInfo}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+        onChange={(e) => {
           setQuery(e.target.value);
           setIsOpen(true);
+          onChange?.(e);
         }}
         onFocus={() => setIsOpen(true)}
-        sty={sty}
+        className={`${sty?.input} ${error ? sty?.error : ""}`}
+        ref={ref}
+        {...rest}
       />
 
       {/* Dropdown */}
@@ -86,7 +110,7 @@ const CAutocomplete = <T,>({
                   const selectedValue = renderItem(item);
                   setQuery(selectedValue);
                   setIsOpen(false);
-                  onSelect(item);
+                  onSelect?.(item);
                 }}
                 className={sty?.dropdownItem}
               >
@@ -96,8 +120,12 @@ const CAutocomplete = <T,>({
           </ul>
         </div>
       )}
+
+      {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>
   );
 };
 
-export default CAutocomplete;
+export default forwardRef(CAutocomplete) as <T>(
+  props: AutocompleteProps<T> & { ref?: React.Ref<HTMLInputElement> }
+) => JSX.Element;

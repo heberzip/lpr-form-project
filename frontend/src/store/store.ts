@@ -4,11 +4,17 @@ import { useDispatch } from "react-redux";
 
 // SLICES
 import loadedReducer from "@store/slices/loadedSlice";
+import companyReducer from "@store/slices/companySlice";
+import contactReducer from "@store/slices/contactSlice";
 
 /******************************************************************************/
 
 const store = configureStore({
-  reducer: { loaded: loadedReducer },
+  reducer: {
+    loaded: loadedReducer,
+    company: companyReducer,
+    contact: contactReducer,
+  },
 });
 
 export default store;
