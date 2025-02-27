@@ -16,9 +16,12 @@ type CInputProps = {
   name: string;
   label: string;
   type: string;
+  value?: string;
   placeholder: string;
   required?: boolean;
   additionalInfo?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: () => void;
   sty?: CInputStyType;
 };
 
@@ -28,9 +31,12 @@ const CInput = ({
   name,
   label,
   type,
+  value,
   placeholder,
   required = false,
   additionalInfo,
+  onChange,
+  onFocus,
   sty,
 }: CInputProps) => {
   return (
@@ -49,7 +55,10 @@ const CInput = ({
         id={name}
         name={name}
         type={type}
+        value={value}
         placeholder={placeholder}
+        onChange={onChange}
+        onFocus={onFocus}
         required={required}
         className={sty?.input}
       />

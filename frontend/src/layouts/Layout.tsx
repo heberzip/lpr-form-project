@@ -10,16 +10,13 @@ import Navigation from "@components/Navigation";
 // STYLES
 import style from "@styles/global.style";
 
-// import blue_bg from "@assets/images/blue_bg.svg";
-// import yellow_bg from "@assets/images/yellow_bg.svg";
-
 /******************************************************************************/
 
 const Layout = () => {
   const location = useLocation();
 
   return (
-    <div className={style.layout.container}>
+    <>
       <header className={style.layout.header}>
         <Header />
       </header>
@@ -41,7 +38,7 @@ const Layout = () => {
           </div>
         </main>
       </div>
-    </div>
+    </>
   );
 };
 

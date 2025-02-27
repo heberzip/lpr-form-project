@@ -10,6 +10,7 @@ import App from "./App.tsx";
 import store from "@store/store";
 
 // STYLES
+import styles from "@styles/global.style";
 import "./index.css";
 
 /******************************************************************************/
@@ -17,7 +18,9 @@ import "./index.css";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <div className={styles.global.container}>
+        <App />
+      </div>
     </Provider>
   </StrictMode>
 );

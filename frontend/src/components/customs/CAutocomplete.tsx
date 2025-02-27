@@ -1,11 +1,11 @@
 // EXTERNAL MODULES
 import { useState, useRef } from "react";
 
+// CUSTOM COMPONENTS
+import { CInput } from "@customs/.";
+
 // CUSTOM HOOKS
 import useAutocomplete from "@hooks/useAutocomplete";
-
-// CUSTOM COMPONENTS
-import { CInfo } from "@customs/.";
 
 /******************************************************************************/
 // TYPES
@@ -19,12 +19,11 @@ export type CAutocompleteStyType = {
 };
 
 type AutocompleteProps<T> = {
-  dataSelector: T[];
+  data: T[];
   filterFn: (item: T, query: string) => boolean;
   onSelect: (selectedItem: T) => void;
   placeholder?: string;
   renderItem?: (item: T) => string;
-  className?: string;
   name: string;
   label: string;
   required?: boolean;
@@ -35,7 +34,7 @@ type AutocompleteProps<T> = {
 /******************************************************************************/
 
 const CAutocomplete = <T,>({
-  dataSelector,
+  data,
   filterFn,
   onSelect,
   placeholder = "Search...",
@@ -46,13 +45,11 @@ const CAutocomplete = <T,>({
   additionalInfo,
   sty,
 }: AutocompleteProps<T>) => {
-  const { query, filteredData, setQuery } = useAutocomplete(
-    dataSelector,
-    filterFn
-  );
+  const { query, setQuery, filteredData } = useAutocomplete(data, filterFn);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Close the dropdown if the user clicks outside
   const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
     if (!dropdownRef.current?.contains(e.relatedTarget)) {
       setIsOpen(false);
@@ -60,51 +57,38 @@ const CAutocomplete = <T,>({
   };
 
   return (
-    <div className={`relative ${sty?.container}`} onBlur={handleBlur}>
-      {/* Label + Icon */}
-      <div className="flex gap-2">
-        {additionalInfo && <CInfo color="#309eb5" width="18" height="18" />}
-        <label htmlFor={name} className={sty?.label}>
-          {label}
-          {required && <span className={sty?.required}> *</span>}
-        </label>
-      </div>
-
-      {/* Input Field */}
-      <input
-        type="text"
-        id={name}
+    <div className={`relative w-full ${sty?.container}`} onBlur={handleBlur}>
+      <CInput
         name={name}
+        label={label}
+        type="text"
         value={query}
-        onChange={(e) => {
+        placeholder={placeholder}
+        required={required}
+        additionalInfo={additionalInfo}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setQuery(e.target.value);
           setIsOpen(true);
         }}
         onFocus={() => setIsOpen(true)}
-        placeholder={placeholder}
-        className={
-          sty?.input ||
-          "w-full px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        }
+        sty={sty}
       />
 
       {/* Dropdown */}
       {isOpen && filteredData.length > 0 && (
-        <div
-          ref={dropdownRef}
-          className={`absolute top-7/8 left-0 w-full max-w-[250px] mt-2 bg-white border border-gray-300 rounded-lg shadow-lg max-h-48 overflow-y-auto z-50 ${sty?.dropdown}`}
-        >
+        <div ref={dropdownRef} className={sty?.dropdown}>
           <ul>
             {filteredData.map((item, index) => (
               <li
                 key={index}
-                onClick={() => {
-                  console.log(item);
-                  setQuery(renderItem(item));
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  const selectedValue = renderItem(item);
+                  setQuery(selectedValue);
                   setIsOpen(false);
                   onSelect(item);
                 }}
-                className={`p-2 cursor-pointer hover:bg-gray-100 ${sty?.dropdownItem}`}
+                className={sty?.dropdownItem}
               >
                 {renderItem(item)}
               </li>

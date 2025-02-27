@@ -36,16 +36,17 @@ const Company = () => {
 
   const cAutocompleteSty = {
     ...cInputSty,
-    dropdown: "bg-light border border-zip-gray-500 shadow-xl",
-    dropdownItem: "hover:bg-zip-gray-500 p-2",
+    dropdown: style.autocomplete.dropdown,
+    dropdownItem: style.autocomplete.dropdownItem,
   };
 
   const filterFn = (item: CountryType, query: string) => {
     return item.name.toLowerCase().includes(query.toLowerCase());
   };
 
-  const handleSelect = (selectedItem: CountryType) => {
-    console.log(selectedItem);
+  const handleSelect = () => {
+    // selectedItem: CountryType
+    // console.log(selectedItem);
   };
 
   return (
@@ -78,7 +79,7 @@ const Company = () => {
               field.role === "select" ? (
                 <CAutocomplete
                   key={field.id}
-                  dataSelector={countriesData}
+                  data={countriesData}
                   filterFn={filterFn}
                   onSelect={handleSelect}
                   placeholder={field.placeholder}

@@ -12,7 +12,6 @@ const useAutocomplete = <T,>(
   const [filteredData, setFilteredData] = useState<T[]>([]);
 
   useEffect(() => {
-    console.log("Query actualizado:", query);
     setQuery(query);
 
     setFilteredData(
@@ -20,7 +19,7 @@ const useAutocomplete = <T,>(
         ? data.filter((item) => filterFn(item, query)).slice(0, limit)
         : []
     );
-  }, [query, data, filterFn, limit]); // ✅ Aseguramos que se reactive correctamente
+  }, [query, data, filterFn, limit]);
 
   return { query, setQuery, filteredData };
 };

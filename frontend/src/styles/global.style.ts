@@ -1,6 +1,8 @@
 export default {
+  global: {
+    container: "relative flex flex-col h-screen bg-light text-dark m-0 p-0",
+  },
   layout: {
-    container: "relative flex flex-col h-screen",
     header: "w-full bg-dark md:bg-light text-dark py-4 px-6 shadow-xl z-20",
     main: "flex flex-1 h-full",
     sidebar: "hidden md:flex md:w-1/7 bg-dark text-white p-4",
@@ -27,6 +29,7 @@ export default {
     container: "w-full px-2 md:px-24",
   },
   /****************************************************************************** */
+  // CUSTOM COMPONENTS
   grid: {
     container: "grid grid-cols-2 gap-x-4 w-full",
   },
@@ -40,6 +43,13 @@ export default {
     required: "text-red-400",
     error: "border-red-500 focus:ring-red-500 focus:border-red-500",
     disabled: "bg-gray-100 text-gray-400 cursor-not-allowed",
+  },
+  /****************************************************************************** */
+  autocomplete: {
+    dropdown:
+      "absolute top-6/7 w-full mt-2 bg-white text-dark font-semibold border-none rounded-lg shadow-xl max-h-48 overflow-y-auto z-50",
+    dropdownItem:
+      "hover:cursor-pointer hover:bg-light hover:text-zip-blue2-600 hover:shadow-lg hover:size-1.05 p-2",
   },
   /****************************************************************************** */
   button: {
