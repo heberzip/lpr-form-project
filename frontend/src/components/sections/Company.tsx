@@ -1,87 +1,32 @@
 // EXTERNAL MODULES
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { useAppDispatch } from "@store/store";
-import { useSelector } from "react-redux";
 import ReactMarkdown from "react-markdown";
 // CUSTOM COMPONENTS
 import { CAutocomplete, CSeparator, CInput, CGrid } from "@customs/.";
 // CUSTOM HOOKS
-import useSection from "@hooks/useSection";
-// STORE
-import { setCompanyData, selectCompany } from "@store/slices/companySlice";
-// STYLES
+import useCompanySection from "@hooks/useCompanySection";
+// STYLE
 import style from "@styles/global.style";
-// STYLES CONFIGURATION
-const cInputSty = {
-  container: style.input.container,
-  label: style.input.label,
-  required: style.input.required,
-  input: style.input.standard,
-};
-
-const cGridSty = {
-  ...cInputSty,
-  gridContainer: style.grid.container,
-};
-
-const cAutocompleteSty = {
-  ...cInputSty,
-  dropdown: style.autocomplete.dropdown,
-  dropdownItem: style.autocomplete.dropdownItem,
-};
+import { cInputSty, cGridSty, cAutocompleteSty } from "@styles/styleObjs";
 // DATA
 import countriesData from "@data/countriesData.json";
-// SCHEMAS
-import { companySchema } from "@schema/sectionSchemas";
 
 /******************************************************************************/
 // TYPES
-type CountryType = {
-  name: string;
-  code: string;
-};
-
-type CompanyType = z.infer<typeof companySchema>;
+import { CompanyType } from "../../types";
 
 /******************************************************************************/
 
 const Company = () => {
-  const section = useSection();
-  const dispatch = useAppDispatch();
-  const companyData = useSelector(selectCompany);
-
   const {
+    section,
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
-  } = useForm<CompanyType>({
-    resolver: zodResolver(companySchema),
-    defaultValues: {
-      ...companyData,
-      ...companyData.additionalFields,
-    },
-  });
-
-  const handleInputChange = (name: keyof CompanyType, value: string) => {
-    dispatch(setCompanyData({ [name]: value }));
-    setValue(name, value);
-  };
-
-  const onSubmit = (data: CompanyType) => {
-    console.log("Form Data:", data);
-  };
-
-  const handleSelect = (selectedItem: CountryType) => {
-    handleInputChange("country", selectedItem.name);
-    setValue("country", selectedItem.name);
-  };
-
-  const filterFn = (item: CountryType, query: string) => {
-    return item.name.toLowerCase().includes(query.toLowerCase());
-  };
+    handleInputChange,
+    handleItemSelect,
+    filterFn,
+    onSubmit,
+  } = useCompanySection();
 
   return (
     <section id="company" className={style.section.grid}>
@@ -127,7 +72,7 @@ const Company = () => {
                   key={field.id}
                   data={countriesData}
                   filterFn={filterFn}
-                  onSelect={handleSelect}
+                  onSelect={handleItemSelect}
                   placeholder={field.placeholder}
                   renderItem={(item) => item.name}
                   label={field.label}

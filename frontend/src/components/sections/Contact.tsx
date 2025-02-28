@@ -1,92 +1,36 @@
-// EXTERNAL MODULES
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { useAppDispatch } from "@store/store";
-import { useSelector } from "react-redux";
-import { useState } from "react";
 // CUSTOM COMPONENTS
 import { CSeparator, CInput, CAutocomplete } from "@customs/.";
 // CUSTOM HOOKS
-import useSection from "@hooks/useSection";
-// STORE
-import { setContactData, selectContact } from "@store/slices/contactSlice";
+import useContactSection from "@hooks/useContactSection";
 // STYLES
 import style from "@styles/global.style";
-// STYLES CONFIGURATION
-const cInputSty = {
-  container: style.input.container,
-  label: style.input.label,
-  required: style.input.required,
-  input: style.input.standard,
-};
-
-const cInputStyDisabled = {
-  ...cInputSty,
-  input: style.input.disabled,
-  label: "text-gray-400",
-  required: "text-gray-400",
-};
-
-const cAutocompleteSty = {
-  ...cInputSty,
-  dropdown: style.autocomplete.dropdown,
-  dropdownItem: style.autocomplete.dropdownItem,
-};
+import {
+  cInputSty,
+  cInputStyDisabled,
+  cAutocompleteSty,
+} from "@styles/styleObjs";
 // DATA
 import positionsData from "@data/positionsData.json";
-// SCHEMAS
-import { contactSchema } from "@schema/sectionSchemas";
 
 /******************************************************************************/
 // TYPES
-type PositionType = {
-  id: number;
-  position: string;
-};
-
-type ContactType = z.infer<typeof contactSchema>;
+import { ContactType } from "../../types";
 
 /******************************************************************************/
 
 const Contact = () => {
-  const section = useSection();
-  const dispatch = useAppDispatch();
-  const contactData = useSelector(selectContact);
-  const [hasDetails, sethasDetails] = useState<boolean>(
-    contactData.contactDetails
-  );
-
   const {
+    section,
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
-  } = useForm<ContactType>({
-    resolver: zodResolver(contactSchema),
-    defaultValues: {
-      ...contactData,
-      ...contactData.additionalFields,
-    },
-  });
-
-  const handleInputChange = (name: keyof ContactType, value: string) => {
-    dispatch(setContactData({ [name]: value }));
-    setValue(name, value);
-  };
-
-  const onSubmit = (data: ContactType) => {
-    console.log("Form Data:", data);
-  };
-
-  const handleSelect = (selectedItem: PositionType) => {
-    handleInputChange("position", selectedItem.position);
-    setValue("position", selectedItem.position);
-  };
-
-  const filterFn = (item: PositionType, query: string) => {
-    return item.position.toLowerCase().includes(query.toLowerCase());
-  };
+    hasDetails,
+    handleInputChange,
+    handleRadioChange,
+    handleItemSelect,
+    filterFn,
+    onSubmit,
+  } = useContactSection();
 
   return (
     <section id="contact" className={style.section.grid}>
@@ -107,7 +51,7 @@ const Contact = () => {
                 key={field.id}
                 data={positionsData}
                 filterFn={filterFn}
-                onSelect={handleSelect}
+                onSelect={handleItemSelect}
                 placeholder={field.placeholder}
                 renderItem={(item) => item.position}
                 label={field.label}
@@ -162,12 +106,7 @@ const Contact = () => {
                       name={field.name}
                       value={option.value.toString()}
                       checked={hasDetails === option.value}
-                      onChange={() => {
-                        sethasDetails(option.value);
-                        dispatch(
-                          setContactData({ contactDetails: option.value })
-                        );
-                      }}
+                      onChange={() => handleRadioChange(option.value)}
                       className={style.radio.input}
                     />
                     <span
@@ -185,7 +124,7 @@ const Contact = () => {
             </div>
           ))}
 
-          {section?.desitionData[0]?.dependents?.map((depField) => (
+          {section.desitionData[0].dependents.map((depField) => (
             <CInput
               key={depField.id}
               label={depField.label}
