@@ -22,25 +22,28 @@ export default {
   section: {
     grid: "grid md:grid-cols-2 md:gap-10 w-full h-full",
     leftCol:
-      "hidden md:flex md:flex-col items-center justify-center w-full md:pl-20",
-    rightCol: "flex flex-col items-center justify-center w-full mt-6 md:mt-20",
+      "hidden md:flex md:flex-col items-center justify-start w-full md:min-w-md md:mt-16 md:px-20",
+    rightCol:
+      "flex flex-col items-center justify-center w-full md:min-w-md mt-6 md:mt-16 md:px-30",
   },
   /*****************************************************************************/
   form: {
-    container: "w-full px-2 md:px-24",
+    container: "w-full px-2",
   },
   /****************************************************************************** */
   // CUSTOM COMPONENTS
   grid: {
-    container: "grid grid-cols-2 gap-x-4 w-full",
+    container:
+      "grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-x-4 w-full",
   },
   /****************************************************************************** */
   input: {
     container: "flex flex-col gap-2 w-full",
-    label: "font-medium text-gray-700 select-none",
+    label:
+      "min-w-[150px] md:min-w-[180px] font-medium text-gray-700 select-none",
     small: "text-xs text-gray-500",
     standard:
-      "w-full flex-grow px-3 py-2 mb-3 text-sm border-1 border-zip-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-zip-yellow-300 focus:border-1 focus:border-zip-yellow-300 focus:shadow-md transition-all placeholder:text-gray-400 placeholder:italic",
+      "w-full min-w-[150px] md:min-w-[180px] flex-grow px-3 py-2 mb-3 text-sm border-1 border-zip-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-zip-yellow-300 focus:border-1 focus:border-zip-yellow-300 focus:shadow-md transition-all placeholder:text-gray-400 placeholder:italic",
     required: "text-red-400",
     error: "border-red-500 focus:ring-red-500 focus:border-red-500",
     disabled:
@@ -64,9 +67,9 @@ export default {
   },
   /*****************************************************************************/
   radio: {
-    container: "flex flex-col gap-4",
+    container: "flex flex-col gap-2",
     question: "flex items-center justify-center select-none",
-    panel: "flex gap-4 mt-2 items-center justify-center",
+    panel: "flex gap-4 items-center justify-center mb-2",
     label: "flex text-sm ml-2 font-semibold select-none",
     labelActive: "text-zip-blue2-600 font-bold",
     input:
@@ -75,5 +78,5 @@ export default {
       "w-4 h-4 text-gray-400 bg-gray-200 border-gray-300 cursor-not-allowed",
   },
   /****************************************************************************** */
-  cinfo: "inline-block cursor-pointer hover:shadow-xl",
+  cinfo: "inline-block cursor-pointer hover:shadow-xl tabindex-[-1]",
 };

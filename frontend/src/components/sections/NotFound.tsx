@@ -34,7 +34,7 @@ const NotFound = () => {
       </p>
       <Link to={`/?supplier=${supplier}&airports=${airports.join(",")}`}>
         <button
-          className="mt-4 bg-zip-blue2-500 text-white px-6 py-2 min-w-[150px] rounded-md shadow-xl 
+          className="mt-4 bg-zip-blue2-500 text-white px-6 py-1 min-w-[150px] rounded-md shadow-xl 
           hover:bg-zip-blue2-600 active:bg-zip-blue2-800 active:size-0.95 transition duration-200"
         >
           Home

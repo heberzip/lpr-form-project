@@ -163,5 +163,96 @@
         ]
       }
     ]
+  },
+  {
+    "id": 3,
+    "link": "/communication",
+    "title": "COMMUNICATION DETAILS",
+    "description": "In this section, we ask for phone numbers and emails for each type of communication.",
+    "formMainData": [
+      {
+        "id": 1,
+        "name": "phone",
+        "label": "Emergency phone number (24h)",
+        "type": "tel",
+        "placeholder": "+34 123 456 789",
+        "additionalInfo": "This is the phone number of the representative of your company.",
+        "required": true
+      },
+      {
+        "id": 2,
+        "name": "email",
+        "label": "Email for reservations",
+        "type": "email",
+        "placeholder": "example@mail.com",
+        "additionalInfo": "This is the email address of the representative of your company.",
+        "required": true
+      }
+    ],
+    "desitionData": [
+      {
+        "id": 3,
+        "name": "whatsappAvailable",
+        "label": "Do you have WhatsApp available for company communications?",
+        "type": "radio",
+        "options": [
+          { "label": "YES", "value": true },
+          { "label": "NO", "value": false }
+        ],
+        "required": true,
+        "dependents": [
+          {
+            "id": 4,
+            "name": "sameAsEmergency",
+            "label": "Use the same number as the emergency phone?",
+            "type": "radio",
+            "options": [
+              { "label": "YES", "value": true },
+              { "label": "NO", "value": false }
+            ],
+            "required": true
+          },
+          {
+            "id": 5,
+            "name": "whatsappNumber",
+            "label": "WhatsApp number",
+            "type": "tel",
+            "placeholder": "+34 123 456 789",
+            "required": true,
+            "visibleIf": {
+              "sameAsEmergency": false
+            }
+          }
+        ]
+      }
+    ],
+    "additionalContacts": {
+      "label": "Would you like to add more contacts?",
+      "buttonLabel": "Add contact",
+      "fields": [
+        {
+          "id": 6,
+          "name": "additionalType",
+          "label": "Select type",
+          "type": "select",
+          "options": [
+            { "label": "Phone number", "value": "phone" },
+            { "label": "Email", "value": "email" }
+          ],
+          "required": true
+        },
+        {
+          "id": 7,
+          "name": "additionalContact",
+          "label": "Enter contact",
+          "type": "text",
+          "placeholder": "Enter phone number or email",
+          "required": true,
+          "visibleIf": {
+            "additionalType": "phone"
+          }
+        }
+      ]
+    }
   }
 ]
