@@ -80,3 +80,65 @@ export default {
   /****************************************************************************** */
   cinfo: "inline-block cursor-pointer hover:shadow-xl tabindex-[-1]",
 };
+
+/*
+
+export default {
+  input: {
+    container: "flex flex-col gap-2 w-full",
+    label: "font-medium text-gray-700 select-none",
+    required: "text-red-400",
+
+    // Definir estilos comunes
+    common: {
+      body:
+        "w-full min-w-[180px] px-3 py-2 text-sm border border-gray-400 focus:outline-none focus:ring-2 focus:ring-zip-yellow-300 focus:shadow-md transition-all placeholder:text-gray-400 placeholder:italic",
+      disabled:
+        "w-full px-3 py-2 bg-gray-300 text-sm text-gray-400 italic border border-gray-300 focus:outline-none transition-all placeholder:text-gray-400 placeholder:italic cursor-not-allowed",
+      pre: "bg-gray-200 text-gray-700 px-3 py-2 rounded-l-md border border-gray-400",
+      preDisabled: "bg-gray-300 text-gray-500 px-3 py-2 rounded-l-md border border-gray-300",
+    },
+
+    // Estilos por tipo de input
+    type: {
+      standard: {
+        body: {
+          enable: "$common.body",
+          disable: "$common.disabled",
+        },
+      },
+
+      tel: {
+        body: {
+          enable: "$common.body rounded-r-md border-l-0",
+          disable: "$common.disabled rounded-r-md border-l-0",
+        },
+        pre: {
+          enable: "$common.pre",
+          disable: "$common.preDisabled",
+        },
+      },
+
+      email: {
+        body: {
+          enable: "$common.body rounded-r-md border-l-0",
+          disable: "$common.disabled rounded-r-md border-l-0",
+        },
+        pre: {
+          enable: "$common.pre",
+          disable: "$common.preDisabled",
+        },
+      },
+
+      radio: {
+        body: {
+          enable: "w-4 h-4 text-zip-blue2-500 border-gray-300 focus:ring-zip-blue2-600",
+          disable: "w-4 h-4 text-gray-400 bg-gray-200 border-gray-300 cursor-not-allowed",
+        },
+      },
+    },
+  },
+};
+
+*
+*/

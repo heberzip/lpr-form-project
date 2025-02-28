@@ -1,6 +1,5 @@
 // EXTERNAL MODULES
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
 // STORE
 import { RootState } from "@store/store";
 

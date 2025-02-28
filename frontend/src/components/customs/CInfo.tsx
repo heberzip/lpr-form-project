@@ -1,19 +1,45 @@
+// EXTERNAL MODULES
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+// STORE
+import { useAppDispatch } from "@store/store";
+import { setInfo, selectInfo } from "@store/slices/infoSlice";
 // STYLES
 import style from "@styles/global.style";
 
 /******************************************************************************/
-
-const CInfo = ({
-  color,
-  width,
-  height,
-}: {
+// TYPES
+type CInfoProps = {
   color?: string;
   width?: string;
   height?: string;
-}) => {
+  label: string;
+  additionalInfo: string;
+};
+/******************************************************************************/
+
+const CInfo = ({ color, width, height, label, additionalInfo }: CInfoProps) => {
+  const dispatch = useAppDispatch();
+  const info = useSelector(selectInfo);
+
+  useEffect(() => {
+    if (info.label) {
+      console.log(info);
+    }
+  }, [dispatch]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleShowInfo = () => {
+    dispatch(
+      setInfo({
+        label,
+        additionalInfo,
+      })
+    );
+    console.log(info);
+  };
+
   return (
-    <button type="button" className={style.cinfo}>
+    <button type="button" className={style.cinfo} onClick={handleShowInfo}>
       <svg width={width || "24"} height={height || "24"} viewBox={`0 0 24 24`}>
         <path
           fill={color || "currentColor"}

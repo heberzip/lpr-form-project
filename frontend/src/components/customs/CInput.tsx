@@ -53,7 +53,15 @@ const CInput = forwardRef<HTMLInputElement, CInputProps>(
       <div className={`w-full ${sty?.container}`}>
         {/* Label + Icon */}
         <div className="flex gap-2">
-          {additionalInfo && <CInfo color="#309eb5" width="18" height="18" />}
+          {additionalInfo && (
+            <CInfo
+              color="#309eb5"
+              width="18"
+              height="18"
+              label={label}
+              additionalInfo={additionalInfo}
+            />
+          )}
           <label htmlFor={name} className={sty?.label}>
             {label}
             {required && <span className={sty?.required}> *</span>}
@@ -61,19 +69,26 @@ const CInput = forwardRef<HTMLInputElement, CInputProps>(
         </div>
 
         {/* Input Field */}
-        <input
-          id={name}
-          name={name}
-          type={type}
-          placeholder={placeholder}
-          onChange={onChange}
-          onFocus={onFocus}
-          required={required}
-          disabled={disabled}
-          className={`${sty?.input} ${error ? sty?.error : ""}`}
-          ref={ref}
-          {...rest}
-        />
+        <div className="flex gap-0.5">
+          {type === "tel" && (
+            <div className="flex py-2 px-2 mb-3 bg-zip-blue2-500 text-white rounded-tl rounded-bl">
+              +34
+            </div>
+          )}
+          <input
+            id={name}
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            onChange={onChange}
+            onFocus={onFocus}
+            required={required}
+            disabled={disabled}
+            className={`${sty?.input} ${error ? sty?.error : ""}`}
+            ref={ref}
+            {...rest}
+          />
+        </div>
         {error && <p className="text-red-500 text-sm">{error}</p>}
       </div>
     );
