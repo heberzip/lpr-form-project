@@ -1,7 +1,11 @@
+// EXTERNAL MODULES
+import { useSelector } from "react-redux";
 // CUSTOM COMPONENTS
 import { CSeparator, CInput, CAutocomplete } from "@customs/.";
 // CUSTOM HOOKS
 import useContactSection from "@hooks/useContactSection";
+// STORE
+import { selectCompany } from "@store/slices/companySlice";
 // STYLES
 import style from "@styles/global.style";
 import {
@@ -11,6 +15,8 @@ import {
 } from "@styles/styleObjs";
 // DATA
 import positionsData from "@data/positionsData.json";
+// HELPERS
+import { getPhonePrefixFromCountry } from "@utils/helpers";
 
 /******************************************************************************/
 // TYPES
@@ -32,12 +38,14 @@ const Contact = () => {
     onSubmit,
   } = useContactSection();
 
+  const { country } = useSelector(selectCompany);
+
   return (
     <section id="contact" className={style.section.grid}>
       <div className={style.section.leftCol}>
         <h3>{section?.title}</h3>
         <small>{section?.description}</small>
-        <CSeparator />
+        <CSeparator className="max-w-lg" />
       </div>
 
       <div className={style.section.rightCol}>
@@ -46,7 +54,7 @@ const Contact = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           {section?.formMainData.map((field) =>
-            field.role === "select" ? (
+            field?.role === "select" ? (
               <CAutocomplete
                 key={field.id}
                 data={positionsData}
@@ -87,7 +95,8 @@ const Contact = () => {
               />
             )
           )}
-          <CSeparator />
+
+          <CSeparator className="max-w-lg" />
 
           {(section?.desitionData || []).map((field) => (
             <div key={field.id} className={style.radio.container}>
@@ -130,6 +139,7 @@ const Contact = () => {
               label={depField.label}
               type={depField.type}
               placeholder={depField.placeholder}
+              additionalInfo={depField.additionalInfo}
               required={depField.required}
               disabled={!hasDetails}
               sty={hasDetails ? cInputSty : cInputStyDisabled}
@@ -141,7 +151,10 @@ const Contact = () => {
                 )
               }
               error={errors[depField.name as keyof ContactType]?.message}
-            />
+            >
+              {depField.type === "tel" && getPhonePrefixFromCountry(country)}
+              {depField.type === "email" && "@"}
+            </CInput>
           ))}
         </form>
         <CSeparator className="flex justify-center items-center w-full max-w-3xs mt-4 mb-3 md:hidden" />

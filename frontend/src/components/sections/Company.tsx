@@ -35,7 +35,7 @@ const Company = () => {
         <div className="prose prose-zinc max-w-none leading-relaxed">
           <ReactMarkdown>{section?.description}</ReactMarkdown>
         </div>
-        <CSeparator />
+        <CSeparator className="max-w-lg" />
       </div>
 
       <div className={style.section.rightCol}>
@@ -63,7 +63,7 @@ const Company = () => {
             />
           ))}
 
-          <CSeparator />
+          <CSeparator className="max-w-lg" />
 
           <CGrid data={section?.formGridData || []} sty={cGridSty}>
             {(field) =>
@@ -111,6 +111,7 @@ const Company = () => {
             }
           </CGrid>
         </form>
+
         <CSeparator className="flex justify-center items-center w-full max-w-3xs mt-4 mb-3 md:hidden" />
         <CSeparator className="flex justify-center items-center w-full max-w-[90px] m-0 p-0 md:hidden" />
       </div>

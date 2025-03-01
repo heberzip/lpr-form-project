@@ -11,7 +11,8 @@ export type CInputStyType = {
   required?: string;
   error?: string;
   disabled?: string;
-  input?: string;
+  input?: { standard: string; withPre: string };
+  pre?: string;
 };
 
 type CInputProps = {
@@ -27,6 +28,7 @@ type CInputProps = {
   onFocus?: () => void;
   disabled?: boolean;
   sty?: CInputStyType;
+  children?: React.ReactNode;
 };
 
 /******************************************************************************/
@@ -45,6 +47,7 @@ const CInput = forwardRef<HTMLInputElement, CInputProps>(
       onFocus,
       disabled,
       sty,
+      children,
       ...rest
     },
     ref
@@ -69,11 +72,9 @@ const CInput = forwardRef<HTMLInputElement, CInputProps>(
         </div>
 
         {/* Input Field */}
-        <div className="flex gap-0.5">
-          {type === "tel" && (
-            <div className="flex py-2 px-2 mb-3 bg-zip-blue2-500 text-white rounded-tl rounded-bl">
-              +34
-            </div>
+        <div className="flex gap-0">
+          {(type === "tel" || type === "email") && (
+            <div className={sty?.pre}>{children}</div>
           )}
           <input
             id={name}
@@ -84,7 +85,11 @@ const CInput = forwardRef<HTMLInputElement, CInputProps>(
             onFocus={onFocus}
             required={required}
             disabled={disabled}
-            className={`${sty?.input} ${error ? sty?.error : ""}`}
+            className={`${
+              type === "tel" || type === "email"
+                ? sty?.input?.withPre ?? ""
+                : sty?.input?.standard ?? ""
+            } ${error ? sty?.error : ""}`}
             ref={ref}
             {...rest}
           />

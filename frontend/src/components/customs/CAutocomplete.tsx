@@ -12,7 +12,7 @@ export type CAutocompleteStyType = {
   label?: string;
   required?: string;
   error?: string;
-  input?: string;
+  input?: { standard: string; withPre: string };
   dropdown?: string;
   dropdownItem?: string;
 };
@@ -73,7 +73,15 @@ const CAutocomplete = <T,>(
     <div className={`relative w-full ${sty?.container}`} onBlur={handleBlur}>
       {/* Label + Icon */}
       <div className="flex gap-2">
-        {additionalInfo && <CInfo color="#309eb5" width="18" height="18" />}
+        {additionalInfo && (
+          <CInfo
+            color="#309eb5"
+            width="18"
+            height="18"
+            label={label}
+            additionalInfo={additionalInfo}
+          />
+        )}
         <label htmlFor={name} className={sty?.label}>
           {label}
           {required && <span className={sty?.required}> *</span>}
@@ -93,7 +101,7 @@ const CAutocomplete = <T,>(
           onChange?.(e);
         }}
         onFocus={() => setIsOpen(true)}
-        className={`${sty?.input} ${error ? sty?.error : ""}`}
+        className={`${sty?.input?.standard} ${error ? sty?.error : ""}`}
         ref={ref}
         {...rest}
       />

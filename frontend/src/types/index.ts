@@ -7,6 +7,7 @@ import { contactSchema } from "@schema/sectionSchemas";
 // DATA TYPES
 export type CountryType = {
   name: string;
+  dial_code: string;
   code: string;
 };
 

@@ -13,7 +13,8 @@
         "type": "text",
         "role": "input",
         "placeholder": "ZIP ONLINE SERVICES S.L.",
-        "required": true
+        "required": true,
+        "gridPosition": 1
       },
       {
         "id": 2,
@@ -23,17 +24,19 @@
         "type": "text",
         "role": "input",
         "placeholder": "ZIPTRANSFERS",
-        "required": false
+        "required": false,
+        "gridPosition": 2
       },
       {
         "id": 3,
         "name": "vat",
-        "label": "VAT / IVA / NIF",
+        "label": "VAT",
         "additionalInfo": "This is the legal identification number of your company (value-added tax). It is known in different ways depending on the country: VAT, IVA, or NIF/CIF.",
         "type": "text",
         "role": "input",
         "placeholder": "ES123456789",
-        "required": true
+        "required": true,
+        "gridPosition": 3
       }
     ],
     "formGridData": [
@@ -41,6 +44,7 @@
         "id": 4,
         "name": "streetAddress",
         "label": "Street address",
+        "additionalInfo": "",
         "type": "text",
         "role": "input",
         "placeholder": "Carrer Llovera 53, 5-1",
@@ -51,6 +55,7 @@
         "id": 5,
         "name": "city",
         "label": "City",
+        "additionalInfo": "",
         "type": "text",
         "role": "input",
         "placeholder": "Reus",
@@ -106,7 +111,8 @@
         "type": "text",
         "role": "input",
         "placeholder": "John",
-        "required": true
+        "required": true,
+        "gridPosition": 1
       },
       {
         "id": 2,
@@ -116,7 +122,8 @@
         "type": "text",
         "role": "input",
         "placeholder": "Doe",
-        "required": true
+        "required": true,
+        "gridPosition": 2
       },
       {
         "id": 3,
@@ -126,19 +133,21 @@
         "type": "text",
         "role": "select",
         "placeholder": "Director",
-        "required": false
+        "required": false,
+        "gridPosition": 3
       }
     ],
 
     "desitionData": [
       {
         "id": 1,
-        "name": "yesno",
+        "name": "yesnoContact",
         "label": "Do you have a specific phone number or email address?",
         "additionalInfo": "Hola",
         "type": "radio",
         "role": "desition",
         "required": true,
+        "gridPosition": 1,
         "options": [
           { "value": true, "label": "YES" },
           { "value": false, "label": "NO" }
@@ -148,17 +157,23 @@
             "id": 2,
             "name": "phone",
             "label": "Phone Number",
+            "additionalInfo": "This is the phone number of the representative of your company.",
             "type": "tel",
+            "role": "input",
             "placeholder": "+34 123 456 789",
-            "required": true
+            "required": true,
+            "gridPosition": 1
           },
           {
             "id": 3,
             "name": "email",
             "label": "Email Address",
+            "additionalInfo": "This is the email address of the representative of your company.",
             "type": "email",
+            "role": "input",
             "placeholder": "example@mail.com",
-            "required": true
+            "required": true,
+            "gridPosition": 2
           }
         ]
       }

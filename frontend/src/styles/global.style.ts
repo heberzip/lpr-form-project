@@ -1,17 +1,18 @@
 export default {
   global: {
     container:
-      "relative flex flex-col h-screen bg-light text-md text-dark m-0 p-0",
+      "@container/Container relative flex flex-col h-screen bg-light text-md text-dark m-0 p-0",
   },
   layout: {
-    header: "w-full bg-dark md:bg-light text-dark py-4 px-6 shadow-xl z-20",
-    main: "flex flex-1 h-full",
-    sidebar: "hidden md:flex md:w-1/7 bg-dark text-white p-4",
-    main_div:
-      "flex flex-col flex-1 items-center py-4 px-6 md:px-12 bg-light w-full h-full",
+    header:
+      "w-full @[1150px]/Container:h-1/10 bg-dark @[1150px]/Container:bg-light text-dark py-4 px-6 shadow-xl z-20",
+    main: "flex flex-1",
+    sidebar:
+      "hidden @[1480px]/Container:flex @[1480px]/Container:w-1/7 bg-dark text-white p-4",
+    main_div: "flex flex-col flex-1 items-center w-full h-full",
     outlet: "w-full h-full",
     navigation:
-      "flex flex-col absolute top-6/7 md:top-4/5 md:right-1/2 gap-4 items-center justify-center",
+      "flex flex-col md:top-4/5 md:right-1/2 gap-4 items-center justify-center mb-8 @[1150px]/Container:mb-14",
     footer: "",
     bg_blue: "absolute  z-10 opacity-50",
     bg_yellow: "absolute w-full h-full z-10 opacity-50",
@@ -20,34 +21,46 @@ export default {
   header: {},
   /****************************************************************************** */
   section: {
-    grid: "grid md:grid-cols-2 md:gap-10 w-full h-full",
+    grid: "@container/Section grid @[1150px]/Container:grid-cols-2 md:gap-10 w-full h-full mt-6 @[1150px]/Container:mt-16",
     leftCol:
-      "hidden md:flex md:flex-col items-center justify-start w-full md:min-w-md md:mt-16 md:px-20",
+      "hidden @[1150px]/Section:flex @[1150px]/Section:flex-col items-center justify-start w-full px-16",
     rightCol:
-      "flex flex-col items-center justify-center w-full md:min-w-md mt-6 md:mt-16 md:px-30",
+      "@container/rightCol flex flex-col items-center justify-center w-full px-6 @[1150px]/Section:px-16",
   },
   /*****************************************************************************/
   form: {
-    container: "w-full px-2",
+    container: "flex flex-col items-center justify-center w-full",
   },
   /****************************************************************************** */
   // CUSTOM COMPONENTS
   grid: {
-    container:
-      "grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-x-4 w-full",
+    container: "max-w-lg grid grid-cols-2 gap-x-4 w-full",
   },
   /****************************************************************************** */
   input: {
-    container: "flex flex-col gap-2 w-full",
-    label:
-      "min-w-[150px] md:min-w-[180px] font-medium text-gray-700 select-none",
+    container: "flex flex-col gap-2 w-full max-w-lg mx-auto",
+    label: "font-medium text-gray-700 select-none",
     small: "text-xs text-gray-500",
-    standard:
-      "w-full min-w-[150px] md:min-w-[180px] flex-grow px-3 py-2 mb-3 text-sm border-1 border-zip-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-zip-yellow-300 focus:border-1 focus:border-zip-yellow-300 focus:shadow-md transition-all placeholder:text-gray-400 placeholder:italic",
+    body: {
+      standard:
+        "w-full px-3 py-2 mb-3 text-sm border-1 border-zip-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-zip-yellow-300 focus:border-1 focus:border-zip-yellow-300 focus:shadow-md transition-all placeholder:text-gray-400 placeholder:italic",
+      withPre:
+        "w-full px-3 py-2 mb-3 text-sm border-1 border-zip-gray-500 border-l-0 rounded-r-md focus:outline-none focus:ring-2 focus:ring-zip-yellow-300 focus:border-1 focus:border-zip-yellow-300 focus:shadow-md transition-all placeholder:text-gray-400 placeholder:italic",
+    },
+    disabled: {
+      standard:
+        "w-full flex-grow px-3 py-2 mb-3 bg-gray-300 text-sm text-gray-400 italic line-through border-1 border-gray-300 rounded-md focus:outline-none transition-all placeholder:text-gray-400 placeholder:italic cursor-not-allowed select-none",
+      withPre:
+        "w-full flex-grow px-3 py-2 mb-3 bg-gray-300 text-sm text-gray-400 italic line-through border-1 border-gray-300 border-l-0 rounded-r-md focus:outline-none transition-all placeholder:text-gray-400 placeholder:italic cursor-not-allowed select-none",
+    },
+    pre: {
+      enable:
+        "w-[45px] flex items-center justify-center py-2 px-2 mb-3 bg-zip-blue2-500 text-white text-[13px] rounded-l-lg select-none",
+      disable:
+        "w-[45px] flex items-center justify-center py-2 px-2 mb-3 bg-gray-400 text-gray-200 text-[13px] rounded-l-lg select-none",
+    },
     required: "text-red-400",
     error: "border-red-500 focus:ring-red-500 focus:border-red-500",
-    disabled:
-      "w-full flex-grow px-3 py-2 mb-3 bg-gray-300 text-sm text-gray-400 italic line-through border-1 border-gray-300 rounded-md focus:outline-none transition-all placeholder:text-gray-400 placeholder:italic cursor-not-allowed select-none",
   },
   /****************************************************************************** */
   autocomplete: {
@@ -80,65 +93,3 @@ export default {
   /****************************************************************************** */
   cinfo: "inline-block cursor-pointer hover:shadow-xl tabindex-[-1]",
 };
-
-/*
-
-export default {
-  input: {
-    container: "flex flex-col gap-2 w-full",
-    label: "font-medium text-gray-700 select-none",
-    required: "text-red-400",
-
-    // Definir estilos comunes
-    common: {
-      body:
-        "w-full min-w-[180px] px-3 py-2 text-sm border border-gray-400 focus:outline-none focus:ring-2 focus:ring-zip-yellow-300 focus:shadow-md transition-all placeholder:text-gray-400 placeholder:italic",
-      disabled:
-        "w-full px-3 py-2 bg-gray-300 text-sm text-gray-400 italic border border-gray-300 focus:outline-none transition-all placeholder:text-gray-400 placeholder:italic cursor-not-allowed",
-      pre: "bg-gray-200 text-gray-700 px-3 py-2 rounded-l-md border border-gray-400",
-      preDisabled: "bg-gray-300 text-gray-500 px-3 py-2 rounded-l-md border border-gray-300",
-    },
-
-    // Estilos por tipo de input
-    type: {
-      standard: {
-        body: {
-          enable: "$common.body",
-          disable: "$common.disabled",
-        },
-      },
-
-      tel: {
-        body: {
-          enable: "$common.body rounded-r-md border-l-0",
-          disable: "$common.disabled rounded-r-md border-l-0",
-        },
-        pre: {
-          enable: "$common.pre",
-          disable: "$common.preDisabled",
-        },
-      },
-
-      email: {
-        body: {
-          enable: "$common.body rounded-r-md border-l-0",
-          disable: "$common.disabled rounded-r-md border-l-0",
-        },
-        pre: {
-          enable: "$common.pre",
-          disable: "$common.preDisabled",
-        },
-      },
-
-      radio: {
-        body: {
-          enable: "w-4 h-4 text-zip-blue2-500 border-gray-300 focus:ring-zip-blue2-600",
-          disable: "w-4 h-4 text-gray-400 bg-gray-200 border-gray-300 cursor-not-allowed",
-        },
-      },
-    },
-  },
-};
-
-*
-*/

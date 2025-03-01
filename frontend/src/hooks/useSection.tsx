@@ -1,6 +1,5 @@
 // EXTERNAL MODULES
 import { useLocation } from "react-router-dom";
-
 // DATA
 import formData from "@data/sectionsData.json";
 
@@ -12,6 +11,8 @@ const useSection = () => {
   const section = formData.find(
     (section) => section.link === location.pathname
   );
+
+  console.log(section);
 
   return section;
 };
