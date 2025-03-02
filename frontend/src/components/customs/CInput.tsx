@@ -1,7 +1,7 @@
 // EXTERNAL MODULES
 import { forwardRef } from "react";
 // CUSTOM COMPONENTS
-import { CInfo } from "@customs/.";
+import { CInfoBtn } from "@customs/.";
 
 /******************************************************************************/
 // TYPES
@@ -57,7 +57,7 @@ const CInput = forwardRef<HTMLInputElement, CInputProps>(
         {/* Label + Icon */}
         <div className="flex gap-2">
           {additionalInfo && (
-            <CInfo
+            <CInfoBtn
               color="#309eb5"
               width="18"
               height="18"

@@ -1,7 +1,13 @@
 // EXTERNAL MODULES
 import { useSelector } from "react-redux";
 // CUSTOM COMPONENTS
-import { CSeparator, CInput, CAutocomplete } from "@customs/.";
+import {
+  CSeparator,
+  CInput,
+  CAutocomplete,
+  CGrid,
+  CSectionHeader,
+} from "@customs/.";
 // CUSTOM HOOKS
 import useContactSection from "@hooks/useContactSection";
 // STORE
@@ -42,59 +48,63 @@ const Contact = () => {
 
   return (
     <section id="contact" className={style.section.grid}>
-      <div className={style.section.leftCol}>
-        <h3>{section?.title}</h3>
-        <small>{section?.description}</small>
-        <CSeparator className="max-w-lg" />
-      </div>
+      <CSectionHeader
+        section={
+          section?.base ?? { id: 0, link: "", title: "", description: "" }
+        }
+        className={style.section.leftCol}
+      />
 
       <div className={style.section.rightCol}>
         <form
           className={style.form.container}
           onSubmit={handleSubmit(onSubmit)}
         >
-          {section?.formMainData.map((field) =>
-            field?.role === "select" ? (
-              <CAutocomplete
-                key={field.id}
-                data={positionsData}
-                filterFn={filterFn}
-                onSelect={handleItemSelect}
-                placeholder={field.placeholder}
-                renderItem={(item) => item.position}
-                label={field.label}
-                required={field.required}
-                additionalInfo={field.additionalInfo}
-                sty={cAutocompleteSty}
-                {...register(field.name as keyof ContactType)}
-                error={errors[field.name as keyof ContactType]?.message}
-                onChange={(e) =>
-                  handleInputChange(
-                    field.name as keyof ContactType,
-                    e.target.value
-                  )
-                }
-              />
-            ) : (
-              <CInput
-                key={field.id}
-                label={field.label}
-                type={field.type}
-                placeholder={field.placeholder}
-                required={field.required}
-                additionalInfo={field.additionalInfo}
-                sty={cInputSty}
-                {...register(field.name as keyof ContactType)}
-                error={errors[field.name as keyof ContactType]?.message}
-                onChange={(e) =>
-                  handleInputChange(
-                    field.name as keyof ContactType,
-                    e.target.value
-                  )
-                }
-              />
-            )
-          )}
+          <CGrid data={section?.formMainData || []}>
+            {(field) =>
+              field.role === "select" ? (
+                <CAutocomplete
+                  key={field.id}
+                  data={positionsData}
+                  filterFn={filterFn}
+                  onSelect={handleItemSelect}
+                  placeholder={field.placeholder}
+                  renderItem={(item) => item.position}
+                  type={field.type}
+                  label={field.label}
+                  required={field.required}
+                  additionalInfo={field.additionalInfo}
+                  sty={cAutocompleteSty}
+                  {...register(field.name as keyof ContactType)}
+                  error={errors[field.name as keyof ContactType]?.message}
+                  onChange={(e) =>
+                    handleInputChange(
+                      field.name as keyof ContactType,
+                      e.target.value
+                    )
+                  }
+                />
+              ) : (
+                <CInput
+                  key={field.id}
+                  label={field.label}
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  required={field.required}
+                  additionalInfo={field.additionalInfo}
+                  sty={cInputSty}
+                  {...register(field.name as keyof ContactType)}
+                  error={errors[field.name as keyof ContactType]?.message}
+                  onChange={(e) =>
+                    handleInputChange(
+                      field.name as keyof ContactType,
+                      e.target.value
+                    )
+                  }
+                />
+              )
+            }
+          </CGrid>
 
           <CSeparator className="max-w-lg" />
 
@@ -133,7 +143,7 @@ const Contact = () => {
             </div>
           ))}
 
-          {section.desitionData[0].dependents.map((depField) => (
+          {section?.desitionData?.[0].dependents.map((depField) => (
             <CInput
               key={depField.id}
               label={depField.label}

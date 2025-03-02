@@ -1,15 +1,12 @@
-// EXTERNAL MODULES
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
 // STORE
 import { useAppDispatch } from "@store/store";
-import { setInfo, selectInfo } from "@store/slices/infoSlice";
+import { setInfo } from "@store/slices/infoSlice";
 // STYLES
 import style from "@styles/global.style";
 
 /******************************************************************************/
 // TYPES
-type CInfoProps = {
+type CInfoBtnProps = {
   color?: string;
   width?: string;
   height?: string;
@@ -18,15 +15,14 @@ type CInfoProps = {
 };
 /******************************************************************************/
 
-const CInfo = ({ color, width, height, label, additionalInfo }: CInfoProps) => {
+const CInfoBtn = ({
+  color,
+  width,
+  height,
+  label,
+  additionalInfo,
+}: CInfoBtnProps) => {
   const dispatch = useAppDispatch();
-  const info = useSelector(selectInfo);
-
-  useEffect(() => {
-    if (info.label) {
-      console.log(info);
-    }
-  }, [dispatch]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleShowInfo = () => {
     dispatch(
@@ -35,7 +31,6 @@ const CInfo = ({ color, width, height, label, additionalInfo }: CInfoProps) => {
         additionalInfo,
       })
     );
-    console.log(info);
   };
 
   return (
@@ -52,4 +47,4 @@ const CInfo = ({ color, width, height, label, additionalInfo }: CInfoProps) => {
   );
 };
 
-export default CInfo;
+export default CInfoBtn;

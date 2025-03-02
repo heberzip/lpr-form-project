@@ -9,10 +9,8 @@ const useSection = () => {
   const location = useLocation();
 
   const section = formData.find(
-    (section) => section.link === location.pathname
+    (section) => section.base.link === location.pathname
   );
-
-  console.log(section);
 
   return section;
 };

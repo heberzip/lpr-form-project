@@ -31,7 +31,7 @@ const CGrid = ({ data, children, sty }: CGridProps) => {
   const sortedData = [...data].sort((a, b) => a.gridPosition - b.gridPosition);
 
   return (
-    <div className={sty?.gridContainer}>
+    <div className={`w-full ${sty?.gridContainer}`}>
       {sortedData.map((field) =>
         children && typeof children === "function" ? children(field) : null
       )}

@@ -16,6 +16,54 @@ export type PositionType = {
   position: string;
 };
 
+// BASE TYPE FOR ALL SECTIONS
+export type BaseSectionType = {
+  base: {
+    id: number;
+    link: string;
+    title: string;
+    description: string;
+  };
+};
+
+// COMPANY SECTION TYPE
+export type CompanySectionType = BaseSectionType & {
+  formMainData: {
+    id: number;
+    name: string;
+    label: string;
+    additionalInfo?: string;
+    type: string;
+    placeholder: string;
+    required: boolean;
+  }[];
+  formGridData?: any[]; // eslint-disable-line
+};
+
+// COMMUNICATION SECTION TYPE
+export type CommunicationSectionType = BaseSectionType & {
+  formMainData: {
+    id: number;
+    name: string;
+    label: string;
+    type: string;
+    placeholder: string;
+    required: boolean;
+  }[];
+  desitionData?: {
+    id: number;
+    name: string;
+    label: string;
+    type: string;
+    options: { label: string; value: boolean }[];
+    dependents?: any[]; // eslint-disable-line
+  }[];
+  additionalContacts?: any; // eslint-disable-line
+};
+
+// UNION TYPE FOR ALL SECTIONS
+export type SectionType = CompanySectionType | CommunicationSectionType;
+
 // INFERS FROM SCHEMAS
 export type CompanyType = z.infer<typeof companySchema>;
 

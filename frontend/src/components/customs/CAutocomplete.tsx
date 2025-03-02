@@ -3,7 +3,7 @@ import { useState, useRef, forwardRef, useEffect, JSX } from "react";
 // CUSTOM HOOKS
 import useAutocomplete from "@hooks/useAutocomplete";
 // CUSTOM COMPONENTS
-import { CInfo } from "@customs/.";
+import { CInfoBtn } from "@customs/.";
 
 /******************************************************************************/
 // TYPES
@@ -74,7 +74,7 @@ const CAutocomplete = <T,>(
       {/* Label + Icon */}
       <div className="flex gap-2">
         {additionalInfo && (
-          <CInfo
+          <CInfoBtn
             color="#309eb5"
             width="18"
             height="18"

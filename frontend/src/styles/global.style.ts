@@ -92,4 +92,14 @@ export default {
   },
   /****************************************************************************** */
   cinfo: "inline-block cursor-pointer hover:shadow-xl tabindex-[-1]",
+  cinfoCard: {
+    container:
+      "flex flex-col p-4 bg-white shadow-md rounded-md border border-gray-300 w-full max-w-lg mt-4 transition-all duration-300",
+
+    infoCardHeader: "flex justify-between items-center",
+    infoCardTitle: "text-lg font-semibold text-dark",
+    infoCardClose: "text-gray-500 hover:text-gray-700 transition-all",
+
+    infoCardContent: "mt-2 text-gray-700",
+  },
 };

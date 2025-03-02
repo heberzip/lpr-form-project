@@ -1,9 +1,11 @@
 [
   {
-    "id": 1,
-    "link": "/company",
-    "title": "COMPANY DETAILS",
-    "description": "# Company Details: \n\nIn this section, we will ask you for **legal details** about your company, including:\n\n- Official company name\n- Trade name\n- VAT/Tax ID\n- Address and location details\n\nPlease ensure that the information you provide matches your official business records.",
+    "base": {
+      "id": 1,
+      "link": "/company",
+      "title": "COMPANY DETAILS",
+      "description": "# Company Details: \n\nIn this section, we will ask you for **legal details** about your company, including:\n\n- Official company name\n- Trade name\n- VAT/Tax ID\n- Address and location details\n\nPlease ensure that the information you provide matches your official business records."
+    },
     "formMainData": [
       {
         "id": 1,
@@ -98,10 +100,12 @@
     ]
   },
   {
-    "id": 2,
-    "link": "/contact",
-    "title": "CONTACT INFORMATION",
-    "description": "In this section, we will ask you for contact information.",
+    "base": {
+      "id": 2,
+      "link": "/contact",
+      "title": "CONTACT INFORMATION",
+      "description": "In this section, we will ask you for contact information."
+    },
     "formMainData": [
       {
         "id": 1,
@@ -180,28 +184,34 @@
     ]
   },
   {
-    "id": 3,
-    "link": "/communication",
-    "title": "COMMUNICATION DETAILS",
-    "description": "In this section, we ask for phone numbers and emails for each type of communication.",
+    "base": {
+      "id": 3,
+      "link": "/communication",
+      "title": "COMMUNICATION DETAILS",
+      "description": "In this section, we ask for phone numbers and emails for each type of communication."
+    },
     "formMainData": [
       {
         "id": 1,
         "name": "phone",
         "label": "Emergency phone number (24h)",
-        "type": "tel",
-        "placeholder": "+34 123 456 789",
         "additionalInfo": "This is the phone number of the representative of your company.",
-        "required": true
+        "type": "tel",
+        "role": "input",
+        "placeholder": "+34 123 456 789",
+        "required": true,
+        "gridPosition": 1
       },
       {
         "id": 2,
         "name": "email",
         "label": "Email for reservations",
-        "type": "email",
-        "placeholder": "example@mail.com",
         "additionalInfo": "This is the email address of the representative of your company.",
-        "required": true
+        "type": "email",
+        "role": "input",
+        "placeholder": "example@mail.com",
+        "required": true,
+        "gridPosition": 2
       }
     ],
     "desitionData": [
@@ -210,6 +220,7 @@
         "name": "whatsappAvailable",
         "label": "Do you have WhatsApp available for company communications?",
         "type": "radio",
+        "role": "desition",
         "options": [
           { "label": "YES", "value": true },
           { "label": "NO", "value": false }
@@ -220,6 +231,7 @@
             "id": 4,
             "name": "sameAsEmergency",
             "label": "Use the same number as the emergency phone?",
+            "additionalInfo": "",
             "type": "radio",
             "options": [
               { "label": "YES", "value": true },
@@ -231,6 +243,7 @@
             "id": 5,
             "name": "whatsappNumber",
             "label": "WhatsApp number",
+            "additionalInfo": "",
             "type": "tel",
             "placeholder": "+34 123 456 789",
             "required": true,
@@ -249,6 +262,7 @@
           "id": 6,
           "name": "additionalType",
           "label": "Select type",
+          "additionalInfo": "",
           "type": "select",
           "options": [
             { "label": "Phone number", "value": "phone" },
@@ -260,6 +274,7 @@
           "id": 7,
           "name": "additionalContact",
           "label": "Enter contact",
+          "additionalInfo": "",
           "type": "text",
           "placeholder": "Enter phone number or email",
           "required": true,

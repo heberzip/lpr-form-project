@@ -1,7 +1,11 @@
-// EXTERNAL MODULES
-import ReactMarkdown from "react-markdown";
 // CUSTOM COMPONENTS
-import { CAutocomplete, CSeparator, CInput, CGrid } from "@customs/.";
+import {
+  CSectionHeader,
+  CAutocomplete,
+  CSeparator,
+  CInput,
+  CGrid,
+} from "@customs/.";
 // CUSTOM HOOKS
 import useCompanySection from "@hooks/useCompanySection";
 // STYLE
@@ -12,7 +16,7 @@ import countriesData from "@data/countriesData.json";
 
 /******************************************************************************/
 // TYPES
-import { CompanyType } from "../../types";
+import { CompanyType } from "../../../types";
 
 /******************************************************************************/
 
@@ -30,13 +34,12 @@ const Company = () => {
 
   return (
     <section id="company" className={style.section.grid}>
-      <div className={style.section.leftCol}>
-        <h3>{section?.title}</h3>
-        <div className="prose prose-zinc max-w-none leading-relaxed">
-          <ReactMarkdown>{section?.description}</ReactMarkdown>
-        </div>
-        <CSeparator className="max-w-lg" />
-      </div>
+      <CSectionHeader
+        section={
+          section?.base ?? { id: 0, link: "", title: "", description: "" }
+        }
+        className={style.section.leftCol}
+      />
 
       <div className={style.section.rightCol}>
         <form
