@@ -89,7 +89,7 @@
       {
         "id": 8,
         "name": "province",
-        "label": "Province - State",
+        "label": "Province",
         "additionalInfo": "This is the province or state where your company is registered.",
         "type": "text",
         "role": "input",
@@ -137,7 +137,7 @@
         "type": "text",
         "role": "select",
         "placeholder": "Director",
-        "required": false,
+        "required": true,
         "gridPosition": 3
       }
     ],
@@ -150,7 +150,7 @@
         "additionalInfo": "Hola",
         "type": "radio",
         "role": "desition",
-        "required": true,
+        "required": false,
         "gridPosition": 1,
         "options": [
           { "value": true, "label": "YES" },
@@ -164,8 +164,8 @@
             "additionalInfo": "This is the phone number of the representative of your company.",
             "type": "tel",
             "role": "input",
-            "placeholder": "+34 123 456 789",
-            "required": true,
+            "placeholder": "123 456 789",
+            "required": false,
             "gridPosition": 1
           },
           {
@@ -176,7 +176,7 @@
             "type": "email",
             "role": "input",
             "placeholder": "example@mail.com",
-            "required": true,
+            "required": false,
             "gridPosition": 2
           }
         ]

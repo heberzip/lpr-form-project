@@ -1,12 +1,10 @@
 // EXTERNAL MODULES
 import { Outlet, useLocation } from "react-router-dom";
+import { FormProvider, useForm } from "react-hook-form";
 import { AnimatePresence } from "framer-motion";
-
 // COMPONENTS
 import Sidebar from "@components/Sidebar";
 import Header from "@components/Header";
-import Navigation from "@components/Navigation";
-
 // STYLES
 import style from "@styles/global.style";
 
@@ -14,9 +12,13 @@ import style from "@styles/global.style";
 
 const Layout = () => {
   const location = useLocation();
+  const methods = useForm({
+    mode: "onChange",
+    reValidateMode: "onBlur",
+  });
 
   return (
-    <>
+    <FormProvider {...methods}>
       <header className={style.layout.header}>
         <Header />
       </header>
@@ -32,13 +34,9 @@ const Layout = () => {
               <Outlet key={location.pathname} />
             </AnimatePresence>
           </div>
-
-          <div className={style.layout.navigation}>
-            <Navigation />
-          </div>
         </main>
       </div>
-    </>
+    </FormProvider>
   );
 };
 

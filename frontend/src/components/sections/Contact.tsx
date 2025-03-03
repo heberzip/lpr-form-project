@@ -2,16 +2,18 @@
 import { useSelector } from "react-redux";
 // CUSTOM COMPONENTS
 import {
-  CSeparator,
+  CSectionHeader,
   CInput,
   CAutocomplete,
+  CSeparator,
   CGrid,
-  CSectionHeader,
+  CNavigation,
 } from "@customs/.";
 // CUSTOM HOOKS
 import useContactSection from "@hooks/useContactSection";
 // STORE
 import { selectCompany } from "@store/slices/companySlice";
+import { isContactFilled } from "@store/slices/contactSlice";
 // STYLES
 import style from "@styles/global.style";
 import {
@@ -35,7 +37,7 @@ const Contact = () => {
     section,
     register,
     handleSubmit,
-    formState: { errors },
+    formState,
     hasDetails,
     handleInputChange,
     handleRadioChange,
@@ -54,7 +56,6 @@ const Contact = () => {
         }
         className={style.section.leftCol}
       />
-
       <div className={style.section.rightCol}>
         <form
           className={style.form.container}
@@ -76,7 +77,9 @@ const Contact = () => {
                   additionalInfo={field.additionalInfo}
                   sty={cAutocompleteSty}
                   {...register(field.name as keyof ContactType)}
-                  error={errors[field.name as keyof ContactType]?.message}
+                  error={
+                    formState.errors[field.name as keyof ContactType]?.message
+                  }
                   onChange={(e) =>
                     handleInputChange(
                       field.name as keyof ContactType,
@@ -87,6 +90,7 @@ const Contact = () => {
               ) : (
                 <CInput
                   key={field.id}
+                  id={field.name}
                   label={field.label}
                   type={field.type}
                   placeholder={field.placeholder}
@@ -94,7 +98,9 @@ const Contact = () => {
                   additionalInfo={field.additionalInfo}
                   sty={cInputSty}
                   {...register(field.name as keyof ContactType)}
-                  error={errors[field.name as keyof ContactType]?.message}
+                  error={
+                    formState.errors[field.name as keyof ContactType]?.message
+                  }
                   onChange={(e) =>
                     handleInputChange(
                       field.name as keyof ContactType,
@@ -106,13 +112,12 @@ const Contact = () => {
             }
           </CGrid>
 
-          <CSeparator className="max-w-lg" />
+          <CSeparator className="max-w-lg mt-4 mb-6" />
 
           {(section?.desitionData || []).map((field) => (
             <div key={field.id} className={style.radio.container}>
               <div className={style.radio.question}>{field.label}</div>
 
-              {/* Radio Buttons */}
               <div className={style.radio.panel}>
                 {field.options.map((option) => (
                   <label
@@ -122,7 +127,7 @@ const Contact = () => {
                   >
                     <input
                       type="radio"
-                      name={field.name}
+                      id={field.name}
                       value={option.value.toString()}
                       checked={hasDetails === option.value}
                       onChange={() => handleRadioChange(option.value)}
@@ -146,6 +151,7 @@ const Contact = () => {
           {section?.desitionData?.[0].dependents.map((depField) => (
             <CInput
               key={depField.id}
+              id={depField.name}
               label={depField.label}
               type={depField.type}
               placeholder={depField.placeholder}
@@ -160,15 +166,24 @@ const Contact = () => {
                   e.target.value
                 )
               }
-              error={errors[depField.name as keyof ContactType]?.message}
+              error={
+                formState.errors[depField.name as keyof ContactType]?.message
+              }
             >
-              {depField.type === "tel" && getPhonePrefixFromCountry(country)}
+              {depField.type === "tel" &&
+                getPhonePrefixFromCountry(country.value)}
               {depField.type === "email" && "@"}
             </CInput>
           ))}
+
+          <CSeparator className="flex justify-center items-center w-full max-w-3xs mt-4 mb-2 md:hidden" />
+          <CSeparator className="flex justify-center items-center w-full max-w-[90px] mb-4 p-0 md:hidden" />
+
+          <CNavigation
+            isSectionFilled={isContactFilled}
+            formState={formState}
+          />
         </form>
-        <CSeparator className="flex justify-center items-center w-full max-w-3xs mt-4 mb-3 md:hidden" />
-        <CSeparator className="flex justify-center items-center w-full max-w-[90px] m-0 p-0 md:hidden" />
       </div>
     </section>
   );

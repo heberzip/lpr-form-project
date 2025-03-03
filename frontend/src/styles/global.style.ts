@@ -1,14 +1,14 @@
 export default {
   global: {
     container:
-      "@container/Container relative flex flex-col h-screen bg-light text-md text-dark m-0 p-0",
+      "@container/Container relative flex flex-col min-w-[350px] h-[100vh] bg-light text-md text-dark m-0 p-0",
   },
   layout: {
     header:
       "w-full @[1150px]/Container:h-1/10 bg-dark @[1150px]/Container:bg-light text-dark py-4 px-6 shadow-xl z-20",
     main: "flex flex-1",
     sidebar:
-      "hidden @[1480px]/Container:flex @[1480px]/Container:w-1/7 bg-dark text-white p-4",
+      "hidden @[750px]/Container:flex @[750px]/Container:w-1/5 @[1150px]/Container:hidden @[1480px]/Container:flex @[1480px]/Container:w-1/7 bg-dark text-white p-4",
     main_div: "flex flex-col flex-1 items-center w-full h-full",
     outlet: "w-full h-full",
     navigation:
@@ -73,10 +73,10 @@ export default {
   button: {
     start:
       "bg-zip-blue2-500 text-white px-6 py-1 min-w-[200px] rounded-md shadow-xl transition mb-20",
-    panel: "flex gap-4 md:gap-16 w-full",
+    panel: "flex gap-4 md:gap-16 w-full mt-4 md:mt-8",
     previous:
-      "bg-dark text-white px-6 py-1 min-w-[150px] rounded-md shadow-xl transition disabled:opacity-50",
-    next: "bg-zip-blue2-500 text-white px-6 py-1 min-w-[150px] rounded-md shadow-xl hover:bg-zip-blue2-600 active:bg-zip-blue2-800 active:size-0.95 transition disabled:opacity-50",
+      "bg-gray-500 text-white px-6 py-1 min-w-[150px] rounded-md shadow-xl hover:bg-gray-600 active:bg-gray-800 active:size-0.95 transition disabled:opacity-50",
+    next: "bg-zip-blue2-500 text-white px-6 py-1 min-w-[150px] rounded-md shadow-xl hover:bg-zip-blue2-600 active:bg-zip-blue2-800 active:size-0.95 transition disabled:opacity-50 disabled:bg-gray-400",
   },
   /*****************************************************************************/
   radio: {

@@ -1,7 +1,7 @@
 // EXTERNAL MODULES
 import { forwardRef } from "react";
 // CUSTOM COMPONENTS
-import { CInfoBtn } from "@customs/.";
+import { CLabel } from "@customs/.";
 
 /******************************************************************************/
 // TYPES
@@ -16,18 +16,17 @@ export type CInputStyType = {
 };
 
 type CInputProps = {
-  name: string;
+  id: string;
   label: string;
+  additionalInfo?: string;
   type: string;
-  value?: string;
   placeholder?: string;
   required?: boolean;
-  additionalInfo?: string;
+  sty: CInputStyType;
+  disabled?: boolean;
   error?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
-  disabled?: boolean;
-  sty?: CInputStyType;
   children?: React.ReactNode;
 };
 
@@ -36,12 +35,12 @@ type CInputProps = {
 const CInput = forwardRef<HTMLInputElement, CInputProps>(
   (
     {
-      name,
+      id,
       label,
+      additionalInfo,
       type,
       placeholder,
       required,
-      additionalInfo,
       error,
       onChange,
       onFocus,
@@ -54,22 +53,14 @@ const CInput = forwardRef<HTMLInputElement, CInputProps>(
   ) => {
     return (
       <div className={`w-full ${sty?.container}`}>
-        {/* Label + Icon */}
-        <div className="flex gap-2">
-          {additionalInfo && (
-            <CInfoBtn
-              color="#309eb5"
-              width="18"
-              height="18"
-              label={label}
-              additionalInfo={additionalInfo}
-            />
-          )}
-          <label htmlFor={name} className={sty?.label}>
-            {label}
-            {required && <span className={sty?.required}> *</span>}
-          </label>
-        </div>
+        {/* Label custom component*/}
+        <CLabel
+          id={id}
+          label={label}
+          additionalInfo={additionalInfo}
+          error={error}
+          required={required}
+        />
 
         {/* Input Field */}
         <div className="flex gap-0">
@@ -77,14 +68,13 @@ const CInput = forwardRef<HTMLInputElement, CInputProps>(
             <div className={sty?.pre}>{children}</div>
           )}
           <input
-            id={name}
-            name={name}
+            id={id}
             type={type}
             placeholder={placeholder}
-            onChange={onChange}
-            onFocus={onFocus}
             required={required}
             disabled={disabled}
+            onChange={onChange}
+            onFocus={onFocus}
             className={`${
               type === "tel" || type === "email"
                 ? sty?.input?.withPre ?? ""
@@ -94,7 +84,6 @@ const CInput = forwardRef<HTMLInputElement, CInputProps>(
             {...rest}
           />
         </div>
-        {error && <p className="text-red-500 text-sm">{error}</p>}
       </div>
     );
   }

@@ -5,16 +5,19 @@ import { RootState } from "@store/store";
 
 /******************************************************************************/
 // TYPES
+export type SectionField = {
+  value: string;
+  required: boolean;
+};
 export type CompanyState = {
-  companyName: string;
-  tradeName: string;
-  vat: string;
-  streetAddress: string;
-  city: string;
-  zipCode: string;
-  country: string;
-  province: string;
-  additionalFields: Record<string, string>;
+  companyName: SectionField;
+  tradeName: SectionField;
+  vat: SectionField;
+  streetAddress: SectionField;
+  city: SectionField;
+  zipCode: SectionField;
+  country: SectionField;
+  province: SectionField;
 };
 
 /******************************************************************************/
@@ -23,15 +26,14 @@ const getCompanyStateLS = (): CompanyState => {
   return savedState
     ? JSON.parse(savedState)
     : {
-        companyName: "",
-        tradeName: "",
-        vat: "",
-        streetAddress: "",
-        city: "",
-        zipCode: "",
-        country: "",
-        province: "",
-        additionalFields: {},
+        companyName: { value: "", required: true },
+        tradeName: { value: "", required: false },
+        vat: { value: "", required: true },
+        streetAddress: { value: "", required: true },
+        city: { value: "", required: true },
+        zipCode: { value: "", required: true },
+        country: { value: "", required: true },
+        province: { value: "", required: false },
       };
 };
 
@@ -41,14 +43,14 @@ const companySlice = createSlice({
   name: "company",
   initialState,
   reducers: {
-    setCompanyData: (state, action: PayloadAction<Partial<CompanyState>>) => {
-      Object.entries(action.payload).forEach(([key, value]) => {
-        if (key in state) {
-          state[key as keyof CompanyState] = value as any; // eslint-disable-line
-        } else {
-          state.additionalFields[key] = value as string;
-        }
-      });
+    setCompanyData: (
+      state,
+      action: PayloadAction<{ key: keyof CompanyState | string; value: string }>
+    ) => {
+      if (state[action.payload.key as keyof CompanyState]) {
+        state[action.payload.key as keyof CompanyState].value =
+          action.payload.value;
+      }
       localStorage.setItem("companyState", JSON.stringify(state));
     },
 
@@ -64,6 +66,12 @@ export const { setCompanyData, resetCompanyData } = companySlice.actions;
 
 // SELECTOR
 export const selectCompany = (state: RootState) => state.company;
+
+export const isComanyFilled = (state: RootState) => {
+  return Object.entries(state.company)
+    .filter(([, field]) => field.required)
+    .every(([, field]) => field.value !== "");
+};
 
 // REDUCER
 export default companySlice.reducer;

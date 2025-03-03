@@ -1,9 +1,7 @@
 // EXTERNAL MODULES
 import { createBrowserRouter } from "react-router-dom";
-
 // LAYOUTS
 import Layout from "@layouts/Layout";
-
 // SECTIONS
 import {
   Welcome,
@@ -16,7 +14,6 @@ import {
   MeetingPoint,
   NotFound,
 } from "@sections/.";
-
 // ANIMATIONS
 import SectionTransition from "@animations/SectionTransition";
 

@@ -17,7 +17,7 @@ const CSectionHeader = ({ section, className }: SectionHeaderProps) => {
       <h3>{section?.title}</h3>
       <p>{section?.description}</p>
 
-      <CSeparator className="max-w-lg" />
+      <CSeparator className="max-w-lg mt-4 mb-6" />
 
       <CInfoCard />
     </div>

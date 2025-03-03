@@ -1,16 +1,15 @@
 import { z } from "zod";
 
 export const companySchema = z.object({
-  companyName: z
-    .string()
-    .min(2, "Company name must be at least 2 characters long"),
+  companyName: z.string().min(2, "At least 2 chars long"),
   tradeName: z.string().optional(),
-  vat: z.string().regex(/^[A-Z0-9]+$/, "Invalid VAT format"),
-  streetAddress: z
+  vat: z
     .string()
-    .min(5, "Address must be at least 5 characters long"),
-  city: z.string().min(2, "City name must be at least 2 characters long"),
-  zipCode: z.string().min(4, "Zip code must be at least 4 characters"),
+    .regex(/^[A-Z0-9]+$/, "Invalid VAT format")
+    .min(4, "At least 4 chars long"),
+  streetAddress: z.string().min(5, "5 chars long"),
+  city: z.string().min(2, "2 chars long"),
+  zipCode: z.string().min(4, "4 chars"),
   country: z.string().min(2, "Please select a country"),
   province: z.string().optional(),
 });

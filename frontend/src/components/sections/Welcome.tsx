@@ -1,12 +1,13 @@
 // EXTERNAL MODULES
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-
 // STORE
 import { initializeLoaded } from "@store/middlewares/loadedThunks";
 import { selectLoaded } from "@store/slices/loadedSlice";
 import { useAppDispatch } from "@store/store";
+// STYLES
+import style from "@styles/global.style";
 
 /******************************************************************************/
 
@@ -15,12 +16,17 @@ const Welcome = () => {
   const { search } = useLocation();
   const { supplier, airports } = useSelector(selectLoaded);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(initializeLoaded(search));
   }, [dispatch, search]);
 
   return (
-    <section id="welcome">
+    <section
+      id="welcome"
+      className="flex flex-col items-center justify-center m-10 gap-4"
+    >
       <h1>Welcome to our Local Partner Registration Form!</h1>
       <p>
         By completing this form, you'll provide us with the information we need
@@ -40,6 +46,13 @@ const Welcome = () => {
           <p>{airports.join(", ")}</p>
         </>
       )}
+
+      <button
+        onClick={() => navigate("/company")}
+        className={style.button.next}
+      >
+        Start
+      </button>
     </section>
   );
 };

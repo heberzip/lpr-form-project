@@ -1,13 +1,16 @@
 // CUSTOM COMPONENTS
 import {
   CSectionHeader,
+  CInput,
   CAutocomplete,
   CSeparator,
-  CInput,
   CGrid,
+  CNavigation,
 } from "@customs/.";
 // CUSTOM HOOKS
 import useCompanySection from "@hooks/useCompanySection";
+// STORE
+import { isComanyFilled } from "@store/slices/companySlice";
 // STYLE
 import style from "@styles/global.style";
 import { cInputSty, cGridSty, cAutocompleteSty } from "@styles/styleObjs";
@@ -25,7 +28,7 @@ const Company = () => {
     section,
     register,
     handleSubmit,
-    formState: { errors },
+    formState,
     handleInputChange,
     handleItemSelect,
     filterFn,
@@ -49,6 +52,7 @@ const Company = () => {
           {section?.formMainData.map((field) => (
             <CInput
               key={field.id}
+              id={field.name}
               label={field.label}
               type={field.type}
               placeholder={field.placeholder}
@@ -56,7 +60,7 @@ const Company = () => {
               additionalInfo={field.additionalInfo}
               sty={cInputSty}
               {...register(field.name as keyof CompanyType)}
-              error={errors[field.name as keyof CompanyType]?.message}
+              error={formState.errors[field.name as keyof CompanyType]?.message}
               onChange={(e) =>
                 handleInputChange(
                   field.name as keyof CompanyType,
@@ -66,7 +70,7 @@ const Company = () => {
             />
           ))}
 
-          <CSeparator className="max-w-lg" />
+          <CSeparator className="max-w-lg mt-4 mb-6" />
 
           <CGrid data={section?.formGridData || []} sty={cGridSty}>
             {(field) =>
@@ -84,7 +88,9 @@ const Company = () => {
                   additionalInfo={field.additionalInfo}
                   sty={cAutocompleteSty}
                   {...register(field.name as keyof CompanyType)}
-                  error={errors[field.name as keyof CompanyType]?.message}
+                  error={
+                    formState.errors[field.name as keyof CompanyType]?.message
+                  }
                   onChange={(e) =>
                     handleInputChange(
                       field.name as keyof CompanyType,
@@ -95,6 +101,7 @@ const Company = () => {
               ) : (
                 <CInput
                   key={field.id}
+                  id={field.name}
                   label={field.label}
                   type={field.type}
                   placeholder={field.placeholder}
@@ -102,7 +109,9 @@ const Company = () => {
                   additionalInfo={field.additionalInfo}
                   sty={cInputSty}
                   {...register(field.name as keyof CompanyType)}
-                  error={errors[field.name as keyof CompanyType]?.message}
+                  error={
+                    formState.errors[field.name as keyof CompanyType]?.message
+                  }
                   onChange={(e) =>
                     handleInputChange(
                       field.name as keyof CompanyType,
@@ -113,10 +122,12 @@ const Company = () => {
               )
             }
           </CGrid>
-        </form>
 
-        <CSeparator className="flex justify-center items-center w-full max-w-3xs mt-4 mb-3 md:hidden" />
-        <CSeparator className="flex justify-center items-center w-full max-w-[90px] m-0 p-0 md:hidden" />
+          <CSeparator className="flex justify-center items-center w-full max-w-3xs mt-4 mb-2 md:hidden" />
+          <CSeparator className="flex justify-center items-center w-full max-w-[90px] mb-4 p-0 md:hidden" />
+
+          <CNavigation isSectionFilled={isComanyFilled} formState={formState} />
+        </form>
       </div>
     </section>
   );

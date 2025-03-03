@@ -3,7 +3,7 @@ import { useState, useRef, forwardRef, useEffect, JSX } from "react";
 // CUSTOM HOOKS
 import useAutocomplete from "@hooks/useAutocomplete";
 // CUSTOM COMPONENTS
-import { CInfoBtn } from "@customs/.";
+import { CLabel } from "@customs/.";
 
 /******************************************************************************/
 // TYPES
@@ -71,22 +71,14 @@ const CAutocomplete = <T,>(
 
   return (
     <div className={`relative w-full ${sty?.container}`} onBlur={handleBlur}>
-      {/* Label + Icon */}
-      <div className="flex gap-2">
-        {additionalInfo && (
-          <CInfoBtn
-            color="#309eb5"
-            width="18"
-            height="18"
-            label={label}
-            additionalInfo={additionalInfo}
-          />
-        )}
-        <label htmlFor={name} className={sty?.label}>
-          {label}
-          {required && <span className={sty?.required}> *</span>}
-        </label>
-      </div>
+      {/* Label custom component */}
+      <CLabel
+        id={name}
+        label={label}
+        additionalInfo={additionalInfo}
+        error={error}
+        required={required}
+      />
 
       {/* Input Field */}
       <input
@@ -128,8 +120,6 @@ const CAutocomplete = <T,>(
           </ul>
         </div>
       )}
-
-      {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>
   );
 };
