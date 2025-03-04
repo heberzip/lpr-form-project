@@ -4,11 +4,11 @@ import { FormState, UseFormRegister } from "react-hook-form";
 import { CInput } from "@customs/.";
 // STYLES
 import { cInputSty } from "@styles/styleObjs";
-
-/******************************************************************************/
 // TYPES
 import { CompanyType, CompanySectionType } from "../../../types";
 
+/******************************************************************************/
+// TYPES
 type CompanyMainFormProps = {
   section: CompanySectionType;
   register: UseFormRegister<CompanyType>;
@@ -23,7 +23,7 @@ const CompanyMainForm = ({
   formState,
   handleInputChange,
 }: CompanyMainFormProps) => {
-  return section?.formMainData.map((field) => (
+  return section.formMainData.map((field) => (
     // Map through Company name, Trade name, and VAT
     <CInput
       key={field.id}

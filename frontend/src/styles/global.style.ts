@@ -14,7 +14,7 @@ export default {
     navigation:
       "flex flex-col md:top-4/5 md:right-1/2 gap-4 items-center justify-center mb-8 @[1150px]/Container:mb-14",
     footer: "",
-    bg_blue: "absolute  z-10 opacity-50",
+    bg_blue: "absolute z-10 opacity-50",
     bg_yellow: "absolute w-full h-full z-10 opacity-50",
   }, // layout
   /****************************************************************************** */
@@ -29,7 +29,8 @@ export default {
   },
   /*****************************************************************************/
   form: {
-    container: "flex flex-col h-full flex-grow",
+    container:
+      "flex flex-col w-full md:w-[90%] h-full flex-grow justify-center items-center",
   },
   /****************************************************************************** */
   // CUSTOM COMPONENTS
@@ -80,9 +81,9 @@ export default {
   },
   /*****************************************************************************/
   radio: {
-    container: "flex flex-col gap-2",
+    container: "flex flex-col gap-1",
     question: "flex items-center justify-center select-none",
-    panel: "flex gap-4 items-center justify-center mb-2 bottom-0",
+    panel: "flex gap-4 items-center justify-center mb-4 bottom-0",
     label: "flex text-sm ml-2 font-semibold select-none",
     labelActive: "text-zip-blue2-600 font-bold",
     input:

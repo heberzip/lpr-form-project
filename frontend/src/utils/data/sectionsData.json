@@ -142,7 +142,7 @@
       }
     ],
 
-    "desitionData": [
+    "decisionData": [
       {
         "id": 1,
         "name": "yesnoContact",
@@ -214,7 +214,7 @@
         "gridPosition": 2
       }
     ],
-    "desitionData": [
+    "decisionData": [
       {
         "id": 3,
         "name": "whatsappAvailable",

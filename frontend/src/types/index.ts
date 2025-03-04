@@ -27,22 +27,36 @@ export type BaseSectionType = {
   };
 };
 
-// COMPANY SECTION TYPE
-export type CompanySectionType = BaseSectionType & {
-  formMainData: {
-    id: number;
-    name: string;
-    label: string;
-    additionalInfo?: string;
-    type: string;
-    placeholder: string;
-    required: boolean;
-  }[];
-  formGridData?: any[]; // eslint-disable-line
+export type FormMainDataType = {
+  id: number;
+  name: string;
+  label: string;
+  additionalInfo?: string;
+  type: string;
+  role: string;
+  placeholder: string;
+  required: boolean;
+  gridPosition: number;
 };
 
-// COMMUNICATION SECTION TYPE
-export type CommunicationSectionType = BaseSectionType & {
+export type DecisionDataType = FormMainDataType & {
+  options: { label: string; value: boolean }[];
+  dependents: FormMainDataType[];
+};
+
+// COMPANY SECTION TYPE
+export type CompanySectionType = BaseSectionType & {
+  formMainData: FormMainDataType[];
+  formGridData: FormMainDataType[];
+};
+
+export type ContactSectionType = BaseSectionType & {
+  formMainData: FormMainDataType[];
+  decisionData: DecisionDataType[];
+};
+
+export // COMMUNICATION SECTION TYPE
+type CommunicationSectionType = BaseSectionType & {
   formMainData: {
     id: number;
     name: string;

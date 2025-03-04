@@ -30,7 +30,7 @@ const CompanyGridData = ({
   filterFn,
 }: CompanyGridDataProps) => {
   return (
-    <CGrid data={section?.formGridData || []} sty={cGridSty}>
+    <CGrid data={section.formGridData || []} sty={cGridSty}>
       {(field) =>
         field.role === "select" ? (
           <CAutocomplete
