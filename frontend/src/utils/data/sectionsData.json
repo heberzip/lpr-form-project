@@ -193,7 +193,7 @@
     "formMainData": [
       {
         "id": 1,
-        "name": "phone",
+        "name": "emergencyPhone",
         "label": "Emergency phone number (24h)",
         "additionalInfo": "This is the phone number of the representative of your company.",
         "type": "tel",
@@ -204,7 +204,7 @@
       },
       {
         "id": 2,
-        "name": "email",
+        "name": "reservationEmail",
         "label": "Email for reservations",
         "additionalInfo": "This is the email address of the representative of your company.",
         "type": "email",
@@ -225,7 +225,7 @@
           { "label": "YES", "value": true },
           { "label": "NO", "value": false }
         ],
-        "required": true,
+        "required": false,
         "dependents": [
           {
             "id": 4,

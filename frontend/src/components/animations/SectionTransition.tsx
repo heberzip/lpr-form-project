@@ -14,6 +14,13 @@ const pageVariants = {
       ease: "easeInOut",
     },
   },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.2,
+      ease: "easeInOut",
+    },
+  },
 };
 
 type SectionTransitionProps = {
@@ -27,7 +34,9 @@ const SectionTransition = ({ children }: SectionTransitionProps) => {
       key={location.pathname}
       initial="initial"
       animate="animate"
+      exit="exit"
       variants={pageVariants}
+      className="w-full"
     >
       {children}
     </motion.div>

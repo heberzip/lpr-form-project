@@ -1,29 +1,21 @@
+// COMPONENTS
+import CompanyMainForm from "./CompanyMainForm";
+import CompanyGridData from "./CompanyGridData";
 // CUSTOM COMPONENTS
-import {
-  CSectionHeader,
-  CInput,
-  CAutocomplete,
-  CSeparator,
-  CGrid,
-  CNavigation,
-} from "@customs/.";
+import { CSectionHeader, CSeparator, CNavigation } from "@customs/.";
 // CUSTOM HOOKS
 import useCompanySection from "@hooks/useCompanySection";
 // STORE
 import { isComanyFilled } from "@store/slices/companySlice";
 // STYLE
 import style from "@styles/global.style";
-import { cInputSty, cGridSty, cAutocompleteSty } from "@styles/styleObjs";
-// DATA
-import countriesData from "@data/countriesData.json";
-
-/******************************************************************************/
 // TYPES
-import { CompanyType } from "../../../types";
+import { CompanySectionType } from "../../../types";
 
 /******************************************************************************/
 
 const Company = () => {
+  // Custom hook with all needed functions and state handlers
   const {
     section,
     register,
@@ -37,6 +29,8 @@ const Company = () => {
 
   return (
     <section id="company" className={style.section.grid}>
+      {/* Left column: Header with title and description */}
+      {/* also the card that renders the additional info for inputs */}
       <CSectionHeader
         section={
           section?.base ?? { id: 0, link: "", title: "", description: "" }
@@ -44,89 +38,42 @@ const Company = () => {
         className={style.section.leftCol}
       />
 
+      {/* Right column: Form and NavBtns */}
       <div className={style.section.rightCol}>
         <form
           className={style.form.container}
           onSubmit={handleSubmit(onSubmit)}
         >
-          {section?.formMainData.map((field) => (
-            <CInput
-              key={field.id}
-              id={field.name}
-              label={field.label}
-              type={field.type}
-              placeholder={field.placeholder}
-              required={field.required}
-              additionalInfo={field.additionalInfo}
-              sty={cInputSty}
-              {...register(field.name as keyof CompanyType)}
-              error={formState.errors[field.name as keyof CompanyType]?.message}
-              onChange={(e) =>
-                handleInputChange(
-                  field.name as keyof CompanyType,
-                  e.target.value
-                )
-              }
-            />
-          ))}
+          {/* Maps the main form data: Company name, Trade name, and VAT */}
+          <CompanyMainForm
+            section={section as CompanySectionType}
+            register={register}
+            handleInputChange={handleInputChange}
+            formState={formState}
+          />
 
           <CSeparator className="max-w-lg mt-4 mb-6" />
 
-          <CGrid data={section?.formGridData || []} sty={cGridSty}>
-            {(field) =>
-              field.role === "select" ? (
-                <CAutocomplete
-                  key={field.id}
-                  data={countriesData}
-                  filterFn={filterFn}
-                  onSelect={handleItemSelect}
-                  placeholder={field.placeholder}
-                  renderItem={(item) => item.name}
-                  label={field.label}
-                  type={field.type}
-                  required={field.required}
-                  additionalInfo={field.additionalInfo}
-                  sty={cAutocompleteSty}
-                  {...register(field.name as keyof CompanyType)}
-                  error={
-                    formState.errors[field.name as keyof CompanyType]?.message
-                  }
-                  onChange={(e) =>
-                    handleInputChange(
-                      field.name as keyof CompanyType,
-                      e.target.value
-                    )
-                  }
-                />
-              ) : (
-                <CInput
-                  key={field.id}
-                  id={field.name}
-                  label={field.label}
-                  type={field.type}
-                  placeholder={field.placeholder}
-                  required={field.required}
-                  additionalInfo={field.additionalInfo}
-                  sty={cInputSty}
-                  {...register(field.name as keyof CompanyType)}
-                  error={
-                    formState.errors[field.name as keyof CompanyType]?.message
-                  }
-                  onChange={(e) =>
-                    handleInputChange(
-                      field.name as keyof CompanyType,
-                      e.target.value
-                    )
-                  }
-                />
-              )
-            }
-          </CGrid>
+          {/* Maps the grid data: Street address, City, Zip code, and Country */}
+          {/* Uses a cAutocomplete component for the country */}
+          <CompanyGridData
+            section={section as CompanySectionType}
+            register={register}
+            formState={formState}
+            handleInputChange={handleInputChange}
+            handleItemSelect={handleItemSelect}
+            filterFn={filterFn}
+          />
 
           <CSeparator className="flex justify-center items-center w-full max-w-3xs mt-4 mb-2 md:hidden" />
           <CSeparator className="flex justify-center items-center w-full max-w-[90px] mb-4 p-0 md:hidden" />
 
-          <CNavigation isSectionFilled={isComanyFilled} formState={formState} />
+          <div className="flex items-center justify-center mt-auto">
+            <CNavigation
+              isSectionFilled={isComanyFilled}
+              formState={formState}
+            />
+          </div>
         </form>
       </div>
     </section>

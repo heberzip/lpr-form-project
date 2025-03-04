@@ -3,6 +3,7 @@ import { z } from "zod";
 // SCHEMAS
 import { companySchema } from "@schema/sectionSchemas";
 import { contactSchema } from "@schema/sectionSchemas";
+import { communicationSchema } from "@schema/sectionSchemas";
 
 // DATA TYPES
 export type CountryType = {
@@ -56,7 +57,29 @@ export type CommunicationSectionType = BaseSectionType & {
     label: string;
     type: string;
     options: { label: string; value: boolean }[];
-    dependents?: any[]; // eslint-disable-line
+    dependents?: [
+      {
+        id: number;
+        name: string;
+        label: string;
+        additionalInfo?: string;
+        type: string;
+        options: { label: string; value: boolean }[];
+        required: boolean;
+      },
+      {
+        id: number;
+        name: string;
+        label: string;
+        additionalInfo?: string;
+        type: string;
+        placeholder: string;
+        required: boolean;
+        visibleIf: {
+          sameAsEmergency: boolean;
+        };
+      }
+    ];
   }[];
   additionalContacts?: any; // eslint-disable-line
 };
@@ -68,3 +91,5 @@ export type SectionType = CompanySectionType | CommunicationSectionType;
 export type CompanyType = z.infer<typeof companySchema>;
 
 export type ContactType = z.infer<typeof contactSchema>;
+
+export type CommunicationType = z.infer<typeof communicationSchema>;

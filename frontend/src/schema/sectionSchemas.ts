@@ -10,7 +10,7 @@ export const companySchema = z.object({
   streetAddress: z.string().min(5, "5 chars long"),
   city: z.string().min(2, "2 chars long"),
   zipCode: z.string().min(4, "4 chars"),
-  country: z.string().min(2, "Please select a country"),
+  country: z.string().min(2, "country"),
   province: z.string().optional(),
 });
 
@@ -19,6 +19,30 @@ export const contactSchema = z.object({
   lastName: z.string().min(2, "Last name must be at least 2 characters long"),
   position: z.string().min(2, "Position must be at least 2 characters long"),
   contactDetails: z.boolean().optional(),
-  phone: z.string().min(10, "Phone number must be at least 10 characters long"),
-  email: z.string().email("Invalid email format"),
+  phone: z.string().optional(),
+  email: z.string().optional(),
+});
+
+export const communicationSchema = z.object({
+  emergencyPhone: z
+    .string()
+    .min(10, "Phone number must be at least 10 characters long"),
+  reservationEmail: z.string().email("Invalid email format"),
+  whatsappAvailable: z.boolean().optional(),
+  sameAsEmergency: z.boolean().optional(),
+  whatsappNumber: z
+    .string()
+    .min(10, "Phone number must be at least 10 characters long")
+    .optional(),
+  additionalNumbers: z
+    .array(z.object({ type: z.string().min(1), value: z.string().min(10) }))
+    .optional(),
+  additionalEmails: z
+    .array(
+      z.object({
+        type: z.string().min(1),
+        value: z.string().email("Invalid email format"),
+      })
+    )
+    .optional(),
 });

@@ -25,9 +25,9 @@ const useContactSection = () => {
   const dispatch = useAppDispatch();
   // data from store with custom selector
   const contactData = useSelector(selectContact);
-  // state for radio button
+  // state for first radio btn
   const [hasDetails, setHasDetails] = useState<boolean>(
-    contactData.contactDetails.value as boolean
+    contactData.contactDetails as boolean
   );
 
   // state to avoid first validation on mount
@@ -36,7 +36,11 @@ const useContactSection = () => {
 
   // filter state to obtain only the fields values and not their required status
   const parsedDefaultValues = Object.fromEntries(
-    Object.entries(contactData).map(([key, field]) => [key, field.value])
+    Object.entries(contactData).map(([key, field]) => {
+      if (typeof field === "object" && field !== null && "value" in field) {
+        return [key, field.value]; // return value
+      } else return [key, field]; // return boolean
+    })
   );
 
   // initialize form with react-hook-form and real-time validation
@@ -61,7 +65,7 @@ const useContactSection = () => {
   // handler for input change
   const handleInputChange = (name: keyof ContactType, value: string) => {
     dispatch(setContactData({ key: name, value }));
-    setValue(name, value);
+    setValue(name, value, { shouldValidate: true, shouldDirty: true });
   };
 
   // handler for radio button change

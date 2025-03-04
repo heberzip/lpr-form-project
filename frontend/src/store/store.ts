@@ -7,6 +7,7 @@ import loadedReducer from "@store/slices/loadedSlice";
 import infoReducer from "@store/slices/infoSlice";
 import companyReducer from "@store/slices/companySlice";
 import contactReducer from "@store/slices/contactSlice";
+import communicationReducer from "@store/slices/communicationSlice";
 
 /******************************************************************************/
 
@@ -16,6 +17,7 @@ const store = configureStore({
     info: infoReducer,
     company: companyReducer,
     contact: contactReducer,
+    communication: communicationReducer,
   },
 });
 

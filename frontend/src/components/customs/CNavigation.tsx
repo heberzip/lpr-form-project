@@ -50,29 +50,27 @@ const CNavigation = ({ formState, isSectionFilled }: CNavigationProps) => {
   };
 
   return (
-    <div>
-      {currentIndex === 0 ? (
-        <button onClick={goNext} className={style.button.start}>
-          Start
+    <>
+      <div className={style.button.panel}>
+        <button
+          type="button"
+          onClick={goPrevious}
+          className={style.button.previous}
+        >
+          Previous
         </button>
-      ) : (
-        <div className={style.button.panel}>
-          <button onClick={goPrevious} className={style.button.previous}>
-            Previous
-          </button>
-          <button
-            type="submit"
-            onClick={goNext}
-            disabled={currentIndex === sections.length - 1 || !isFilled}
-            className={`${style.button.next} ${
-              !isFilled ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-          >
-            Next
-          </button>
-        </div>
-      )}
-    </div>
+        <button
+          type="submit"
+          onClick={goNext}
+          disabled={currentIndex === sections.length - 1 || !isFilled}
+          className={`${style.button.next} ${
+            !isFilled ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+        >
+          Next
+        </button>
+      </div>
+    </>
   );
 };
 

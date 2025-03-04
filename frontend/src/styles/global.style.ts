@@ -25,11 +25,11 @@ export default {
     leftCol:
       "hidden @[1150px]/Section:flex @[1150px]/Section:flex-col items-center justify-start w-full px-16",
     rightCol:
-      "@container/rightCol flex flex-col items-center justify-center w-full px-6 @[1150px]/Section:px-16",
+      "@container/rightCol flex flex-col items-center justify-center h-full px-6 @[1150px]/Section:px-16",
   },
   /*****************************************************************************/
   form: {
-    container: "flex flex-col items-center justify-center w-full",
+    container: "flex flex-col h-full flex-grow",
   },
   /****************************************************************************** */
   // CUSTOM COMPONENTS
@@ -82,7 +82,7 @@ export default {
   radio: {
     container: "flex flex-col gap-2",
     question: "flex items-center justify-center select-none",
-    panel: "flex gap-4 items-center justify-center mb-2",
+    panel: "flex gap-4 items-center justify-center mb-2 bottom-0",
     label: "flex text-sm ml-2 font-semibold select-none",
     labelActive: "text-zip-blue2-600 font-bold",
     input:

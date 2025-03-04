@@ -13,15 +13,13 @@ export type ContactState = {
   firstName: SectionField;
   lastName: SectionField;
   position: SectionField;
-  contactDetails: {
-    value: boolean;
-    required: boolean;
-  };
+  contactDetails: boolean;
   phone: SectionField;
   email: SectionField;
 };
 
 /******************************************************************************/
+// Load from Local Storage (if exists)
 const getContactStateLS = (): ContactState => {
   const savedState = localStorage.getItem("contactState");
   return savedState
@@ -30,7 +28,7 @@ const getContactStateLS = (): ContactState => {
         firstName: { value: "", required: true },
         lastName: { value: "", required: true },
         position: { value: "", required: true },
-        contactDetails: { value: false, required: true },
+        contactDetails: false,
         phone: { value: "", required: false },
         email: { value: "", required: false },
       };
@@ -45,14 +43,18 @@ const contactSlice = createSlice({
     setContactData: (
       state,
       action: PayloadAction<{
-        key: keyof ContactState | string;
+        key: keyof ContactState;
         value: string | boolean;
       }>
     ) => {
-      if (state[action.payload.key as keyof ContactState]) {
-        state[action.payload.key as keyof ContactState].value =
-          action.payload.value;
+      const field = state[action.payload.key];
+      if (typeof field === "object" && field !== null && "value" in field) {
+        field.value = action.payload.value as string;
+      } else if (typeof field === "boolean") {
+        state[action.payload.key] = action.payload.value as never;
       }
+
+      // Save to Local Storage by creating a new property
       localStorage.setItem("contactState", JSON.stringify(state));
     },
 
@@ -70,10 +72,11 @@ export const { setContactData, resetContactData } = contactSlice.actions;
 export const selectContact = (state: RootState) => state.contact;
 
 export const isContactFilled = (state: RootState) => {
-  return Object.entries(state.contact)
-    .filter(([key]) => key !== "contactDetails") // exclude contactDetails thats boolean
-    .filter(([, field]) => field.required)
-    .every(([, field]) => field.value !== "");
+  return (
+    state.contact.firstName.value !== "" &&
+    state.contact.lastName.value !== "" &&
+    state.contact.position.value !== ""
+  );
 };
 
 // REDUCER
