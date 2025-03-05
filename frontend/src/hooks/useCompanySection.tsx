@@ -79,6 +79,7 @@ const useCompanySection = () => {
 
   // handler for form submission
   const onSubmit = (data: CompanyType) => {
+    console.log("test");
     console.log("Form Data:", data);
   };
 

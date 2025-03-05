@@ -1,8 +1,7 @@
 // CUSTOM COMPONENTS
 import { CSeparator, CInfoCard } from "@customs/.";
 // ANIMATIONS
-import UnderlineEffect from "@components/animations/UnderlineHoverEffect";
-import HighlightEffect from "@animations/HighlightEffect";
+import UnderlineHoverEffect from "@components/animations/UnderlineHoverEffect";
 // TYPES
 import { BaseSectionType } from "../../types";
 
@@ -11,20 +10,26 @@ import { BaseSectionType } from "../../types";
 type SectionHeaderProps = {
   section: BaseSectionType["base"];
   className?: string;
+  children?: React.ReactNode;
 };
 /******************************************************************************/
 
-const CSectionHeader = ({ section, className }: SectionHeaderProps) => {
+const CSectionHeader = ({
+  section,
+  className,
+  children,
+}: SectionHeaderProps) => {
   return (
     <div className={className}>
-      <UnderlineEffect>
-        <HighlightEffect>
-          <span>{section?.title}</span>
-        </HighlightEffect>
-      </UnderlineEffect>
+      <UnderlineHoverEffect>
+        <span>{section?.title}</span>
+      </UnderlineHoverEffect>
       <p className="text-gray-600 text-sm">{section?.description}</p>
 
       <CSeparator className="max-w-lg mt-4 mb-6" />
+
+      {/* Let render other specoific components down below this seccion header */}
+      {children}
 
       {/* Shows a card that contains additional info */}
       {/* about each input when user clicks the info btn*/}
