@@ -1,7 +1,7 @@
 // CUSTOM COMPONENTS
 import { CSeparator, CInfoCard } from "@customs/.";
 // ANIMATIONS
-import UnderlineEffect from "@animations/UnderlineEffect";
+import UnderlineEffect from "@components/animations/UnderlineHoverEffect";
 import HighlightEffect from "@animations/HighlightEffect";
 // TYPES
 import { BaseSectionType } from "../../types";
@@ -22,7 +22,7 @@ const CSectionHeader = ({ section, className }: SectionHeaderProps) => {
           <span>{section?.title}</span>
         </HighlightEffect>
       </UnderlineEffect>
-      <p>{section?.description}</p>
+      <p className="text-gray-600 text-sm">{section?.description}</p>
 
       <CSeparator className="max-w-lg mt-4 mb-6" />
 

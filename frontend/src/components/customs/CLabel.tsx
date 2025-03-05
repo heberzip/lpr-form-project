@@ -1,5 +1,11 @@
+// EXTERNAL MODULES
+import { useSelector } from "react-redux";
 // CUSTOM COMPONENTS
 import { CInfoBtn } from "@customs/.";
+// STORE
+import { selectInfo } from "@store/slices/infoSlice";
+// ANIMATIONS
+import UnderlineEffect from "@components/animations/UnderlineEffect";
 // STYLES
 import style from "@styles/global.style";
 
@@ -21,6 +27,9 @@ const CLabel = ({
   error,
   required,
 }: CLabelProps) => {
+  // Selects the current state of the infoSlice
+  const info = useSelector(selectInfo);
+
   return (
     <div className="flex justify-between">
       <div className="flex gap-2">
@@ -34,7 +43,13 @@ const CLabel = ({
           />
         )}
         <label htmlFor={id} className={`${style.input.label} flex`}>
-          {label}
+          {/* If the current state for the infoSlice shows the label */}
+          {/* then it will be underlined */}
+          {info.label === label ? (
+            <UnderlineEffect>{label}</UnderlineEffect>
+          ) : (
+            label // Otherwise, it will be the label
+          )}
           {required && (
             <span className={`${style.input.required} ml-1`}>*</span>
           )}

@@ -25,14 +25,14 @@ const ContactQuestion = ({
       <div className={style.radio.panel}>
         {field.options.map((option) => (
           <label
-            key={option.value.toString()}
+            key={option.label}
             className={style.radio.label}
-            htmlFor={field.name}
+            htmlFor={option.label}
           >
             <input
+              id={option.label}
               type="radio"
-              id={field.name}
-              value={option.value.toString()}
+              value={option.label}
               checked={hasDetails === option.value}
               onChange={() => handleRadioChange(option.value)} // Handles the change of the radio button and dispatch the new value
               className={style.radio.input}

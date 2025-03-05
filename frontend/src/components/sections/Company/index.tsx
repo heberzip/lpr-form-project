@@ -67,14 +67,11 @@ const Company = () => {
 
           <CSeparator className="flex justify-center items-center w-full max-w-3xs mt-4 mb-2 md:hidden" />
           <CSeparator className="flex justify-center items-center w-full max-w-[90px] mb-4 p-0 md:hidden" />
-
-          <div className="flex items-center justify-center mt-auto">
-            <CNavigation
-              isSectionFilled={isComanyFilled}
-              formState={formState}
-            />
-          </div>
         </form>
+
+        <footer className="flex items-center justify-center">
+          <CNavigation isSectionFilled={isComanyFilled} formState={formState} />
+        </footer>
       </div>
     </section>
   );

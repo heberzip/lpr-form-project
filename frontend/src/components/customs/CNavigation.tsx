@@ -56,16 +56,18 @@ const CNavigation = ({ formState, isSectionFilled }: CNavigationProps) => {
           type="button"
           onClick={goPrevious}
           className={style.button.previous}
+          tabIndex={1}
         >
           Previous
         </button>
         <button
           type="submit"
           onClick={goNext}
-          disabled={currentIndex === sections.length - 1 || !isFilled}
+          disabled={!isFilled}
           className={`${style.button.next} ${
             !isFilled ? "opacity-50 cursor-not-allowed" : ""
           }`}
+          tabIndex={0}
         >
           Next
         </button>

@@ -50,52 +50,16 @@ export type CompanySectionType = BaseSectionType & {
   formGridData: FormMainDataType[];
 };
 
+// CONTACT SECTION TYPE
 export type ContactSectionType = BaseSectionType & {
   formMainData: FormMainDataType[];
   decisionData: DecisionDataType[];
 };
 
-export // COMMUNICATION SECTION TYPE
-type CommunicationSectionType = BaseSectionType & {
-  formMainData: {
-    id: number;
-    name: string;
-    label: string;
-    type: string;
-    placeholder: string;
-    required: boolean;
-  }[];
-  desitionData?: {
-    id: number;
-    name: string;
-    label: string;
-    type: string;
-    options: { label: string; value: boolean }[];
-    dependents?: [
-      {
-        id: number;
-        name: string;
-        label: string;
-        additionalInfo?: string;
-        type: string;
-        options: { label: string; value: boolean }[];
-        required: boolean;
-      },
-      {
-        id: number;
-        name: string;
-        label: string;
-        additionalInfo?: string;
-        type: string;
-        placeholder: string;
-        required: boolean;
-        visibleIf: {
-          sameAsEmergency: boolean;
-        };
-      }
-    ];
-  }[];
-  additionalContacts?: any; // eslint-disable-line
+// COMMUNICATION SECTION TYPE
+export type CommunicationSectionType = BaseSectionType & {
+  formMainData: FormMainDataType[];
+  decisionData: DecisionDataType[];
 };
 
 // UNION TYPE FOR ALL SECTIONS

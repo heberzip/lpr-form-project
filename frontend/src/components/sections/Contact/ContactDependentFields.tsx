@@ -32,7 +32,7 @@ const ContactDependentFields = ({
 }: ContactDependentFieldsProps) => {
   const { country } = useSelector(selectCompany);
 
-  return section?.decisionData?.[0].dependents.map((depField) => (
+  return section.decisionData[0].dependents.map((depField) => (
     <CInput
       key={depField.id}
       id={depField.name}

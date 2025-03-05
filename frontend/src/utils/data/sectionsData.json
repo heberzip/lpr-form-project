@@ -103,14 +103,14 @@
     "base": {
       "id": 2,
       "link": "/contact",
-      "title": "CONTACT INFORMATION",
+      "title": "CONTACT PERSON",
       "description": "In this section, we will ask you for contact information."
     },
     "formMainData": [
       {
         "id": 1,
         "name": "firstName",
-        "label": "First Name",
+        "label": "First name",
         "additionalInfo": "This is the first name of the representative of your company.",
         "type": "text",
         "role": "input",
@@ -121,7 +121,7 @@
       {
         "id": 2,
         "name": "lastName",
-        "label": "Last Name",
+        "label": "Last name",
         "additionalInfo": "This is the last name of the representative of your company.",
         "type": "text",
         "role": "input",
@@ -132,7 +132,7 @@
       {
         "id": 3,
         "name": "position",
-        "label": "Position",
+        "label": "Role in company",
         "additionalInfo": "This is the position of the representative of your company.",
         "type": "text",
         "role": "select",
@@ -146,7 +146,7 @@
       {
         "id": 1,
         "name": "yesnoContact",
-        "label": "Do you have a specific phone number or email address?",
+        "label": "Do you have a specific phone number or email address for direct communications?",
         "additionalInfo": "Hola",
         "type": "radio",
         "role": "desition",
@@ -160,7 +160,7 @@
           {
             "id": 2,
             "name": "phone",
-            "label": "Phone Number",
+            "label": "Phone number",
             "additionalInfo": "This is the phone number of the representative of your company.",
             "type": "tel",
             "role": "input",
@@ -171,7 +171,7 @@
           {
             "id": 3,
             "name": "email",
-            "label": "Email Address",
+            "label": "Email address",
             "additionalInfo": "This is the email address of the representative of your company.",
             "type": "email",
             "role": "input",
@@ -246,43 +246,13 @@
             "additionalInfo": "",
             "type": "tel",
             "placeholder": "+34 123 456 789",
-            "required": true,
+            "required": false,
             "visibleIf": {
               "sameAsEmergency": false
             }
           }
         ]
       }
-    ],
-    "additionalContacts": {
-      "label": "Would you like to add more contacts?",
-      "buttonLabel": "Add contact",
-      "fields": [
-        {
-          "id": 6,
-          "name": "additionalType",
-          "label": "Select type",
-          "additionalInfo": "",
-          "type": "select",
-          "options": [
-            { "label": "Phone number", "value": "phone" },
-            { "label": "Email", "value": "email" }
-          ],
-          "required": true
-        },
-        {
-          "id": 7,
-          "name": "additionalContact",
-          "label": "Enter contact",
-          "additionalInfo": "",
-          "type": "text",
-          "placeholder": "Enter phone number or email",
-          "required": true,
-          "visibleIf": {
-            "additionalType": "phone"
-          }
-        }
-      ]
-    }
+    ]
   }
 ]

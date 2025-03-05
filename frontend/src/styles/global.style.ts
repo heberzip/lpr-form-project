@@ -1,7 +1,7 @@
 export default {
   global: {
     container:
-      "@container/Container relative flex flex-col min-w-[350px] h-[100vh] bg-light text-md text-dark m-0 p-0",
+      "@container/Container relative flex flex-col min-w-[350px] h-screen bg-light text-md text-dark m-0 p-0",
   },
   layout: {
     header:
@@ -23,14 +23,14 @@ export default {
   section: {
     grid: "@container/Section grid @[1150px]/Container:grid-cols-2 md:gap-10 w-full h-full mt-6 @[1150px]/Container:mt-16",
     leftCol:
-      "hidden @[1150px]/Section:flex @[1150px]/Section:flex-col items-center justify-start w-full px-16",
+      "hidden @[1150px]/Section:flex @[1150px]/Section:flex-col items-center justify-start w-full pl-24 pr-8",
     rightCol:
-      "@container/rightCol flex flex-col items-center justify-center h-full px-6 @[1150px]/Section:px-16",
+      "@container/rightCol flex flex-col items-center justify-center px-6 @[1150px]/Section:px-16",
   },
   /*****************************************************************************/
   form: {
     container:
-      "flex flex-col w-full md:w-[90%] h-full flex-grow justify-center items-center",
+      "flex flex-col w-full @[600px]/rightCol:w-[90%] flex-grow justify-center items-center",
   },
   /****************************************************************************** */
   // CUSTOM COMPONENTS
@@ -83,11 +83,17 @@ export default {
   radio: {
     container: "flex flex-col gap-1",
     question: "flex items-center justify-center select-none",
+    questionDisabled:
+      "flex items-center justify-center select-none text-gray-400 cursor-not-allowed",
     panel: "flex gap-4 items-center justify-center mb-4 bottom-0",
-    label: "flex text-sm ml-2 font-semibold select-none",
-    labelActive: "text-zip-blue2-600 font-bold",
+    label: "flex text-sm ml-2 font-semibold select-none text-gray-400",
+    labelActive: "flex text-sm ml-2 select-none text-zip-blue2-600 font-bold",
+    labelDisabled:
+      "flex text-sm ml-2 font-semibold text-gray-400 cursor-not-allowed",
     input:
       "w-3 h-3 mt-1 appearance-none checked:bg-zip-blue2-500 bg-gray-300 focus:ring-2 focus:ring-zip-blue2-500 focus:border-zip-blue2-500 rounded-full transition-all cursor-pointer",
+    inputDisabled:
+      "w-3 h-3 mt-1 appearance-none bg-gray-300 rounded-full transition-all cursor-not-allowed",
     disabled:
       "w-4 h-4 text-gray-400 bg-gray-200 border-gray-300 cursor-not-allowed",
   },

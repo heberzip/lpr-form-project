@@ -24,6 +24,7 @@ const CInfoBtn = ({
 }: CInfoBtnProps) => {
   const dispatch = useAppDispatch();
 
+  // Handles the click event and dispatches the infoSlice
   const handleShowInfo = () => {
     dispatch(
       setInfo({
@@ -34,7 +35,12 @@ const CInfoBtn = ({
   };
 
   return (
-    <button type="button" className={style.cinfo} onClick={handleShowInfo}>
+    <button
+      type="button"
+      className={style.cinfo}
+      onClick={handleShowInfo}
+      tabIndex={-1} // Prevents the button from being focusable with the keyboard
+    >
       <svg width={width || "24"} height={height || "24"} viewBox={`0 0 24 24`}>
         <path
           fill={color || "currentColor"}

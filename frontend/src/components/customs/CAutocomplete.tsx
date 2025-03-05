@@ -87,6 +87,7 @@ const CAutocomplete = <T,>(
         type={type}
         placeholder={placeholder}
         required={required}
+        autoComplete="off"
         onChange={(e) => {
           setQuery(e.target.value);
           setIsOpen(true);

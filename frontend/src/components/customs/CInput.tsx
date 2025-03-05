@@ -65,6 +65,7 @@ const CInput = forwardRef<HTMLInputElement, CInputProps>(
         {/* Input Field */}
         <div className="flex gap-0">
           {(type === "tel" || type === "email") && (
+            // It takes the children to display the pre-text
             <div className={sty?.pre}>{children}</div>
           )}
           <input
@@ -73,6 +74,7 @@ const CInput = forwardRef<HTMLInputElement, CInputProps>(
             placeholder={placeholder}
             required={required}
             disabled={disabled}
+            autoComplete="off"
             onChange={onChange}
             onFocus={onFocus}
             className={`${
