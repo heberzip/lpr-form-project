@@ -5,7 +5,7 @@ import CommunicationMainForm from "./CommunicationMainForm";
 import CommunicationQuestions from "./CommunicationQuestions";
 import AdditionalContacts from "./AdditionalContacts";
 // CUSTOM COMPONENTS
-import { CSectionHeader, CInput, CSeparator, CNavigation } from "@customs/.";
+import { CSectionHeader, CSeparator, CNavigation } from "@customs/.";
 // CUSTOM HOOKS
 import useCommunicationSection from "@hooks/useCommunicationSection";
 // STORE
@@ -13,11 +13,8 @@ import { isCommunicationFilled } from "@store/slices/communicationSlice";
 import { selectCompany } from "@store/slices/companySlice";
 // STYLES
 import style from "@styles/global.style";
-import { cInputSty, cInputStyDisabled } from "@styles/styleObjs";
-// HELPERS
-import { getPhonePrefixFromCountry } from "@utils/helpers";
 // TYPES
-import { CommunicationSectionType, CommunicationType } from "../../../types";
+import { CommunicationSectionType } from "../../../types";
 
 /******************************************************************************/
 
@@ -67,46 +64,11 @@ const Communication = () => {
             hasWhatsapp={hasWhatsapp}
             communicationData={communicationData as never}
             handleWhatsappChange={handleWhatsappChange}
+            register={register}
+            formState={formState}
+            country={country}
+            handleInputChange={handleInputChange}
           />
-
-          <CInput
-            key={section?.decisionData?.[0].dependents[0].name}
-            id={section?.decisionData?.[0].dependents[0].name || ""}
-            label={section?.decisionData?.[0].dependents[0].label || ""}
-            type={section?.decisionData?.[0].dependents[0].type || "text"}
-            placeholder={section?.decisionData?.[0].dependents[0].placeholder}
-            required={section?.decisionData?.[0].dependents[0].required}
-            additionalInfo={
-              section?.decisionData?.[0].dependents[0].additionalInfo
-            }
-            sty={
-              communicationData.whatsappAvailable
-                ? cInputSty
-                : cInputStyDisabled
-            }
-            {...register(
-              section?.decisionData?.[0].dependents[0]
-                .name as keyof CommunicationType
-            )}
-            error={
-              formState.errors[
-                section?.decisionData?.[0].dependents[0]
-                  .name as keyof CommunicationType
-              ]?.message
-            }
-            onChange={(e) =>
-              handleInputChange(
-                section?.decisionData?.[0].dependents[0]
-                  .name as keyof CommunicationType,
-                e.target.value
-              )
-            }
-          >
-            {section?.decisionData?.[0].dependents[0].type === "tel" &&
-              getPhonePrefixFromCountry(country.value)}
-          </CInput>
-
-          <CSeparator className="max-w-lg mt-4 mb-6" />
 
           <AdditionalContacts />
 

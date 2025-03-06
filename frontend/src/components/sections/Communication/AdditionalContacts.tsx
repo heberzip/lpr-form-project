@@ -16,6 +16,8 @@ import PhoneIcon from "@components/icons/PhoneIcon";
 import EmailIcon from "@components/icons/Emailicon";
 import XIcon from "@components/icons/XIcon";
 import ContactIcon from "@components/icons/ContactIcon";
+import AddPhoneIcon from "@components/icons/AddPhoneIcon";
+import AddEmailIcon from "@components/icons/AddEmailIcon";
 
 const AdditionalContacts = () => {
   const { register, getValues, setValue } = useForm();
@@ -101,27 +103,27 @@ const AdditionalContacts = () => {
         </div>
       )}
 
-      <div className="flex items-center justify-between w-full md:gap-4 mt-2 md:px-7">
+      <div className="flex items-center justify-between w-xs md:w-full md:gap-4 md:px-7">
         <span className="md:ml-4 font-semibold">Additional contacts?</span>
         <div className="flex gap-4">
-          <button
-            type="button"
-            onClick={handleAddPhone}
-            className="bg-zip-blue2-500 text-white px-6 py-1 min-w-[90px] rounded-md shadow-sm hover:bg-zip-blue2-600 active:bg-zip-blue2-800 active:size-0.95 transition disabled:opacity-50 disabled:bg-gray-400"
-          >
-            + Phone
+          <button type="button" onClick={handleAddPhone}>
+            <AddPhoneIcon
+              width={45}
+              height={45}
+              className="text-zip-blue2-500 hover:text-zip-blue2-600 active:text-zip-blue2-800 active:size-0.95 transition disabled:opacity-50 disabled:bg-gray-400"
+            />
           </button>
-          <button
-            type="button"
-            onClick={handleAddEmail}
-            className="bg-zip-blue2-500 text-white px-6 py-1 min-w-[90px] rounded-md shadow-sm hover:bg-zip-blue2-600 active:bg-zip-blue2-800 active:size-0.95 transition disabled:opacity-50 disabled:bg-gray-400"
-          >
-            + Email
+          <button type="button" onClick={handleAddEmail}>
+            <AddEmailIcon
+              width={50}
+              height={50}
+              className="text-zip-blue2-500 hover:text-zip-blue2-600 active:text-zip-blue2-800 active:size-0.95 transition disabled:opacity-50 disabled:bg-gray-400"
+            />
           </button>
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 w-xs min-w-xs md:w-sm md:min-w-sm max-h-40 h-30 overflow-y-auto py-3 mt-4 border-none border-zip-gray-500 rounded-md custom-scrollbar">
+      <div className="flex flex-col gap-2 w-xs min-w-xs md:w-sm md:min-w-sm max-h-25 h-18 md:max-h-40 md:h-30 overflow-y-auto mt-2 mb-2 border-none border-zip-gray-500 rounded-md custom-scrollbar">
         <ul>
           {communicationData.additionalNumbers.length > 0 ||
           communicationData.additionalEmails.length > 0 ? (
@@ -154,7 +156,7 @@ const AdditionalContacts = () => {
                 height={50}
                 className="mb-1 text-gray-300"
               />
-              <div className="text-center text-gray-400 text-md">
+              <div className="text-center text-gray-400 text-md font-semibold">
                 No additional contacts
               </div>
             </div>

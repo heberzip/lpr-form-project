@@ -17,6 +17,11 @@ export type PositionType = {
   position: string;
 };
 
+export type LanguageType = {
+  code: string;
+  name: string;
+};
+
 // BASE TYPE FOR ALL SECTIONS
 export type BaseSectionType = {
   base: {
@@ -59,6 +64,7 @@ export type ContactSectionType = BaseSectionType & {
 // COMMUNICATION SECTION TYPE
 export type CommunicationSectionType = BaseSectionType & {
   formMainData: FormMainDataType[];
+  formGridData: FormMainDataType[];
   decisionData: DecisionDataType[];
 };
 

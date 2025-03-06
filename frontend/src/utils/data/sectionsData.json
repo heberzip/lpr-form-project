@@ -214,9 +214,33 @@
         "gridPosition": 2
       }
     ],
-    "decisionData": [
+    "formGridData": [
       {
         "id": 3,
+        "name": "lenguages",
+        "label": "Lenguages",
+        "additionalInfo": "Tese are the lenguages of the company.",
+        "type": "select",
+        "role": "input",
+        "placeholder": "English",
+        "required": true,
+        "gridPosition": 1
+      },
+      {
+        "id": 4,
+        "name": "website",
+        "label": "Website",
+        "additionalInfo": "This is the website of the company.",
+        "type": "text",
+        "role": "input",
+        "placeholder": "https://example.com",
+        "required": false,
+        "gridPosition": 2
+      }
+    ],
+    "decisionData": [
+      {
+        "id": 5,
         "name": "whatsappAvailable",
         "label": "Do you have WhatsApp available for daily communications?",
         "type": "radio",
@@ -228,16 +252,15 @@
         "required": false,
         "dependents": [
           {
-            "id": 5,
+            "id": 6,
             "name": "whatsappNumber",
             "label": "WhatsApp number",
             "additionalInfo": "",
             "type": "tel",
+            "role": "input",
             "placeholder": "+34 123 456 789",
             "required": false,
-            "visibleIf": {
-              "sameAsEmergency": false
-            }
+            "gridPosition": 1
           }
         ]
       }

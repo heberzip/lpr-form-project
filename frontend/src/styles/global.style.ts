@@ -46,7 +46,7 @@ export default {
       standard:
         "w-full px-3 py-2 mb-3 text-sm border-1 border-zip-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-zip-yellow-300 focus:border-1 focus:border-zip-yellow-300 focus:shadow-md transition-all placeholder:text-gray-400 placeholder:italic",
       withPre:
-        "w-full px-3 py-2 mb-3 text-sm border-1 border-zip-gray-500 border-l-0 rounded-r-md focus:outline-none focus:ring-2 focus:ring-zip-yellow-300 focus:border-1 focus:border-zip-yellow-300 focus:shadow-md transition-all placeholder:text-gray-400 placeholder:italic",
+        "w-full px-3 py-2 mb-3 text-sm border-1 border-zip-gray-500 border-l-0 rounded-r-md focus:z-10 focus:outline-none focus:ring-2 focus:ring-zip-yellow-300 focus:border-1 focus:border-zip-yellow-300 focus:shadow-md transition-all placeholder:text-gray-400 placeholder:italic",
     },
     disabled: {
       standard:
