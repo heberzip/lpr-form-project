@@ -54,12 +54,20 @@ const useCommunicationSection = () => {
   );
 
   // initialize form with react-hook-form and real-time validation
-  const { register, watch, handleSubmit, formState, setValue, trigger, reset } =
-    useForm<CommunicationType>({
-      resolver: zodResolver(communicationSchema),
-      defaultValues: parsedDefaultValues,
-      mode: "onChange", // authomatic validation on change
-    });
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState,
+    setValue,
+    getValues,
+    trigger,
+    reset,
+  } = useForm<CommunicationType>({
+    resolver: zodResolver(communicationSchema),
+    defaultValues: parsedDefaultValues,
+    mode: "onChange", // authomatic validation on change
+  });
 
   // ensure that `defaultValues` are updated dynamically
   useEffect(() => {
@@ -102,6 +110,8 @@ const useCommunicationSection = () => {
     register,
     watch,
     handleSubmit,
+    setValue,
+    getValues,
     formState,
     hasWhatsapp,
     handleInputChange,

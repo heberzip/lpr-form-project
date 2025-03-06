@@ -74,9 +74,12 @@ const communicationSlice = createSlice({
     // Action to add contacts, phone numbers or emails
     addContact: (
       state,
-      action: PayloadAction<{ type: "phone" | "email"; value: string }>
+      action: PayloadAction<{
+        type: "additionalPhone" | "additionalEmail";
+        value: string;
+      }>
     ) => {
-      if (action.payload.type === "phone") {
+      if (action.payload.type === "additionalPhone") {
         state.additionalNumbers.push({
           value: action.payload.value,
           required: false,
@@ -93,9 +96,12 @@ const communicationSlice = createSlice({
     // Action to remove contacts, phone numbers or emails
     removeContact: (
       state,
-      action: PayloadAction<{ type: "phone" | "email"; index: number }>
+      action: PayloadAction<{
+        type: "additionalPhone" | "additionalEmail";
+        index: number;
+      }>
     ) => {
-      if (action.payload.type === "phone") {
+      if (action.payload.type === "additionalPhone") {
         state.additionalNumbers.splice(action.payload.index, 1);
       } else {
         state.additionalEmails.splice(action.payload.index, 1);
