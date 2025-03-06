@@ -27,7 +27,6 @@ export const communicationSchema = z.object({
   emergencyPhone: z.string().min(7, "It must be at least 7 characters long"),
   reservationEmail: z.string().email("Invalid email format"),
   whatsappAvailable: z.boolean().optional(),
-  sameAsEmergency: z.boolean().optional(),
   whatsappNumber: z.string().optional(),
   additionalNumbers: z
     .array(z.object({ type: z.string().min(1), value: z.string().min(10) }))

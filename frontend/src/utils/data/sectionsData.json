@@ -218,7 +218,7 @@
       {
         "id": 3,
         "name": "whatsappAvailable",
-        "label": "Do you have WhatsApp available for company communications?",
+        "label": "Do you have WhatsApp available for daily communications?",
         "type": "radio",
         "role": "desition",
         "options": [
@@ -227,18 +227,6 @@
         ],
         "required": false,
         "dependents": [
-          {
-            "id": 4,
-            "name": "sameAsEmergency",
-            "label": "Use the same number as the emergency phone?",
-            "additionalInfo": "",
-            "type": "radio",
-            "options": [
-              { "label": "YES", "value": true },
-              { "label": "NO", "value": false }
-            ],
-            "required": true
-          },
           {
             "id": 5,
             "name": "whatsappNumber",

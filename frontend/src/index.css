@@ -31,3 +31,23 @@
 
   --color-zip-gray-500: #dcd8d7;
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 7px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  border-radius: 10px;
+  border-left: 2px solid #f4f6f9;
+  border-right: 2px solid #f4f6f9;
+  background: #dcd8d7;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #309eb5;
+  border-radius: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #1c5e6c;
+}

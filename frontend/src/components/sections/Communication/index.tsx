@@ -31,8 +31,6 @@ const Communication = () => {
     hasWhatsapp,
     handleInputChange,
     handleWhatsappChange,
-    isSameAsEmergency,
-    handleSameAsEmergencyChange,
     onSubmit,
   } = useCommunicationSection();
 
@@ -67,49 +65,48 @@ const Communication = () => {
           <CommunicationQuestions
             section={section as CommunicationSectionType}
             hasWhatsapp={hasWhatsapp}
-            isSameAsEmergency={isSameAsEmergency}
             communicationData={communicationData as never}
             handleWhatsappChange={handleWhatsappChange}
-            handleSameAsEmergencyChange={handleSameAsEmergencyChange}
           />
 
           <CInput
-            key={section?.decisionData?.[0].dependents[1].name}
-            id={section?.decisionData?.[0].dependents[1].name || ""}
-            label={section?.decisionData?.[0].dependents[1].label || ""}
-            type={section?.decisionData?.[0].dependents[1].type || "text"}
-            placeholder={section?.decisionData?.[0].dependents[1].placeholder}
-            required={section?.decisionData?.[0].dependents[1].required}
+            key={section?.decisionData?.[0].dependents[0].name}
+            id={section?.decisionData?.[0].dependents[0].name || ""}
+            label={section?.decisionData?.[0].dependents[0].label || ""}
+            type={section?.decisionData?.[0].dependents[0].type || "text"}
+            placeholder={section?.decisionData?.[0].dependents[0].placeholder}
+            required={section?.decisionData?.[0].dependents[0].required}
             additionalInfo={
-              section?.decisionData?.[0].dependents[1].additionalInfo
+              section?.decisionData?.[0].dependents[0].additionalInfo
             }
             sty={
-              !communicationData.sameAsEmergency &&
               communicationData.whatsappAvailable
                 ? cInputSty
                 : cInputStyDisabled
             }
             {...register(
-              section?.decisionData?.[0].dependents[1]
+              section?.decisionData?.[0].dependents[0]
                 .name as keyof CommunicationType
             )}
             error={
               formState.errors[
-                section?.decisionData?.[0].dependents[1]
+                section?.decisionData?.[0].dependents[0]
                   .name as keyof CommunicationType
               ]?.message
             }
             onChange={(e) =>
               handleInputChange(
-                section?.decisionData?.[0].dependents[1]
+                section?.decisionData?.[0].dependents[0]
                   .name as keyof CommunicationType,
                 e.target.value
               )
             }
           >
-            {section?.decisionData?.[0].dependents[1].type === "tel" &&
+            {section?.decisionData?.[0].dependents[0].type === "tel" &&
               getPhonePrefixFromCountry(country.value)}
           </CInput>
+
+          <CSeparator className="max-w-lg mt-4 mb-6" />
 
           <AdditionalContacts />
 

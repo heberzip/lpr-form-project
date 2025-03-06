@@ -30,11 +30,6 @@ const useCommunicationSection = () => {
     communicationData.whatsappAvailable as boolean
   );
 
-  // state for second radio button
-  const [isSameAsEmergency, setIsSameAsEmergency] = useState<boolean>(
-    communicationData.sameAsEmergency as boolean
-  );
-
   // state to avoid first validation on mount
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const isFilled = useSelector(isCommunicationFilled);
@@ -90,13 +85,6 @@ const useCommunicationSection = () => {
   const handleWhatsappChange = (value: boolean) => {
     setHasWhatsapp(value);
     dispatch(setCommunicationData({ key: "whatsappAvailable", value }));
-    if (!value)
-      dispatch(setCommunicationData({ key: "sameAsEmergency", value: true }));
-  };
-
-  const handleSameAsEmergencyChange = (value: boolean) => {
-    setIsSameAsEmergency(value);
-    dispatch(setCommunicationData({ key: "sameAsEmergency", value }));
   };
 
   // handler for form submission
@@ -116,8 +104,6 @@ const useCommunicationSection = () => {
     hasWhatsapp,
     handleInputChange,
     handleWhatsappChange,
-    isSameAsEmergency,
-    handleSameAsEmergencyChange,
     onSubmit,
   };
 };
