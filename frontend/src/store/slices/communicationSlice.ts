@@ -13,8 +13,9 @@ export type SectionField = {
 export type CommunicationState = {
   emergencyPhone: SectionField;
   reservationEmail: SectionField;
+  languages: SectionField[];
+  website: SectionField;
   whatsappAvailable: boolean;
-  sameAsEmergency: boolean;
   whatsappNumber: SectionField;
   additionalNumbers: SectionField[];
   additionalEmails: SectionField[];
@@ -29,8 +30,9 @@ const getCommunicationStateLS = (): CommunicationState => {
     : {
         emergencyPhone: { value: "", required: true },
         reservationEmail: { value: "", required: true },
+        languages: [{ value: "English", required: false }],
+        website: { value: "", required: false },
         whatsappAvailable: false,
-        sameAsEmergency: false,
         whatsappNumber: { value: "", required: false },
         additionalNumbers: [],
         additionalEmails: [],
@@ -59,15 +61,19 @@ const communicationSlice = createSlice({
         state[action.payload.key] = action.payload.value as never;
       }
 
-      // Sync WhatsApp Number if "Same as Emergency" is true
-      if (
-        action.payload.key === "sameAsEmergency" &&
-        action.payload.value === true
-      ) {
-        state.whatsappNumber.value = state.emergencyPhone.value;
-      }
-
       // Save to local storage
+      localStorage.setItem("communicationState", JSON.stringify(state));
+    },
+
+    addLanguage: (state, action: PayloadAction<string>) => {
+      state.languages.push({ value: action.payload, required: false });
+      localStorage.setItem("communicationState", JSON.stringify(state));
+    },
+
+    removeLanguage: (state, action: PayloadAction<string>) => {
+      state.languages = state.languages.filter(
+        (lang) => lang.value !== action.payload
+      );
       localStorage.setItem("communicationState", JSON.stringify(state));
     },
 
@@ -121,6 +127,8 @@ const communicationSlice = createSlice({
 // ACTION CREATORS
 export const {
   setCommunicationData,
+  addLanguage,
+  removeLanguage,
   addContact,
   removeContact,
   resetCommunicationData,

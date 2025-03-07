@@ -7,48 +7,37 @@ import { useSelector } from "react-redux";
 import useSection from "@hooks/useSection";
 // STORE
 import { useAppDispatch } from "@store/store";
-import {
-  setCompanyData,
-  selectCompany,
-  isComanyFilled,
-} from "@store/slices/companySlice";
+import { setBankData, selectBank, isBankFilled } from "@store/slices/bankSlice";
 // TYPES AND SCHEMAS
-import { companySchema } from "@schema/sectionSchemas";
-import { CompanyType, CountryType } from "../types";
+import { bankSchema } from "@schema/sectionSchemas";
+import { BankType } from "../types";
 
 /******************************************************************************/
 
-const useCompanySection = () => {
-  // section data from custom hook
+const useBankSection = () => {
+  // section data from store with custom selector
   const section = useSection();
-  // dispatch from store
+  // dispatch
   const dispatch = useAppDispatch();
-  // company data from store with custom selector
-  const companyData = useSelector(selectCompany);
+  // bank data from store with custom selector
+  const bankData = useSelector(selectBank);
 
   // state to avoid first validation on mount
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const isFilled = useSelector(isComanyFilled);
+  const isFilled = useSelector(isBankFilled);
 
   // filter state to obtain only the fields values and not their required status
   const parsedDefaultValues = Object.fromEntries(
-    Object.entries(companyData).map(([key, field]) => [key, field.value])
+    Object.entries(bankData).map(([key, field]) => [key, field.value])
   );
 
   // initialize form with react-hook-form and real-time validation
-  const {
-    register,
-    watch,
-    handleSubmit,
-    formState,
-    setValue,
-    reset,
-    trigger, // to validate form in real-time
-  } = useForm<CompanyType>({
-    resolver: zodResolver(companySchema),
-    defaultValues: parsedDefaultValues,
-    mode: "onChange", // authomatic validation on change
-  });
+  const { register, watch, handleSubmit, formState, setValue, trigger, reset } =
+    useForm<BankType>({
+      resolver: zodResolver(bankSchema),
+      defaultValues: parsedDefaultValues,
+      mode: "onChange", // authomatic validation on change
+    });
 
   // ensure that `defaultValues` are updated dynamically
   useEffect(() => {
@@ -62,23 +51,13 @@ const useCompanySection = () => {
   }, [reset, trigger]); // eslint-disable-line
 
   // handler to update the form and redux state in real time
-  const handleInputChange = (name: keyof CompanyType, value: string) => {
-    dispatch(setCompanyData({ key: name, value }));
+  const handleInputChange = (name: keyof BankType, value: string) => {
+    dispatch(setBankData({ key: name, value }));
     setValue(name, value, { shouldValidate: true, shouldDirty: true });
   };
 
-  // handle item selection in dropdown (the country in this case)
-  const handleItemSelect = (selectedItem: CountryType) => {
-    handleInputChange("country", selectedItem.name);
-  };
-
-  // filter function for dropdown
-  const filterFn = (item: CountryType, query: string) => {
-    return item.name.toLowerCase().includes(query.toLowerCase());
-  };
-
   // handler for form submission
-  const onSubmit = (data: CompanyType) => {
+  const onSubmit = (data: BankType) => {
     console.log("Form Data:", data);
   };
 
@@ -89,10 +68,8 @@ const useCompanySection = () => {
     handleSubmit,
     formState,
     handleInputChange,
-    handleItemSelect,
-    filterFn,
     onSubmit,
   };
 };
 
-export default useCompanySection;
+export default useBankSection;

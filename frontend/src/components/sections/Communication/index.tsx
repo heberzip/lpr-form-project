@@ -29,6 +29,8 @@ const Communication = () => {
     handleInputChange,
     handleWhatsappChange,
     onSubmit,
+    setValue,
+    getValues,
   } = useCommunicationSection();
 
   const { country } = useSelector(selectCompany);
@@ -54,6 +56,8 @@ const Communication = () => {
             formState={formState}
             country={country}
             handleInputChange={handleInputChange}
+            setValue={setValue}
+            getValues={getValues}
           />
 
           <CSeparator className="max-w-lg mt-4 mb-6" />

@@ -217,13 +217,13 @@
     "formGridData": [
       {
         "id": 3,
-        "name": "lenguages",
-        "label": "Lenguages",
+        "name": "languages",
+        "label": "Languages",
         "additionalInfo": "Tese are the lenguages of the company.",
-        "type": "select",
-        "role": "input",
+        "type": "text",
+        "role": "select",
         "placeholder": "English",
-        "required": true,
+        "required": false,
         "gridPosition": 1
       },
       {
@@ -263,6 +263,49 @@
             "gridPosition": 1
           }
         ]
+      }
+    ]
+  },
+  {
+    "base": {
+      "id": 4,
+      "link": "/bank",
+      "title": "BANK DETAILS",
+      "description": "In this section, you will include all banking information that will be used later for making payments for services, so please pay SPECIAL ATTENTION when filling out the fields."
+    },
+    "formMainData": [
+      {
+        "id": 1,
+        "name": "iban",
+        "label": "IBAN",
+        "additionalInfo": "This is the International Bank Account Number, used to identify bank accounts globally.",
+        "type": "text",
+        "role": "input",
+        "placeholder": "ex: ES1234567890",
+        "required": true,
+        "gridPosition": 1
+      },
+      {
+        "id": 2,
+        "name": "bankName",
+        "label": "Bank name",
+        "additionalInfo": "This is the name of the bank where you have your account.",
+        "type": "text",
+        "role": "input",
+        "placeholder": "Banco Santander",
+        "required": true,
+        "gridPosition": 2
+      },
+      {
+        "id": 3,
+        "name": "swift",
+        "label": "SWIFT",
+        "additionalInfo": "This is the SWIFT code, used to identify bank accounts in Spain.",
+        "type": "text",
+        "role": "input",
+        "placeholder": "ex: MTTFSRG",
+        "required": true,
+        "gridPosition": 3
       }
     ]
   }

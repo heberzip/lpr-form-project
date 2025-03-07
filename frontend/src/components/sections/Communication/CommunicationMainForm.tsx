@@ -1,7 +1,15 @@
 // EXTERNAL MODULES
-import { FormState, UseFormRegister } from "react-hook-form";
+import {
+  FormState,
+  UseFormGetValues,
+  UseFormRegister,
+  UseFormSetValue,
+} from "react-hook-form";
 // CUSTOM COMPONENTS
 import { CAutocomplete, CGrid, CInput } from "@customs/.";
+// STORE
+import { useAppDispatch } from "@store/store";
+import { addLanguage } from "@store/slices/communicationSlice";
 // STYLES
 import { cAutocompleteSty, cGridSty, cInputSty } from "@styles/styleObjs";
 // HELPERS
@@ -23,6 +31,8 @@ type CommunicationMainFormProps = {
   formState: FormState<CommunicationType>;
   country: { value: string; required: boolean };
   handleInputChange: (name: keyof CommunicationType, value: string) => void;
+  setValue: UseFormSetValue<CommunicationType>;
+  getValues: UseFormGetValues<CommunicationType>;
 };
 /******************************************************************************/
 
@@ -32,13 +42,33 @@ const CommunicationMainForm = ({
   formState,
   country,
   handleInputChange,
+  setValue,
+  getValues,
 }: CommunicationMainFormProps) => {
+  const dispatch = useAppDispatch();
+
+  //console.log(languageData);
+
   const filterFn = (item: LanguageType, query: string) => {
     return item.name.toLowerCase().includes(query.toLowerCase());
   };
 
+  const handleLanguageChange = (
+    name: keyof CommunicationType,
+    value: string
+  ) => {
+    // Obtiene los idiomas actuales o un array vacío
+    setValue(name, value, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+  };
+
+  // handle item selection in dropdown (the country in this case
   const handleItemSelect = (selectedItem: LanguageType) => {
-    console.log(selectedItem);
+    dispatch(addLanguage(selectedItem.name));
+    const prevLanguages = getValues("languages") || []; // Obtiene los idiomas previos
+    setValue("languages", [...prevLanguages, selectedItem.name]);
   };
 
   return (
@@ -90,12 +120,13 @@ const CommunicationMainForm = ({
                   formState.errors[field.name as keyof CommunicationType]
                     ?.message
                 }
-                onChange={(e) =>
-                  handleInputChange(
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  handleLanguageChange(
                     field.name as keyof CommunicationType,
                     e.target.value
-                  )
-                }
+                  );
+                }}
               />
             ) : (
               <CInput

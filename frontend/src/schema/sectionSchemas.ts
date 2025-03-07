@@ -26,17 +26,25 @@ export const contactSchema = z.object({
 export const communicationSchema = z.object({
   emergencyPhone: z.string().min(7, "It must be at least 7 characters long"),
   reservationEmail: z.string().email("Invalid email format"),
+  languages: z.array(z.string().optional()),
+  website: z.string().optional(),
   whatsappAvailable: z.boolean().optional(),
   whatsappNumber: z.string().optional(),
-  additionalNumbers: z
-    .array(z.object({ type: z.string().min(1), value: z.string().min(10) }))
-    .optional(),
-  additionalEmails: z
-    .array(
-      z.object({
+  additionalNumbers: z.array(
+    z.object({ type: z.string().min(1), value: z.string().min(10) }).optional()
+  ),
+  additionalEmails: z.array(
+    z
+      .object({
         type: z.string().min(1),
         value: z.string().email("Invalid email format"),
       })
-    )
-    .optional(),
+      .optional()
+  ),
+});
+
+export const bankSchema = z.object({
+  iban: z.string().min(5, "5 chars"),
+  bankName: z.string().min(3, "3 chars"),
+  swift: z.string().min(3, "3 chars"),
 });

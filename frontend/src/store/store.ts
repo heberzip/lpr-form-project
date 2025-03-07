@@ -8,6 +8,7 @@ import infoReducer from "@store/slices/infoSlice";
 import companyReducer from "@store/slices/companySlice";
 import contactReducer from "@store/slices/contactSlice";
 import communicationReducer from "@store/slices/communicationSlice";
+import bankReducer from "@store/slices/bankSlice";
 
 /******************************************************************************/
 
@@ -18,6 +19,7 @@ const store = configureStore({
     company: companyReducer,
     contact: contactReducer,
     communication: communicationReducer,
+    bank: bankReducer,
   },
 });
 

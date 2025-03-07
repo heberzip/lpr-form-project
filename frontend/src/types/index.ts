@@ -68,8 +68,17 @@ export type CommunicationSectionType = BaseSectionType & {
   decisionData: DecisionDataType[];
 };
 
+// BANK SECTION TYPE
+export type BankSectionType = BaseSectionType & {
+  formMainData: FormMainDataType[];
+};
+
 // UNION TYPE FOR ALL SECTIONS
-export type SectionType = CompanySectionType | CommunicationSectionType;
+export type SectionType =
+  | CompanySectionType
+  | CommunicationSectionType
+  | ContactSectionType
+  | BankSectionType;
 
 // INFERS FROM SCHEMAS
 export type CompanyType = z.infer<typeof companySchema>;
