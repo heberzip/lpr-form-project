@@ -102,7 +102,6 @@ const AdditionalContacts = () => {
           </div>
         </div>
       )}
-
       <div className="flex items-center justify-between w-xs md:w-full md:gap-4 md:px-7">
         <span className="md:ml-4 font-semibold">Additional contacts?</span>
         <div className="flex gap-4">

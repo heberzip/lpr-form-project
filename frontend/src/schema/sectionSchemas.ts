@@ -47,4 +47,6 @@ export const bankSchema = z.object({
   iban: z.string().min(5, "5 chars"),
   bankName: z.string().min(3, "3 chars"),
   swift: z.string().min(3, "3 chars"),
+  sameAccountHolder: z.boolean().optional(),
+  accountHolder: z.string().optional(),
 });

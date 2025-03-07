@@ -307,6 +307,33 @@
         "required": true,
         "gridPosition": 3
       }
+    ],
+    "decisionData": [
+      {
+        "id": 4,
+        "name": "sameAccountHolder",
+        "label": "Is the account holder the same as the company name?",
+        "type": "radio",
+        "role": "desition",
+        "options": [
+          { "label": "YES", "value": true },
+          { "label": "NO", "value": false }
+        ],
+        "required": false,
+        "dependents": [
+          {
+            "id": 5,
+            "name": "accountHolder",
+            "label": "Account holder",
+            "additionalInfo": "This is the name of the account holder.",
+            "type": "text",
+            "role": "input",
+            "placeholder": "John Doe",
+            "required": false,
+            "gridPosition": 1
+          }
+        ]
+      }
     ]
   }
 ]

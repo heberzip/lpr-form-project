@@ -1,7 +1,7 @@
 // EXTERNAL MODULES
 import { z } from "zod";
 // SCHEMAS
-import { companySchema } from "@schema/sectionSchemas";
+import { bankSchema, companySchema } from "@schema/sectionSchemas";
 import { contactSchema } from "@schema/sectionSchemas";
 import { communicationSchema } from "@schema/sectionSchemas";
 
@@ -71,6 +71,7 @@ export type CommunicationSectionType = BaseSectionType & {
 // BANK SECTION TYPE
 export type BankSectionType = BaseSectionType & {
   formMainData: FormMainDataType[];
+  decisionData: DecisionDataType[];
 };
 
 // UNION TYPE FOR ALL SECTIONS
@@ -86,3 +87,5 @@ export type CompanyType = z.infer<typeof companySchema>;
 export type ContactType = z.infer<typeof contactSchema>;
 
 export type CommunicationType = z.infer<typeof communicationSchema>;
+
+export type BankType = z.infer<typeof bankSchema>;

@@ -22,13 +22,21 @@ const useBankSection = () => {
   // bank data from store with custom selector
   const bankData = useSelector(selectBank);
 
+  const [sameAcoountHolder, setSameAccountHolder] = useState<boolean>(
+    bankData.sameAccountHolder as boolean
+  );
+
   // state to avoid first validation on mount
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const isFilled = useSelector(isBankFilled);
 
   // filter state to obtain only the fields values and not their required status
   const parsedDefaultValues = Object.fromEntries(
-    Object.entries(bankData).map(([key, field]) => [key, field.value])
+    Object.entries(bankData).map(([key, field]) => {
+      if (typeof field === "object" && field !== null && "value" in field) {
+        return [key, field.value]; // return value
+      } else return [key, field]; // return boolean
+    })
   );
 
   // initialize form with react-hook-form and real-time validation
@@ -56,6 +64,12 @@ const useBankSection = () => {
     setValue(name, value, { shouldValidate: true, shouldDirty: true });
   };
 
+  // handler for radio button change
+  const handleRadioChange = (value: boolean) => {
+    setSameAccountHolder(value);
+    dispatch(setBankData({ key: "sameAccountHolder", value }));
+  };
+
   // handler for form submission
   const onSubmit = (data: BankType) => {
     console.log("Form Data:", data);
@@ -67,7 +81,9 @@ const useBankSection = () => {
     watch,
     handleSubmit,
     formState,
+    sameAcoountHolder,
     handleInputChange,
+    handleRadioChange,
     onSubmit,
   };
 };

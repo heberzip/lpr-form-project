@@ -13,18 +13,26 @@ export type BankState = {
   iban: SectionField;
   bankName: SectionField;
   swift: SectionField;
+  sameAccountHolder: boolean;
+  accountHolder: SectionField;
 };
 
 /******************************************************************************/
 // Load from Local Storage (if exists)
 const getBankStateLS = (): BankState => {
   const savedState = localStorage.getItem("bankState");
+
   return savedState
     ? JSON.parse(savedState)
     : {
         iban: { value: "", required: true },
         bankName: { value: "", required: true },
         swift: { value: "", required: true },
+        sameAccountHolder: true,
+        accountHolder: {
+          value: "",
+          required: false,
+        },
       };
 };
 
@@ -36,13 +44,17 @@ const bankSlice = createSlice({
   reducers: {
     setBankData: (
       state,
-      action: PayloadAction<{ key: keyof BankState | string; value: string }>
+      action: PayloadAction<{ key: keyof BankState; value: string | boolean }>
     ) => {
-      if (state[action.payload.key as keyof BankState]) {
-        state[action.payload.key as keyof BankState].value =
-          action.payload.value;
+      const field = state[action.payload.key];
+      if (typeof field === "object" && field !== null && "value" in field) {
+        field.value = action.payload.value as string;
+      } else if (typeof field === "boolean") {
+        state[action.payload.key] = action.payload.value as never;
       }
-      localStorage.setItem("bankState", JSON.stringify(state));
+
+      // Save to Local Storage by creating a new property
+      localStorage.setItem("contactState", JSON.stringify(state));
     },
 
     resetBankData: () => {
@@ -59,9 +71,11 @@ export const { setBankData, resetBankData } = bankSlice.actions;
 export const selectBank = (state: RootState) => state.bank;
 
 export const isBankFilled = (state: RootState) => {
-  return Object.entries(state.bank)
-    .filter(([, field]) => field.required)
-    .every(([, field]) => field.value !== "");
+  return (
+    state.bank.iban.value !== "" &&
+    state.bank.bankName.value !== "" &&
+    state.bank.swift.value !== ""
+  );
 };
 
 // REDUCER
