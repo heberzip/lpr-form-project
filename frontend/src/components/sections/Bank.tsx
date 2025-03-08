@@ -20,8 +20,8 @@ import TAuthLetter from "@components/templates/TAuthLetter";
 import generateAuthLetterData from "@utils/helpers/generateAuthLetterData";
 import { useSelector } from "react-redux";
 import { selectCompany } from "@store/slices/companySlice";
-import LoadingIcon from "@components/icons/LoadingIcon";
-import { PDFViewer } from "@react-pdf/renderer";
+//import LoadingIcon from "@components/icons/LoadingIcon";
+//import { PDFViewer } from "@react-pdf/renderer";
 
 const Bank = () => {
   const {
@@ -55,14 +55,20 @@ const Bank = () => {
         }
         className={style.section.leftCol}
       >
-        {!isDownloadDisabled && (
+        {/* {!isDownloadDisabled && (
           <PDFViewer
-            style={{ height: "100%", width: "100%", borderRadius: 8 }}
+            style={{
+              height: "500px",
+              width: "500px",
+              borderRadius: 500,
+              border: "5px solid #309eb5",
+              borderStyle: "dashed",
+            }}
             showToolbar={false}
           >
             <TAuthLetter data={generateAuthLetterData(company, bank)} />
           </PDFViewer>
-        )}
+        )} */}
       </CSectionHeader>
 
       {/* Right column: Form and NavBtns */}
@@ -172,21 +178,11 @@ const Bank = () => {
                     fileName={`Authorization Letter - ${company.companyName.value}.pdf`}
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    {({ loading }) =>
-                      loading ? (
-                        <LoadingIcon
-                          width={35}
-                          height={35}
-                          className="text-zip-blue2-500 hover:text-zip-blue2-600 active:text-zip-blue2-800 active:scale-95"
-                        />
-                      ) : (
-                        <DownloadIcon
-                          width={35}
-                          height={35}
-                          className="text-zip-blue2-500 hover:text-zip-blue2-600 active:text-zip-blue2-800 active:scale-95"
-                        />
-                      )
-                    }
+                    <DownloadIcon
+                      width={35}
+                      height={35}
+                      className="text-zip-blue2-500 hover:text-zip-blue2-600 active:text-zip-blue2-800 active:scale-95"
+                    />
                   </PDFDownloadLink>
                 )}
               </button>

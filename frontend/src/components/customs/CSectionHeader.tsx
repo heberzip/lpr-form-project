@@ -1,7 +1,5 @@
 // CUSTOM COMPONENTS
 import { CSeparator, CInfoCard } from "@customs/.";
-// ANIMATIONS
-import UnderlineHoverEffect from "@components/animations/UnderlineHoverEffect";
 // TYPES
 import { BaseSectionType } from "../../types";
 
@@ -21,12 +19,12 @@ const CSectionHeader = ({
 }: SectionHeaderProps) => {
   return (
     <div className={className}>
-      <UnderlineHoverEffect>
-        <span>{section?.title}</span>
-      </UnderlineHoverEffect>
+      <span className="text-2xl font-semibold rounded-lg px-10 py-1 mb-4 text-zip-blue2-700 bg-zip-blue2-100 select-none">
+        {section?.title}
+      </span>
       <p className="text-gray-600 text-sm">{section?.description}</p>
 
-      <CSeparator className="max-w-lg mt-4 mb-6" />
+      <CSeparator className="max-w-lg mt-4 mb-4" />
 
       {/* Let render other specoific components down below this seccion header */}
       {children}

@@ -63,7 +63,7 @@ const CInput = forwardRef<HTMLInputElement, CInputProps>(
         />
 
         {/* Input Field */}
-        <div className="flex gap-0">
+        <div className="flex gap-0 w-full">
           {(type === "tel" || type === "email") && (
             // It takes the children to display the pre-text
             <div className={sty?.pre}>{children}</div>
