@@ -102,7 +102,7 @@ const AdditionalContacts = () => {
           </div>
         </div>
       )}
-      <div className="flex items-center justify-between w-xs md:w-full md:gap-4 md:px-7">
+      <div className="flex items-center justify-between w-xs md:w-full md:gap-2 md:px-7">
         <span className="md:ml-4 font-semibold">Additional contacts?</span>
         <div className="flex gap-4">
           <button type="button" onClick={handleAddPhone}>
@@ -122,7 +122,7 @@ const AdditionalContacts = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 w-xs min-w-xs md:w-sm md:min-w-sm max-h-25 h-18 md:max-h-40 md:h-30 overflow-y-auto mt-2 mb-2 border-none border-zip-gray-500 rounded-md custom-scrollbar">
+      <div className="flex flex-col gap-2 w-xs min-w-xs md:w-sm md:min-w-sm max-h-25 h-18 md:max-h-30 md:h-20 overflow-y-auto mt-2 mb-2 border-none border-zip-gray-500 rounded-md custom-scrollbar">
         <ul>
           {communicationData.additionalNumbers.length > 0 ||
           communicationData.additionalEmails.length > 0 ? (

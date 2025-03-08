@@ -54,7 +54,7 @@ const bankSlice = createSlice({
       }
 
       // Save to Local Storage by creating a new property
-      localStorage.setItem("contactState", JSON.stringify(state));
+      localStorage.setItem("bankState", JSON.stringify(state));
     },
 
     resetBankData: () => {

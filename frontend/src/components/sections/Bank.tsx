@@ -7,13 +7,21 @@ import {
 // CUSTOM HOOKS
 import useBankSection from "@hooks/useBankSection";
 // STORE
-import { isBankFilled } from "@store/slices/bankSlice";
+import { isBankFilled, selectBank } from "@store/slices/bankSlice";
 // STYLES
 import style from "@styles/global.style";
 // TYPES
 import { cInputSty, cInputStyDisabled } from "@styles/styleObjs";
 import { BankType } from "../../types";
 import DownloadIcon from "@components/icons/DownloadIcon";
+
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import TAuthLetter from "@components/templates/TAuthLetter";
+import generateAuthLetterData from "@utils/helpers/generateAuthLetterData";
+import { useSelector } from "react-redux";
+import { selectCompany } from "@store/slices/companySlice";
+import LoadingIcon from "@components/icons/LoadingIcon";
+import { PDFViewer } from "@react-pdf/renderer";
 
 const Bank = () => {
   const {
@@ -27,6 +35,16 @@ const Bank = () => {
     onSubmit,
   } = useBankSection();
 
+  const company = useSelector(selectCompany);
+  const bank = useSelector(selectBank);
+
+  const isDownloadDisabled =
+    !bank.iban.value ||
+    !bank.swift.value ||
+    !bank.bankName.value ||
+    sameAcoountHolder ||
+    !bank.accountHolder.value;
+
   return (
     <section id="bank" className={style.section.grid}>
       {/* Left column: Header with title and description */}
@@ -36,7 +54,16 @@ const Bank = () => {
           section?.base ?? { id: 0, link: "", title: "", description: "" }
         }
         className={style.section.leftCol}
-      />
+      >
+        {!isDownloadDisabled && (
+          <PDFViewer
+            style={{ height: "100%", width: "100%", borderRadius: 8 }}
+            showToolbar={false}
+          >
+            <TAuthLetter data={generateAuthLetterData(company, bank)} />
+          </PDFViewer>
+        )}
+      </CSectionHeader>
 
       {/* Right column: Form and NavBtns */}
       <div className={style.section.rightCol}>
@@ -127,16 +154,41 @@ const Bank = () => {
               <button
                 type="button"
                 className="disabled:text-gray-400 disabled:cursor-not-allowed"
+                disabled={isDownloadDisabled}
               >
-                <DownloadIcon
-                  width={35}
-                  height={35}
-                  className={
-                    sameAcoountHolder
-                      ? "text-gray-400 cursor-not-allowed"
-                      : `text-zip-blue2-500 hover:text-zip-blue2-600 active:text-zip-blue2-800 active:scale-95`
-                  }
-                />
+                {isDownloadDisabled ? (
+                  <DownloadIcon
+                    width={35}
+                    height={35}
+                    className="text-gray-400 cursor-not-allowed"
+                  />
+                ) : (
+                  <PDFDownloadLink
+                    document={
+                      <TAuthLetter
+                        data={generateAuthLetterData(company, bank)}
+                      />
+                    }
+                    fileName={`Authorization Letter - ${company.companyName.value}.pdf`}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    {({ loading }) =>
+                      loading ? (
+                        <LoadingIcon
+                          width={35}
+                          height={35}
+                          className="text-zip-blue2-500 hover:text-zip-blue2-600 active:text-zip-blue2-800 active:scale-95"
+                        />
+                      ) : (
+                        <DownloadIcon
+                          width={35}
+                          height={35}
+                          className="text-zip-blue2-500 hover:text-zip-blue2-600 active:text-zip-blue2-800 active:scale-95"
+                        />
+                      )
+                    }
+                  </PDFDownloadLink>
+                )}
               </button>
             </div>
           </div>
