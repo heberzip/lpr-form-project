@@ -82,7 +82,7 @@ const Communication = () => {
           <footer className="flex items-center justify-center">
             <CNavigation
               isSectionFilled={isCommunicationFilled}
-              formState={formState}
+              validatedFields={formState.isValid}
             />
           </footer>
         </form>

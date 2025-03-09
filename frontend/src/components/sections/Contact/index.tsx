@@ -81,7 +81,7 @@ const Contact = () => {
           <footer className="flex items-center justify-center">
             <CNavigation
               isSectionFilled={isContactFilled}
-              formState={formState}
+              validatedFields={formState.isValid}
             />
           </footer>
         </form>

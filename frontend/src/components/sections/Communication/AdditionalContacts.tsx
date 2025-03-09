@@ -102,7 +102,7 @@ const AdditionalContacts = () => {
           </div>
         </div>
       )}
-      <div className="flex items-center justify-between w-xs md:w-full md:gap-2 md:px-7">
+      <div className="w-full max-w-lg mx-auto flex items-center justify-between md:w-full md:gap-2 md:px-7">
         <span className="md:ml-4 font-semibold">Additional contacts?</span>
         <div className="flex gap-4">
           <button type="button" onClick={handleAddPhone}>
@@ -122,7 +122,7 @@ const AdditionalContacts = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 w-xs min-w-xs md:w-sm md:min-w-sm max-h-25 h-18 md:max-h-30 md:h-20 overflow-y-auto mt-2 mb-2 border-none border-zip-gray-500 rounded-md custom-scrollbar">
+      <div className="w-full max-w-lg mx-auto flex flex-col gap-2 min-w-xs md:w-sm md:min-w-sm max-h-25 h-18 md:max-h-30 md:h-20 overflow-y-auto mt-2 mb-2 border-none border-zip-gray-500 rounded-md custom-scrollbar">
         <ul>
           {communicationData.additionalNumbers.length > 0 ||
           communicationData.additionalEmails.length > 0 ? (
@@ -149,13 +149,13 @@ const AdditionalContacts = () => {
               ))}
             </>
           ) : (
-            <div className="flex flex-col justify-center items-center gap-2 w-full">
+            <div className="flex justify-center items-center gap-6 w-full">
               <ContactIcon
                 width={50}
                 height={50}
                 className="mb-1 text-gray-300"
               />
-              <div className="text-center text-gray-400 text-md font-semibold">
+              <div className="text-center text-gray-400 text-md font-semibold w-30">
                 No additional contacts
               </div>
             </div>

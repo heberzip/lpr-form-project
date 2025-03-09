@@ -30,7 +30,7 @@ export default {
   /*****************************************************************************/
   form: {
     container:
-      "flex flex-col w-full @[600px]/rightCol:w-[90%] flex-grow justify-center items-center",
+      "relative flex flex-col w-full h-full @[600px]/rightCol:w-[90%] flex-grow justify-center items-center",
   },
   /****************************************************************************** */
   // CUSTOM COMPONENTS

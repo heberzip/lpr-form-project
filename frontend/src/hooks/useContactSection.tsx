@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppDispatch } from "@store/store";
 import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 // HOOKS
 import useSection from "@hooks/useSection";
 // STORE
@@ -15,6 +15,7 @@ import {
 // TYPES AND SCHEMAS
 import { contactSchema } from "@schema/sectionSchemas";
 import { ContactType, PositionType } from "../types";
+import useDynamicReset from "./useDynamicReset";
 
 /******************************************************************************/
 
@@ -29,10 +30,6 @@ const useContactSection = () => {
   const [hasDetails, setHasDetails] = useState<boolean>(
     contactData.contactDetails as boolean
   );
-
-  // state to avoid first validation on mount
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const isFilled = useSelector(isContactFilled);
 
   // filter state to obtain only the fields values and not their required status
   const parsedDefaultValues = Object.fromEntries(
@@ -51,16 +48,18 @@ const useContactSection = () => {
       mode: "onChange", // authomatic validation on change
     });
 
-  // ensure that `defaultValues` are updated dynamically
-  useEffect(() => {
-    reset(parsedDefaultValues); // update values when state changes
-    if (isFirstLoad) {
-      setIsFirstLoad(false);
-      if (isFilled) trigger();
-    } else {
-      trigger();
-    }
-  }, [reset, trigger]); // eslint-disable-line
+  // ensure that `defaultValues` are updated dynamically and reset the form
+  useDynamicReset({
+    parsedDefaultValues,
+    resetCondition: !hasDetails,
+    reset,
+    trigger,
+    isFilled: useSelector(isContactFilled),
+    resetFields: {
+      phone: "",
+      email: "",
+    },
+  });
 
   // handler for input change
   const handleInputChange = (name: keyof ContactType, value: string) => {
@@ -91,7 +90,9 @@ const useContactSection = () => {
 
   return {
     section,
+    contactData,
     register,
+    trigger,
     watch,
     handleSubmit,
     formState,

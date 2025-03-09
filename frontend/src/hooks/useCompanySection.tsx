@@ -1,5 +1,4 @@
 // EXTERNAL MODULES
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSelector } from "react-redux";
@@ -15,6 +14,7 @@ import {
 // TYPES AND SCHEMAS
 import { companySchema } from "@schema/sectionSchemas";
 import { CompanyType, CountryType } from "../types";
+import useDynamicReset from "./useDynamicReset";
 
 /******************************************************************************/
 
@@ -26,14 +26,10 @@ const useCompanySection = () => {
   // company data from store with custom selector
   const companyData = useSelector(selectCompany);
 
-  // state to avoid first validation on mount
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const isFilled = useSelector(isComanyFilled);
-
   // filter state to obtain only the fields values and not their required status
   const parsedDefaultValues = Object.fromEntries(
     Object.entries(companyData).map(([key, field]) => [key, field.value])
-  );
+  ) as CompanyType;
 
   // initialize form with react-hook-form and real-time validation
   const {
@@ -51,15 +47,13 @@ const useCompanySection = () => {
   });
 
   // ensure that `defaultValues` are updated dynamically
-  useEffect(() => {
-    reset(parsedDefaultValues); // update values when state changes
-    if (isFirstLoad) {
-      setIsFirstLoad(false);
-      if (isFilled) trigger();
-    } else {
-      trigger();
-    }
-  }, [reset, trigger]); // eslint-disable-line
+  useDynamicReset({
+    parsedDefaultValues,
+    resetCondition: false,
+    reset,
+    trigger,
+    isFilled: useSelector(isComanyFilled),
+  });
 
   // handler to update the form and redux state in real time
   const handleInputChange = (name: keyof CompanyType, value: string) => {

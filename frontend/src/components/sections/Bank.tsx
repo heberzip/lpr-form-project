@@ -193,7 +193,10 @@ const Bank = () => {
           <CSeparator className="flex justify-center items-center w-full max-w-[90px] mb-4 p-0 md:hidden" />
 
           <footer className="flex items-center justify-center">
-            <CNavigation isSectionFilled={isBankFilled} formState={formState} />
+            <CNavigation
+              isSectionFilled={isBankFilled}
+              validatedFields={formState.isValid}
+            />
           </footer>
         </form>
       </div>

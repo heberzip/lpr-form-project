@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppDispatch } from "@store/store";
 import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 // CUSTOM HOOKS
 import useSection from "@hooks/useSection";
+import useDymanicReset from "./useDynamicReset";
 // STORE
 import {
   setCommunicationData,
@@ -30,10 +31,6 @@ const useCommunicationSection = () => {
     communicationData.whatsappAvailable as boolean
   );
 
-  // state to avoid first validation on mount
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const isFilled = useSelector(isCommunicationFilled);
-
   // filter state to obtain only the fields values and not their required status
   const parsedDefaultValues = Object.fromEntries(
     Object.entries(communicationData).map(([key, field]) => {
@@ -46,7 +43,7 @@ const useCommunicationSection = () => {
       }
       return [key, field]; // return boolean
     })
-  );
+  ) as CommunicationType;
 
   // initialize form with react-hook-form and real-time validation
   const {
@@ -65,15 +62,16 @@ const useCommunicationSection = () => {
   });
 
   // ensure that `defaultValues` are updated dynamically
-  useEffect(() => {
-    reset(parsedDefaultValues); // update values when state changes
-    if (isFirstLoad) {
-      setIsFirstLoad(false);
-      if (isFilled) trigger();
-    } else {
-      trigger();
-    }
-  }, [reset, trigger]); // eslint-disable-line
+  useDymanicReset({
+    parsedDefaultValues,
+    resetCondition: !hasWhatsapp,
+    reset,
+    trigger,
+    isFilled: useSelector(isCommunicationFilled),
+    resetFields: {
+      whatsappNumber: "",
+    },
+  });
 
   // handler for input change
   const handleInputChange = (name: keyof CommunicationType, value: string) => {

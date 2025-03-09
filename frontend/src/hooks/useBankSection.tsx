@@ -1,5 +1,5 @@
 // EXTERNAL MODULES
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSelector } from "react-redux";
@@ -11,6 +11,7 @@ import { setBankData, selectBank, isBankFilled } from "@store/slices/bankSlice";
 // TYPES AND SCHEMAS
 import { bankSchema } from "@schema/sectionSchemas";
 import { BankType } from "../types";
+import useDynamicReset from "./useDynamicReset";
 
 /******************************************************************************/
 
@@ -25,10 +26,6 @@ const useBankSection = () => {
   const [sameAcoountHolder, setSameAccountHolder] = useState<boolean>(
     bankData.sameAccountHolder as boolean
   );
-
-  // state to avoid first validation on mount
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const isFilled = useSelector(isBankFilled);
 
   // filter state to obtain only the fields values and not their required status
   const parsedDefaultValues = Object.fromEntries(
@@ -48,15 +45,16 @@ const useBankSection = () => {
     });
 
   // ensure that `defaultValues` are updated dynamically
-  useEffect(() => {
-    reset(parsedDefaultValues); // update values when state changes
-    if (isFirstLoad) {
-      setIsFirstLoad(false);
-      if (isFilled) trigger();
-    } else {
-      trigger();
-    }
-  }, [reset, trigger]); // eslint-disable-line
+  useDynamicReset({
+    parsedDefaultValues,
+    resetCondition: sameAcoountHolder,
+    reset,
+    trigger,
+    isFilled: useSelector(isBankFilled),
+    resetFields: {
+      accountHolder: "",
+    },
+  });
 
   // handler to update the form and redux state in real time
   const handleInputChange = (name: keyof BankType, value: string) => {

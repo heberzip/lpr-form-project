@@ -71,7 +71,7 @@ const Company = () => {
           <footer className="flex items-center justify-center">
             <CNavigation
               isSectionFilled={isComanyFilled}
-              formState={formState}
+              validatedFields={formState.isValid}
             />
           </footer>
         </form>

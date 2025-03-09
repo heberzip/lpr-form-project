@@ -11,12 +11,15 @@ import style from "@styles/global.style";
 /******************************************************************************/
 // TYPES
 type CNavigationProps = {
-  formState?: any; // eslint-disable-line
+  validatedFields?: boolean;
   isSectionFilled?: (state: RootState) => boolean | undefined;
 };
 /******************************************************************************/
 
-const CNavigation = ({ formState, isSectionFilled }: CNavigationProps) => {
+const CNavigation = ({
+  validatedFields,
+  isSectionFilled,
+}: CNavigationProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -42,7 +45,7 @@ const CNavigation = ({ formState, isSectionFilled }: CNavigationProps) => {
   };
 
   const goNext = () => {
-    const isValid = formState.isValid && isFilled;
+    const isValid = validatedFields && isFilled;
     if (isValid) {
       dispatch(clearInfo());
       navigate(sections[currentIndex + 1]);
