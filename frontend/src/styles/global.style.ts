@@ -98,7 +98,8 @@ export default {
       "w-4 h-4 text-gray-400 bg-gray-200 border-gray-300 cursor-not-allowed",
   },
   /****************************************************************************** */
-  cinfo: "inline-block cursor-pointer hover:shadow-xl tabindex-[-1]",
+  cinfo: "inline-block cursor-pointer hover:shadow-xl",
+  cinfoError: "inline-block cursor-pointer hover:shadow-xl text-red-400",
   cinfoCard: {
     container:
       "flex flex-col p-4 bg-white shadow-md rounded-md border border-gray-300 w-full max-w-lg mt-4 transition-all duration-300",

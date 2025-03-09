@@ -255,7 +255,7 @@
             "id": 6,
             "name": "whatsappNumber",
             "label": "WhatsApp number",
-            "additionalInfo": "",
+            "additionalInfo": "This is the whatsapp number of the representative of your company.",
             "type": "tel",
             "role": "input",
             "placeholder": "+34 123 456 789",

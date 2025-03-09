@@ -52,6 +52,7 @@ const Communication = () => {
           {/* Maps the main form data: Emergency phone, Reservation email */}
           <CommunicationMainForm
             section={section as CommunicationSectionType}
+            communicationData={communicationData as never}
             register={register}
             formState={formState}
             country={country}

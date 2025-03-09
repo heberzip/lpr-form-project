@@ -27,6 +27,7 @@ import languageData from "@data/languagesData.json";
 // TYPES
 type CommunicationMainFormProps = {
   section: CommunicationSectionType;
+  communicationData: CommunicationType;
   register: UseFormRegister<CommunicationType>;
   formState: FormState<CommunicationType>;
   country: { value: string; required: boolean };
@@ -38,12 +39,12 @@ type CommunicationMainFormProps = {
 
 const CommunicationMainForm = ({
   section,
+  communicationData,
   register,
   formState,
   country,
   handleInputChange,
   setValue,
-  getValues,
 }: CommunicationMainFormProps) => {
   const dispatch = useAppDispatch();
 
@@ -66,9 +67,16 @@ const CommunicationMainForm = ({
 
   // handle item selection in dropdown (the country in this case
   const handleItemSelect = (selectedItem: LanguageType) => {
+    const prevLanguages = communicationData.languages.map(
+      (lang) => lang?.value
+    );
+
     dispatch(addLanguage(selectedItem.name));
-    const prevLanguages = getValues("languages") || []; // Obtiene los idiomas previos
-    setValue("languages", [...prevLanguages, selectedItem.name]);
+
+    setValue("languages", [...prevLanguages, selectedItem.name], {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
   };
 
   return (

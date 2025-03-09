@@ -1,16 +1,17 @@
 import { z } from "zod";
 
 export const companySchema = z.object({
-  companyName: z.string().min(2, "At least 2 chars long"),
+  companyName: z.string().min(1, "Required").min(3, "More than 3 chars"),
   tradeName: z.string().optional(),
   vat: z
     .string()
+    .min(1, "Required")
     .regex(/^[A-Z0-9]+$/, "Invalid VAT format")
-    .min(4, "At least 4 chars long"),
-  streetAddress: z.string().min(5, "5 chars long"),
-  city: z.string().min(2, "2 chars long"),
-  zipCode: z.string().min(4, "4 chars"),
-  country: z.string().min(2, "country"),
+    .min(4, "More than 4 chars"),
+  streetAddress: z.string().min(1, "Required").min(5, "More than 5 chars"),
+  city: z.string().min(1, "Required").min(3, "More than 3 chars"),
+  zipCode: z.string().min(1, "Required").min(4, "More than 4 chars"),
+  country: z.string().min(1, "Required").min(3, "More than 3 chars"),
   province: z.string().optional(),
 });
 
@@ -78,6 +79,17 @@ export const communicationSchema = z
       ctx.addIssue({
         path: ["whatsappNumber"],
         message: "Invalid phone number format",
+        code: z.ZodIssueCode.custom,
+      });
+    }
+    if (
+      data.website &&
+      data.website.length > 0 &&
+      !/^https?:\/\/.+/.test(data.website)
+    ) {
+      ctx.addIssue({
+        path: ["website"],
+        message: "Invalid website format",
         code: z.ZodIssueCode.custom,
       });
     }

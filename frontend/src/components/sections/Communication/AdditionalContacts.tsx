@@ -1,4 +1,4 @@
-import { CInput } from "@components/customs";
+import { CInput, CLabel } from "@components/customs";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useAppDispatch } from "@store/store";
@@ -103,7 +103,11 @@ const AdditionalContacts = () => {
         </div>
       )}
       <div className="w-full max-w-lg mx-auto flex items-center justify-between md:w-full md:gap-2 md:px-7">
-        <span className="md:ml-4 font-semibold">Additional contacts?</span>
+        <CLabel
+          id="additionalContacts"
+          label="Additional contacts"
+          additionalInfo="These are additional contacts that will be added to the list of contacts."
+        />
         <div className="flex gap-4">
           <button type="button" onClick={handleAddPhone}>
             <AddPhoneIcon
