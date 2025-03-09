@@ -12,7 +12,7 @@ import { isBankFilled, selectBank } from "@store/slices/bankSlice";
 import style from "@styles/global.style";
 // TYPES
 import { cInputSty, cInputStyDisabled } from "@styles/styleObjs";
-import { BankType } from "../../types";
+import { BankType } from "../../../types";
 import DownloadIcon from "@components/icons/DownloadIcon";
 
 import { PDFDownloadLink } from "@react-pdf/renderer";
