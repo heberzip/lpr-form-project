@@ -9,7 +9,10 @@ import {
 import { CAutocomplete, CGrid, CInput } from "@customs/.";
 // STORE
 import { useAppDispatch } from "@store/store";
-import { addLanguage } from "@store/slices/communicationSlice";
+import {
+  addLanguage,
+  CommunicationState,
+} from "@store/slices/communicationSlice";
 // STYLES
 import { cAutocompleteSty, cGridSty, cInputSty } from "@styles/styleObjs";
 // HELPERS
@@ -27,7 +30,7 @@ import languageData from "@data/languagesData.json";
 // TYPES
 type CommunicationMainFormProps = {
   section: CommunicationSectionType;
-  communicationData: CommunicationType;
+  communicationData: CommunicationState;
   register: UseFormRegister<CommunicationType>;
   formState: FormState<CommunicationType>;
   country: { value: string; required: boolean };
@@ -48,8 +51,6 @@ const CommunicationMainForm = ({
 }: CommunicationMainFormProps) => {
   const dispatch = useAppDispatch();
 
-  //console.log(languageData);
-
   const filterFn = (item: LanguageType, query: string) => {
     return item.name.toLowerCase().includes(query.toLowerCase());
   };
@@ -58,7 +59,7 @@ const CommunicationMainForm = ({
     name: keyof CommunicationType,
     value: string
   ) => {
-    // Obtiene los idiomas actuales o un array vacío
+    // Gets the current languages or an empty array
     setValue(name, value, {
       shouldValidate: true,
       shouldDirty: true,
@@ -67,9 +68,8 @@ const CommunicationMainForm = ({
 
   // handle item selection in dropdown (the country in this case
   const handleItemSelect = (selectedItem: LanguageType) => {
-    const prevLanguages = communicationData.languages.map(
-      (lang) => lang?.value
-    );
+    const languagesArr = communicationData.languages;
+    const prevLanguages = languagesArr.map((lang) => lang.value);
 
     dispatch(addLanguage(selectedItem.name));
 
