@@ -27,8 +27,8 @@ const TAuthLetter = ({ data }: TAuthLetterProps) => {
       <Page size="A4" style={styles.page}>
         {/* Header */}
         <View style={styles.header}>
-          {data.logo && <Image src={data.logo} style={styles.logo} />}
           <Text style={styles.headerTitle}>AUTHORIZATION LETTER</Text>
+          {data.logo && <Image src={data.logo} style={styles.logo} />}
         </View>
 
         <View style={styles.body}>
@@ -111,10 +111,10 @@ export default TAuthLetter;
   family: "Nunito",
   src: "https://fonts.google.com/share?selection.family=Nunito:ital,wght@0,200..1000;1,200..1000",
 });*/
-
+// Background alternativo: "#f4f6f9"
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: "#f4f6f9",
+    backgroundColor: "white",
     fontSize: 12,
     color: "#4e4e4e",
   },
@@ -122,26 +122,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: 70,
   },
   header: {
+    display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
     padding: 15,
-    paddingVertical: 30,
     marginBottom: 20,
     marginHorizontal: 40,
     borderBottomColor: "#227181",
-    borderBottomWidth: 3,
+    borderBottomWidth: 2,
   },
   headerTitle: {
     color: "#1b5a67",
     fontSize: 18,
     fontWeight: "bold",
     textTransform: "uppercase",
+    marginLeft: 20,
   },
   logo: {
-    width: 50,
-    height: 50,
-    marginRight: 10,
+    width: 130,
+    height: 38,
+    marginLeft: 35,
   },
   date: {
     textAlign: "right",

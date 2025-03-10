@@ -14,6 +14,7 @@ const generateAuthLetterData = (company: CompanyState, bank: BankState) => {
     swift: swift.value,
     bankName: bankName.value,
     currency: "Euro (EUR | €)",
+    logo: "zip_logo_png.png",
   };
 
   return data;
