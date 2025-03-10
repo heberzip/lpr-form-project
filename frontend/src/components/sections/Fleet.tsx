@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CNavigation } from "@components/customs";
 import styles from "@styles/global.style";
+import AddCarIcon from "@components/icons/AddCarIcon";
 
 const Fleet = () => {
   const [vehicles, setVehicles] = useState([
@@ -64,11 +65,19 @@ const Fleet = () => {
               <button
                 id="addVehicle"
                 type="button"
-                className="bg-zip-blue2-500 text-white px-6 py-1 min-w-[150px] rounded-md shadow-xl hover:bg-zip-blue2-600 active:bg-zip-blue2-800 active:size-0.95 transition disabled:opacity-50 disabled:bg-gray-400"
+                className="flex items-center justify-center"
                 onClick={handleAddVehicle}
                 disabled={vehicles.length >= totalVehicles} // Se desactiva si ya se alcanzó el total
               >
-                Add type
+                <AddCarIcon
+                  width={55}
+                  height={55}
+                  className={
+                    vehicles.length >= totalVehicles
+                      ? "text-gray-400 cursor-not-allowed"
+                      : "text-zip-blue2-500 hover:text-zip-blue2-600 active:text-zip-blue2-800 active:size-0.95 transition disabled:opacity-50 disabled:bg-gray-400"
+                  }
+                />
               </button>
             </div>
           </div>
