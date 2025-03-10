@@ -129,11 +129,12 @@ const styles = StyleSheet.create({
     padding: 15,
     marginBottom: 20,
     marginHorizontal: 40,
+    marginTop: 10,
     borderBottomColor: "#227181",
     borderBottomWidth: 2,
   },
   headerTitle: {
-    color: "#1b5a67",
+    color: "#227181",
     fontSize: 18,
     fontWeight: "bold",
     textTransform: "uppercase",
