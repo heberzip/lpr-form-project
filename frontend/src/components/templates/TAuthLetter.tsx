@@ -95,6 +95,11 @@ const TAuthLetter = ({ data }: TAuthLetterProps) => {
             <Text style={styles.bold}> {data.companyName}</Text>.
           </Text>
         </View>
+
+        <View style={styles.signature}>
+          <Text style={styles.signatureText}> Your signature here </Text>
+          <View style={styles.signatureBlock}></View>
+        </View>
       </Page>
     </Document>
   );
@@ -151,7 +156,7 @@ const styles = StyleSheet.create({
   },
   bold: {
     fontWeight: "bold",
-    color: "#227181",
+    color: "#4e4e4e",
   },
   infoBlock: {
     marginTop: 10,
@@ -174,5 +179,28 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
     color: "#4e4e4e",
     marginLeft: 10,
+  },
+  signature: {
+    display: "flex",
+    marginBottom: 10,
+    marginLeft: 280,
+    marginRight: 50,
+    padding: 15,
+  },
+  signatureText: {
+    fontSize: 9,
+    fontStyle: "italic",
+    fontWeight: "light",
+    color: "#666",
+    marginBottom: 4,
+    textAlign: "center",
+  },
+  signatureBlock: {
+    paddingHorizontal: 10,
+    borderWidth: 2,
+    borderColor: "#227181",
+    borderRadius: 8,
+    backgroundColor: "#f4f6f9",
+    height: 90,
   },
 });
