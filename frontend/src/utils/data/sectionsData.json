@@ -335,5 +335,37 @@
         ]
       }
     ]
+  },
+  {
+    "base": {
+      "id": 5,
+      "link": "/fleet",
+      "title": "FLEET DETAILS",
+      "description": "In this section, we will ask you for information about your fleet."
+    },
+    "formMainData": [
+      {
+        "id": 1,
+        "name": "vehicles",
+        "label": "Vehicles",
+        "additionalInfo": "This is the number of vehicles in your fleet.",
+        "type": "text",
+        "role": "input",
+        "placeholder": "Vehicles",
+        "required": true,
+        "gridPosition": 1
+      },
+      {
+        "id": 2,
+        "name": "drivers",
+        "label": "Driver",
+        "additionalInfo": "This is the number of drivers in your fleet.",
+        "type": "text",
+        "role": "input",
+        "placeholder": "Driver",
+        "required": true,
+        "gridPosition": 2
+      }
+    ]
   }
 ]
