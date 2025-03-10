@@ -25,12 +25,12 @@ export default {
     leftCol:
       "hidden @[1150px]/Section:flex @[1150px]/Section:flex-col items-center justify-start w-full h-[calc(100vh-12rem)] pl-24 pr-8",
     rightCol:
-      "@container/rightCol flex flex-col items-center justify-start px-6 @[1150px]/Section:px-16 h-[100%]",
+      "@container/rightCol flex flex-col items-center justify-center px-6 @[1150px]/Section:px-16 h-[100%]",
   },
   /*****************************************************************************/
   form: {
     container:
-      "relative flex flex-col w-full h-full @[600px]/rightCol:w-[90%] flex-grow justify-start items-center",
+      "relative flex flex-col w-full @[600px]/rightCol:w-[90%] flex-grow justify-start items-center",
   },
   /****************************************************************************** */
   // CUSTOM COMPONENTS
