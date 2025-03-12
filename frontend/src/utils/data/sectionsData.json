@@ -22,7 +22,7 @@
         "id": 2,
         "name": "tradeName",
         "label": "Trade name",
-        "additionalInfo": "This is the \"commercial name\" of your company, in our case it would be: ZIPTRANSFERS.",
+        "additionalInfo": "<p>This is a <strong>dynamic</strong> content.</p><ul><li class=\"ml-4 text-zip-blue2-500 font-bold\">Item 1</li><li>Item 2</li></ul>",
         "type": "text",
         "role": "input",
         "placeholder": "ZIPTRANSFERS",

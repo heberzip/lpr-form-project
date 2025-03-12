@@ -22,13 +22,12 @@ export const contactSchema = z
       .min(2, "First name must be at least 2 characters long"),
     lastName: z.string().min(2, "Last name must be at least 2 characters long"),
     position: z.string().min(2, "Position must be at least 2 characters long"),
-    contactDetails: z.boolean(), // YES/NO Selection
-    phone: z.string().optional(), // Inicialmente opcional
-    email: z.string().optional(), // Inicialmente opcional
+    contactDetails: z.boolean(),
+    phone: z.string().optional(),
+    email: z.string().optional(),
   })
   .superRefine((data, ctx) => {
     if (data.contactDetails) {
-      // Si selecciona "YES", se activan las validaciones
       if (!data.phone && !data.email) {
         ctx.addIssue({
           path: ["phone"],

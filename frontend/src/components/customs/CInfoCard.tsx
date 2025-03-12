@@ -30,7 +30,10 @@ const CInfoCard = () => {
         </div>
 
         {/* Information */}
-        <p className={style.cinfoCard.infoCardContent}>{info.additionalInfo}</p>
+        <div
+          className={style.cinfoCard.infoCardContent}
+          dangerouslySetInnerHTML={{ __html: info.additionalInfo }}
+        />
       </div>
     </SectionTransition>
   );
