@@ -16,19 +16,10 @@ import styles from "@styles/global.style";
 const initialVehicles = [
   { id: 1, model: "Mercedes E Class", quantity: 5, pax: 4 },
   { id: 2, model: "Ford Explorer", quantity: 3, pax: 6 },
-  { id: 3, model: "Tesla Model S", quantity: 2, pax: 4 },
-  { id: 4, model: "BMW X5", quantity: 3, pax: 4 },
-  { id: 5, model: "Audi Q7", quantity: 5, pax: 6 },
-  { id: 6, model: "Toyota Highlander", quantity: 5, pax: 6 },
-  { id: 7, model: "Chevrolet Suburban", quantity: 1, pax: 7 },
-  { id: 8, model: "Honda Odyssey", quantity: 5, pax: 7 },
-  { id: 9, model: "Volkswagen Tiguan", quantity: 5, pax: 5 },
-  { id: 10, model: "Hyundai Santa Fe", quantity: 1, pax: 5 },
-  { id: 11, model: "Kia Sorento", quantity: 3, pax: 5 },
-  { id: 12, model: "Nissan Rogue", quantity: 2, pax: 5 },
-  { id: 13, model: "Lexus RX", quantity: 1, pax: 5 },
-  { id: 14, model: "Subaru Outback", quantity: 5, pax: 5 },
-  { id: 15, model: "Volvo XC90", quantity: 4, pax: 6 },
+  { id: 3, model: "Tesla Model S", quantity: 2, pax: 3 },
+  { id: 4, model: "BMW X5", quantity: 3, pax: 8 },
+  { id: 5, model: "Audi Q7", quantity: 5, pax: 7 },
+  { id: 6, model: "Toyota Highlander", quantity: 5, pax: 10 },
 ];
 
 const extrasList = [
