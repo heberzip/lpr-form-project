@@ -107,10 +107,6 @@ const TAuthLetter = ({ data }: TAuthLetterProps) => {
 
 export default TAuthLetter;
 
-/*Font.register({
-  family: "Nunito",
-  src: "https://fonts.google.com/share?selection.family=Nunito:ital,wght@0,200..1000;1,200..1000",
-});*/
 // Background alternativo: "#f4f6f9"
 const styles = StyleSheet.create({
   page: {

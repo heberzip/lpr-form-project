@@ -6,7 +6,6 @@
 // STORE
 // STYLES
 import styles from "@styles/global.style";
-//import { useState } from "react";
 // DATA
 // HELPERS
 // TYPES AND SCHEMAS
@@ -43,11 +42,8 @@ const extrasList = [
 ];
 
 const Extras = () => {
-  /*  const [vehicles, setVehicles] = useState(initialVehicles);
+  //const [vehicles, setVehicles] = useState(initialVehicles);
 
-  const handleCheckboxChange = (vehicleId, extra) => {
-    //
-  }; */
   return (
     <section id="extras" className={styles.section.grid}>
       <div className={styles.section.leftCol}>
@@ -117,21 +113,23 @@ const Extras = () => {
                 <tr className="bg-gray-200">
                   <th className="p-2 text-left">Model</th>
                   {extrasList.map((extra) => (
-                    <th key={extra} className="p-2 text-center capitalize">
+                    <th
+                      key={extra}
+                      className="p-2 text-center capitalize text-xs"
+                    >
                       {extra}
                     </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {vehicles.map((vehicle) => (
+                {initialVehicles.map((vehicle) => (
                   <tr key={vehicle.id} className="border-t border-gray-300">
-                    <td className="p-2">{vehicle.model}</td>
+                    <td className="p-2">{vehicle.pax}</td>
                     {extrasList.map((extra) => (
                       <td key={extra} className="p-2 text-center">
                         <input
                           type="checkbox"
-                          checked={false}
                           onChange={() =>
                             console.log("Checkbox changed", vehicle.id, extra)
                           }
