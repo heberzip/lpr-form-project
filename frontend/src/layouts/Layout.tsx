@@ -18,25 +18,26 @@ const Layout = () => {
   });
 
   return (
-    <FormProvider {...methods}>
+    <>
       <header className={style.layout.header}>
         <Header />
       </header>
 
       <div className={style.layout.main}>
-        <aside className={style.layout.sidebar}>
-          <Sidebar />
-        </aside>
-
-        <main className={style.layout.main_div}>
-          <div className={style.layout.outlet}>
-            <AnimatePresence mode="wait">
-              <Outlet key={location.pathname} />
-            </AnimatePresence>
-          </div>
-        </main>
+        <div className={style.layout.sidebar}>
+          <Sidebar userName="John Doe" />
+        </div>
+        <FormProvider {...methods}>
+          <main className={style.layout.main_div}>
+            <div className={style.layout.outlet}>
+              <AnimatePresence mode="wait">
+                <Outlet key={location.pathname} />
+              </AnimatePresence>
+            </div>
+          </main>
+        </FormProvider>
       </div>
-    </FormProvider>
+    </>
   );
 };
 
