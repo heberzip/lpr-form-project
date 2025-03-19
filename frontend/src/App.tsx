@@ -6,7 +6,9 @@ import { CRouter } from "./router/router";
 /******************************************************************************/
 
 const App = () => {
-  return <RouterProvider router={CRouter} />;
+  const user = { name: "John Doe", role: "agent" };
+
+  return <RouterProvider router={CRouter(user)} />;
 };
 
 export default App;

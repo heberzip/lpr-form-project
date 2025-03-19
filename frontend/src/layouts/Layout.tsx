@@ -1,5 +1,5 @@
 // EXTERNAL MODULES
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
 import { AnimatePresence } from "framer-motion";
 // COMPONENTS
@@ -7,15 +7,22 @@ import Sidebar from "@components/Sidebar";
 import Header from "@components/Header";
 // STYLES
 import style from "@styles/global.style";
+import { useEffect } from "react";
 
 /******************************************************************************/
 
-const Layout = () => {
+const Layout = ({ user }: { user: { name: string; role: string } }) => {
   const location = useLocation();
   const methods = useForm({
     mode: "onChange",
     reValidateMode: "onBlur",
   });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/");
+  }, [user.role, navigate]);
 
   return (
     <>
@@ -25,7 +32,7 @@ const Layout = () => {
 
       <div className={style.layout.main}>
         <div className={style.layout.sidebar}>
-          <Sidebar userName="John Doe" />
+          <Sidebar user={user} />
         </div>
         <FormProvider {...methods}>
           <main className={style.layout.main_div}>

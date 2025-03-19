@@ -6,7 +6,12 @@ import { motion } from "framer-motion";
 
 import { useFormStatus } from "@hooks/useFormStatus";
 
-const sections = [
+const agentSections = [
+  { path: "/dashboard", label: "Dashboard" },
+  { path: "/test", label: "Test" },
+];
+
+const supplierSections = [
   { path: "/company", label: "Company details" },
   { path: "/contact", label: "Contact person" },
   { path: "/communication", label: "Communication" },
@@ -17,19 +22,23 @@ const sections = [
 ];
 
 type SidebarProps = {
-  userName: string;
+  user: {
+    name: string;
+    role: string;
+  };
   formStatus: boolean[];
 };
 
-const Sidebar = ({ userName }: { userName: string }) => {
+const Sidebar = ({ user }: { user: { name: string; role: string } }) => {
   const formStatus = useFormStatus();
 
-  return <SidebarUI userName={userName} formStatus={formStatus} />;
+  return <SidebarUI user={user} formStatus={formStatus} />;
 };
 
 export default Sidebar;
 
-const SidebarUI = ({ userName, formStatus }: SidebarProps) => {
+const SidebarUI = ({ user, formStatus }: SidebarProps) => {
+  const sections = user.role === "agent" ? agentSections : supplierSections;
   const location = useLocation();
   return (
     <aside className="w-64 text-white flex flex-col">
@@ -37,7 +46,7 @@ const SidebarUI = ({ userName, formStatus }: SidebarProps) => {
       <div className="flex items-center mb-4 gap-4">
         <UserIcon width={25} height={25} />
         <div className="flex items-center text-center text-xl font-bold">
-          {userName}
+          {user.name}
         </div>
       </div>
 
