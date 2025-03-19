@@ -8,7 +8,7 @@ export default {
       "w-full @[1150px]/Container:h-1/10 bg-dark @[1150px]/Container:bg-light text-dark py-4 px-6 shadow-xl z-20",
     main: "flex flex-1",
     sidebar:
-      "hidden @[750px]/Container:flex @[750px]/Container:w-1/5 @[1150px]/Container:hidden @[1480px]/Container:flex @[1480px]/Container:w-1/7 bg-dark text-white p-4",
+      "hidden @[750px]/Container:flex @[750px]/Container:w-1/5 @[750px]/Container:min-w-[230px] @[1150px]/Container:hidden @[1480px]/Container:flex @[1480px]/Container:w-1/7 min-w-[270px] bg-dark text-white p-4",
     main_div: "flex flex-col flex-1 items-center w-full h-full",
     outlet: "w-full h-full",
     navigation:
